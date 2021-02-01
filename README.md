@@ -1,6 +1,8 @@
 # Projet Annuel Esgi 2ème année
 
-![alt text](https://drive.google.com/file/d/15Kvyy_4wkMvPT9kGyuio_8SDEr8wu_D4/view?usp=sharing)
+<p align="center">
+    <img src="https://drive.google.com/file/d/15Kvyy_4wkMvPT9kGyuio_8SDEr8wu_D4/view?usp=sharing" alt="Logo" width="500" height="100">
+</p>
 
 Établie dans le nord de Paris, QuickBaluchon est une société française de livraison de colis, ayant pur but de simplifier et d'aider à l'acheminement des produits achetés sur des sites d’e-commerce. Elle dispose d’un ensemble de vingt dépôts répartis sur la France entière. Suite à la crise sanitaire du COVID19, son activité n’a cessé d’augmenter, elle compte donc en ouvrir dix de plus cette année.
 
