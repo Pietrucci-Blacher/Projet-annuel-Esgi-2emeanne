@@ -3,7 +3,7 @@ $pdo = new PDO('mysql:host=eu-cdbr-west-03.cleardb.net;dbname=heroku_a4b01b2a0b8
 
 $text = $_POST['text'];
 
-$req = $pdo->prepare("INSERT INTO test (text) VALUES (?)");
+$req = $pdo->prepare("INSERT INTO testcurl (text) VALUES (?)");
 $success = $req->execute([$text]);
 
 if($success == true){
