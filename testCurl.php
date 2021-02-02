@@ -1,6 +1,8 @@
 <?php
 require('include/connexionbdd.php');
 
+$bdd = connexionBDD();
+
 $text = $_POST['text'];
 
 $req = $bdd->prepare("INSERT INTO testcurl (text) VALUES (?)");
