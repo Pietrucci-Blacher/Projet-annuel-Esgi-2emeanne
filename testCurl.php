@@ -7,7 +7,7 @@ $req = $pdo->prepare("INSERT INTO testcurl (text) VALUES (?)");
 $success = $req->execute([$text]);
 
 if($success == true){
-    echo 'it works';
+    echo 'it works, you sent '.$text.' .';
 }else{
     print_r($req->errorInfo());
 }
