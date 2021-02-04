@@ -1,0 +1,40 @@
+.navbar{
+  background-color: #37323e;
+  box-shadow: 0px 1px 10px black;
+}
+
+.nav-link{
+  font-size: 20px;
+  margin-left: 50px;
+  color:#bfbdc1;
+}
+
+.nav-link:hover{
+  color:#deb841;
+}
+
+.dropdown-menu{
+  background-color: #37323e;
+
+}
+
+.dropdown-item{
+  color:#bfbdc1;
+}
+
+.navbar-toggler{
+  border-color: #bfbdc1;
+}
+
+.navbar-toggler:hover{
+  border-color: #deb841;
+}
+
+.dropdown-item:hover{
+  background-color: #bfbdc1;
+}
+
+body{
+  background-image: url('../asset/background.png');
+  background-size: cover;
+}

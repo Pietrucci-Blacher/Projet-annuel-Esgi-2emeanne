@@ -1,0 +1,33 @@
+.banner{
+  background-color: rgba(55, 50, 62, 0.80);
+}
+
+.banner-item{
+  color:#bfbdc1;
+  text-shadow: black 0.1em 0.1em 0.3em;
+}
+
+.webgl{
+  background-color: grey;
+  height: 800px;;
+}
+
+.carousel-caption{
+  margin-bottom: 100px;
+}
+
+.textslider{
+
+  text-shadow: black 0.1em 0.1em 0.3em;
+}
+
+.btn-primary{
+  background-color: #6d6a75;
+  border-color: #6d6a75;
+}
+
+.btn-primary:hover{
+  background-color: #deb841;
+  border-color: #deb841;
+  color: #37323e;
+}
