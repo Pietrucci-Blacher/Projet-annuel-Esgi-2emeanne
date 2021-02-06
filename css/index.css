@@ -9,7 +9,7 @@
 
 .webgl{
   background-color: grey;
-  height: 800px;;
+  height: 800px;
 }
 
 .carousel-caption{
@@ -30,4 +30,9 @@
   background-color: #deb841;
   border-color: #deb841;
   color: #37323e;
+}
+
+.serviceslink{
+  color:#fff; 
+  text-decoration: none;
 }
