@@ -33,6 +33,10 @@
 }
 
 .serviceslink{
-  color:#fff; 
+  color:#fff;
   text-decoration: none;
+}
+
+.serviceslink:hover{
+  color:#fff;
 }

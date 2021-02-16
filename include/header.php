@@ -7,10 +7,10 @@
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
       <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
+          <a class="nav-link" aria-current="true" href="index.php">Accueil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Suivre mon colis</a>
+          <a class="nav-link" href="parcelTracking.php">Suivre mon colis</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

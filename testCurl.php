@@ -6,7 +6,7 @@ $bdd = connexionBDD();
 $text = $_POST['text'];
 
 $req = $bdd->prepare("INSERT INTO testcurl (text) VALUES (:val1)");
-$req->bindValue(':val1',$text,PDO::PARAM_STR); 
+$req->bindValue(':val1',$text,PDO::PARAM_STR);
 $success = $req->execute();
 
 if($success == true){

@@ -37,4 +37,5 @@
 body{
   background-image: url('../asset/background.png');
   background-size: cover;
+  min-height: 100vh;
 }
