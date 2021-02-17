@@ -17,7 +17,7 @@
             Tarifs
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Livreurs</a></li>
+            <li><a class="dropdown-item" href="priceListDeliverer.php">Livreurs</a></li>
             <li><a class="dropdown-item" href="priceListParcel.php">Entreprises</a></li>
           </ul>
         </li>
