@@ -3,7 +3,6 @@
   <head>
     <?php require_once('include/head.php'); ?>
     <?php require_once('include/script.php'); ?>
-    <link rel="stylesheet" href="css/parcelTracking.css" type="text/css">
     <link rel="stylesheet" href="css/index.css" type="text/css">
   </head>
   <?php require_once('include/header.php'); ?>

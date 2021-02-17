@@ -40,3 +40,36 @@
 .serviceslink:hover{
   color:#fff;
 }
+
+.form-control:focus{
+  box-shadow: 0px 0px 10px #deb841;
+  border-color: #deb841;
+}
+
+.btn:focus{
+  box-shadow: none;
+  background-color: #6d6a75;
+  border-color: #6d6a75;
+}
+
+.result{
+  background-color: #37323e;
+  box-shadow: 0px 0px 10px black;
+}
+
+.packageimg{
+  height: 200px;
+}
+
+.textParcel{
+  color:#fff;
+}
+
+.error{
+  color: red;
+}
+
+.table-bordered{
+  box-shadow: 0px 0px 10px black;
+  border-color: #deb841;
+}

@@ -18,7 +18,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">Livreurs</a></li>
-            <li><a class="dropdown-item" href="#">Entreprises</a></li>
+            <li><a class="dropdown-item" href="priceListParcel.php">Entreprises</a></li>
           </ul>
         </li>
         <li class="nav-item">
