@@ -1,0 +1,43 @@
+/* Helvetica*/ 
+@font-face{ 
+    font-family: "Helvetica";
+    src: url("../asset/fonts/helvetica/Helvetica.ttf");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Helvetica Bold";
+    src: url("../asset/fonts/helvetica/Helvetica-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Helvetica Bold Oblique";
+    src: url("../asset/fonts/helvetica/Helvetica-BoldOblique.ttf") format("truetype");
+    font-weight: bold;
+    font-style: oblique; 
+}
+
+@font-face {
+    font-family: "Helvetica Light";
+    src: url("../asset/fonts/helvetica/helvetica-light-587ebe5a59211.ttf") format("truetype");
+    font-weight: lighter; 
+    font-style: normal; 
+}
+
+@font-face {
+    font-family: "Helvetica Oblique";
+    src: url("../asset/fonts/helvetica/Helvetica-Oblique.ttf") format("truetype");
+    font-weight:normal;
+    font-style: oblique; 
+}
+
+/* Agency FB */ 
+@font-face {
+    font-family: "Agency FB";
+    src: url("../asset/fonts/AgencyFB-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
