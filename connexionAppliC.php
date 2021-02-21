@@ -15,7 +15,7 @@ $success = $req->fetch();
 if(empty($success)){
   echo "1";
 }else{
-  $idClient = $success['cient'];
+  $idClient = $success['client'];
 
   $query = 'SELECT id FROM CLIENT WHERE id = ? AND mdp = ?';
   $req = $bdd->prepare($query);
