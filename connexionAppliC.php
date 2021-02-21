@@ -11,8 +11,9 @@ $req = $bdd->prepare($query);
 $req->execute([$id]);
 $success = $req->fetch();
 
+// !!! return code (echo) must be 7 caracters long
 if(empty($success)){
-  echo "errorId";
+  echo "1";
 }else{
   $idClient = $success['cient'];
 
@@ -21,9 +22,9 @@ if(empty($success)){
   $req->execute([$idClient,$mdp]);
   $success = $req->fetch();
   if (empty($success)) {
-    echo "errorMdp";
+    echo "2";
   }else{
-    echo "success";
+    echo "3";
   }
 }
 
