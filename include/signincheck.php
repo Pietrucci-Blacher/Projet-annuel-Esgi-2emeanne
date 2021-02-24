@@ -14,6 +14,7 @@ $req->execute();
 if($data = $req->fetch()){
 	$_SESSION['rank'] = $data['status']; 
 	$_SESSION['email'] = $data['email'];
+	$_SESSION['name'] = $data['nom'];
 	$_SESSION['id'] = $data['id']; 
 	setcookie("rank",$data['status'],time() + 1814400); 
 	if(!empty($_POST["remember"])) {
