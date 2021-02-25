@@ -22,10 +22,10 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Connexion</a>
+          <a class="nav-link" href="connect.php">Connexion</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link me-5" href="#">Inscription</a>
+          <a class="nav-link me-5" href="register.php">Inscription</a>
         </li>
       </ul>
     </div>
