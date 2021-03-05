@@ -90,13 +90,13 @@
             <div class="h-captcha text-center" data-sitekey="caa7faa2-2f61-4f97-9a57-1285fdd1007a"></div><br><br>
             <hr class="mx-4">
             <div class="form-check mx-3">
-                <input class="form-check-input" type="radio" name="deliver" id="delivery">
+                <input class="custom-control-input" type="radio" name="status" id="delivery" value="livreur">
                 <label class="form-check-label" for="delivery">
                     Livreur
                 </label>
             </div>
             <div class="form-check mx-3">
-                <input class="form-check-input" type="radio" name="company" id="company">
+                <input class="custom-control-input" type="radio" name="status" id="company" value="entreprise">
                 <label class="form-check-label" for="company">
                     Entreprise
                 </label>
@@ -108,6 +108,7 @@
         </form>
     </div>
 </div>
+<br>
 </body>
 </html>
 
