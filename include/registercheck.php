@@ -1,6 +1,6 @@
 <?php
 require_once( __DIR__ . '/connexionbdd.php');
-//require_once('../requests/curlrequests.php'); 
+ini_set('display_errors',1); 
 
 $bdd = connexionBDD();
 
