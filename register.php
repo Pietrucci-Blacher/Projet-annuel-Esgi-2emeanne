@@ -17,11 +17,18 @@
 <?php include('include/header.php'); ?>
 <br><br>
 <div class="row">
-    <div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
-        <h3 class="text-center mb-3">S'enregistrer</h3>
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <h3 class="text-center fw-bold mb-3">S'enregistrer</h3>
         <form class="border bg-light border-dark rounded text-align" action="include/registercheck.php" id="formcheck" method="post" enctype="multipart/form-data">
             <br>
             <div class="d-flex mt-3 justify-content-around">
+                <div class="form-group flex-fill mx-2">
+                    <select class="form-select" id="gender" name="gender">
+                        <option selected>Sexe</option>
+                        <option value="monsieur">Monsieur</option>
+                        <option value="madame">Madame</option>
+                    </select>
+                </div>
                 <div class="form-group flex-fill mx-3">
                     <input type="text" id="lastname" class="form-control" name="lastname" placeholder="Nom" autofocus>
                 </div>
@@ -77,27 +84,25 @@
                     <input class="form-control" id ="zipcode" type="number"  name="zipcode" placeholder="Code Postal"><br>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" name="compinfo" id="compinfo" placeholder="Informations complémentaires"></textarea><br>
-                </div>
-                <div class="form-group">
                     <input class="form-control" id ="phonenum" type="tel"  name="phonenum" placeholder="Numéro de Téléphone"><br>
                 </div>
             </div>
-            <div class="h-captcha text-center" data-sitekey="caa7faa2-2f61-4f97-9a57-1285fdd1007a"></div><br>
-            <div class="form-check">
-                <input class="form-check-input" name="cgucheck" type="checkbox" value="" id="defaultCheckcgu">
-                <label class="form-check-label" for="defaultCheck">
-                    Acceptez-vous les <a href="include/CGU.php">CGU</a> ?
+            <div class="h-captcha text-center" data-sitekey="caa7faa2-2f61-4f97-9a57-1285fdd1007a"></div><br><br>
+            <hr class="mx-4">
+            <div class="form-check mx-3">
+                <input class="form-check-input" type="radio" name="deliver" id="delivery">
+                <label class="form-check-label" for="delivery">
+                    Livreur
                 </label>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" name="newletters" type="checkbox" value="" id="defaultCheck">
-                <label class="form-check-label" for="defaultCheck">
-                    Souhaitez vous recevoir la newletters ?
+            <div class="form-check mx-3">
+                <input class="form-check-input" type="radio" name="company" id="company">
+                <label class="form-check-label" for="company">
+                    Entreprise
                 </label>
             </div>
             <br>
-            <div class="form-group mb-5">
+            <div class="form-group mx-5 mb-5">
                 <input class="form-control" type="submit" value="Envoyer">
             </div>
         </form>
