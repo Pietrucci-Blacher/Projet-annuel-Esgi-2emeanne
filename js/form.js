@@ -46,7 +46,7 @@ $(document).ready(function () {
             },
             passwordcheck:{
                 required: true,
-                equalTo: "#password"
+                equalTo: "#passwordinput"
             },
             address:{required:true},
             city:{
