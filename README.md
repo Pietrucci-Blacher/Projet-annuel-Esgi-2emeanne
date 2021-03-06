@@ -25,3 +25,8 @@ Enfin à la fin du mois, des chiffres sont calculés : le nombre de kilomètres 
 Quickbaluchon souhaite moderniser son système d'information, tant du point de vue du réseau que du point de vue applicatif.
 
 Le 15 janvier 2021, Quickbaluchon a donc lancé un appel d'offre afin de réorganiser son système d'information au niveau de la gestion, du site WEB ou encore de l'architecture systèmes et réseaux, appel d'offre auquel il vous faudra répondre, dans le cadre du projet annuel 2020-2021.
+
+----------------------------
+##Roles du projet : 
+* **Responsable développement : Maxime** 
+* **Responsable réseau : Célian**
