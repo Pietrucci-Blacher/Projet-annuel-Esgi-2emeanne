@@ -39,7 +39,7 @@
             <hr class="mx-4">
             <div class="mx-3">
                 <div class="form-group 3">
-                    <input class="form-control" id="mail" type="email" name="email" placeholder="Email" aria-describedby="emailHelp"><br>
+                    <input class="form-control" id="email" type="email" name="email" placeholder="Email" aria-describedby="emailHelp"><br>
                     <dl>
                         <dt>Le mail doit etre du type : test@gmail.com</dt>
                     </dl>
