@@ -44,7 +44,7 @@ if($resultcheck == 0){
                                         $req->bindValue(":val7", $address, PDO::PARAM_STR);
                                         $req->bindValue(":val8", $city, PDO::PARAM_STR);
                                         $req->bindValue(":val9", $zipcode, PDO::PARAM_STR);
-                                        $req->bindValue(":val10" $phonenum, PDO::PARAM_STR);
+                                        $req->bindValue(":val10", $phonenum, PDO::PARAM_STR);
                                         $req->execute();
                                         header('Location: ../index.php');
                                         exit();
