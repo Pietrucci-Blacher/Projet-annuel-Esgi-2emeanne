@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../include/connexionbdd.php');
+require_once __DIR__ . '/../include/connexionbdd.php';
 
 function getData(){
     $bdd = connexionBDD();
