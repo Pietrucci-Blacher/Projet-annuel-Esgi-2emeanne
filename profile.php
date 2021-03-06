@@ -1,5 +1,5 @@
 <?php
-    require_once('request/user.php');
+    require_once __DIR__ . '/request/user.php';
     if(empty($_SESSION)){
         header('Location: connect.php');
     }
