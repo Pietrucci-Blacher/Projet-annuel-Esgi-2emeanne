@@ -1,6 +1,5 @@
 <?php
 require_once( __DIR__ . '/connexionbdd.php');
-ini_set('display_errors',1); 
 
 $bdd = connexionBDD();
 
@@ -36,7 +35,7 @@ if($resultcheck == 0){
                                     if(isset($_POST['status'])){
                                         $q = 'INSERT INTO client(genre,nom, prenom, email, mdp, status, adresse, ville, codePostal, numPhone) VALUES (:val1,:val2,:val3,:val4,:val5,:val6,:val7,:val8, :val9, :val10)';
                                         $req = $bdd->prepare($q);
-                                        $req->bindValue(":val1",$gender,PDO::PARAM_STR);
+                                        $req->bindValue(":val1", $gender,PDO::PARAM_STR);
                                         $req->bindValue(":val2", $lastname, PDO::PARAM_STR);
                                         $req->bindValue(":val3", $firstname, PDO::PARAM_STR);
                                         $req->bindValue(":val4", $email, PDO::PARAM_STR);
@@ -45,7 +44,7 @@ if($resultcheck == 0){
                                         $req->bindValue(":val7", $address, PDO::PARAM_STR);
                                         $req->bindValue(":val8", $city, PDO::PARAM_STR);
                                         $req->bindValue(":val9", $zipcode, PDO::PARAM_STR);
-                                        $req->bindValue(":val10", $phonenum, PDO::PARAM_STR);
+                                        $req->bindValue(":val10" $phonenum, PDO::PARAM_STR);
                                         $req->execute();
                                         header('Location: ../index.php');
                                         exit();
