@@ -12,7 +12,8 @@
         <li class="nav-item">
           <a class="nav-link" href="parcelTracking.php">Suivre mon colis</a>
         </li>
-        <li class="nav-item dropdown">
+          <?php if(!isset($_SESSION['name'])){ ?>
+          <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Tarifs
           </a>
@@ -21,12 +22,33 @@
             <li><a class="dropdown-item" href="priceListParcel.php">Entreprises</a></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="connect.php">Connexion</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link me-5" href="register.php">Inscription</a>
-        </li>
+        <?php } if(isset($_SESSION['name']) && $_SESSION['rank'] == "admin"){?>
+            <li class="nav-item"><a class="nav-link" href="#">Gestion du site</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Les statistiques du site</a></li>
+        <?php } if(isset($_SESSION['name']) && $_SESSION['rank'] == "livreur"){ ?>
+            <li class="nav-item"><a class="nav-link" href="#">Gestion des livraisons</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Mes statistiques </a></li>
+        <?php } if(isset($_SESSION['name']) && $_SESSION['rank'] == "entreprise"){ ?>
+              <li class="nav-item"><a class="nav-link" href="#">Gestion de l'entreprise</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Nos statistiques </a></li>
+        <?php } if(isset($_SESSION['name']) &&  isset($_SESSION['id'])){ ?>
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <?php echo $_SESSION['name'] ?>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="profile.php">Mon profil</a></li>
+              <?php if(isset($_SESSION['name']) && $_SESSION['rank'] == "livreur"){ ?>
+                  <li><a class="dropdown-item" href="#">Mes livraisons</a></li>
+              <?php } ?>
+              <li><a class="dropdown-item" href="logout.php">Se déconnecter</a></li>
+        <?php } ?>
+
+          </li>
+        <?php if(!isset($_SESSION['name'])){ ?>
+            <li class="nav-item"><a class="nav-link" href="connect.php">Connexion</a></li>
+            <li class="nav-item"><a class="nav-link" href="register.php">Inscription</a></li>
+        <?php } ?>
       </ul>
     </div>
   </div>
