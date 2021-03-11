@@ -31,7 +31,7 @@
                     <br>
                     <li><p class="banner-item text-center h5">Prénom: <?php echo $user['prenom'] ?> </p></li>
                     <br>
-                    <li><p class="banner-item text-center h5">Adresse: <?php echo $user['adresse'] . $user['ville'] ?></p></li>
+                    <li><p class="banner-item text-center h5">Adresse: <?php echo $user['adresse'] . ' ' . $user['ville'] ?></p></li>
                     <br>
                     <li><p class="banner-item text-center h5">Code Postal: <?php echo $user['codePostal'] ?></p></li>
                     <br>
