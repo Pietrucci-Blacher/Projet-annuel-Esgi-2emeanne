@@ -20,29 +20,30 @@
     <div class="h1 textcenter"><?php echo $_SESSION['name']; ?></div>
         <div class="mt-5 banner">
             <div class="container">
+                <div class="row">
     <?php
 
     $users = getData();
 
     foreach ($users as $user){?>
-
-        <ul>
-            <li>   <?php echo $user['nom']; ?>  </li>
-            <br>
-            <li>  <?php echo $user['prenom'] ?></li>
-            <br>
-            <li>  <?php echo $user['adresse'] ?></li>
-            <br>
-            <li>  <?php echo $user['ville'] ?></li>
-            <br>
-            <li>  <?php echo $user['codePostal'] ?></li>
-            <br>
-            <li>  <?php echo $user['numPhone'] ?></li>
-        </ul>
+                <ul>
+                    <li>   <?php echo $user['nom']; ?>  </li>
+                    <br>
+                    <li>  <?php echo $user['prenom'] ?></li>
+                    <br>
+                    <li>  <?php echo $user['adresse'] ?></li>
+                    <br>
+                    <li>  <?php echo $user['ville'] ?></li>
+                    <br>
+                    <li>  <?php echo $user['codePostal'] ?></li>
+                    <br>
+                    <li>  <?php echo $user['numPhone'] ?></li>
+                </ul>
 
     <?php } ?>
 
-            </div>
+                </div>
+             </div>
         </div>
 </body>
 </html>
