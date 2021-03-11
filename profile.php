@@ -17,28 +17,25 @@
 </head>
 <body>
     <?php require_once('include/header.php'); ?>
-
-    <div class="h1 textcenter">Mon Profil</div>
     <br>
         <div class="container mt-5">
-                <div class="row">
+            <h1 class="banner-item text-center">Mon Profil</h1>
+            <div class="row">
     <?php
 
     $users = getData();
 
     foreach ($users as $user){?>
                 <ul>
-                    <li>   <?php echo $user['nom']; ?>  </li>
+                    <li><p class="banner-item text-center h5">Nom: <?php echo $user['nom']; ?> </p> </li>
                     <br>
-                    <li>  <?php echo $user['prenom'] ?></li>
+                    <li><p class="banner-item text-center h5">Prénom: <?php echo $user['prenom'] ?> </p></li>
                     <br>
-                    <li>  <?php echo $user['adresse'] ?></li>
+                    <li><p class="banner-item text-center h5">Adresse: <?php echo $user['adresse'] . $user['ville'] ?></p></li>
                     <br>
-                    <li>  <?php echo $user['ville'] ?></li>
+                    <li><p class="banner-item text-center h5">Code Postal: <?php echo $user['codePostal'] ?></p></li>
                     <br>
-                    <li>  <?php echo $user['codePostal'] ?></li>
-                    <br>
-                    <li>  <?php echo $user['numPhone'] ?></li>
+                    <li><p class="banner-item text-center h5">Numero: <?php echo $user['numPhone'] ?></p></li>
                 </ul>
 
     <?php } ?>
