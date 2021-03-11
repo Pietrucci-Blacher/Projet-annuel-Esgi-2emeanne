@@ -12,14 +12,15 @@
     <?php require_once('include/script.php'); ?>
     <meta name="description" content="Page de profil utilisateur">
     <meta name="keywords" content="livraison,colis">
+    <link rel="stylesheet" href="css/index.css" type="text/css">
     <title>Ultimate Parcel - Profile page</title>
 </head>
 <body>
     <?php require_once('include/header.php'); ?>
 
-    <div class="h1 textcenter"><?php echo $_SESSION['name']; ?></div>
-        <div class="mt-5 banner">
-            <div class="container">
+    <div class="h1 textcenter">Mon Profil</div>
+    <br>
+        <div class="container mt-5">
                 <div class="row">
     <?php
 
@@ -44,6 +45,5 @@
 
                 </div>
              </div>
-        </div>
 </body>
 </html>
