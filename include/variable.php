@@ -1,7 +1,7 @@
 <?php
-define("host", "eu-cdbr-west-03.cleardb.net");
-define("dbname", "heroku_a4b01b2a0b88f60");
-define("user","bdd1b420797f42");
-define("pwd","190eb870");
+define("host", "sql306.epizy.com");
+define("dbname", "epiz_28121483_projetannuel");
+define("user","epiz_28121483");
+define("pwd","ek36eKI2OJkxrkR");
 define("driver","mysql");
 ?>
