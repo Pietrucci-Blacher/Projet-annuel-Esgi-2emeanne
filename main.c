@@ -5,6 +5,8 @@
 #include <mysql.h>
 
 MYSQL mysql;
+char infoParcel[11][255];
+
 
 int mysql_connection(){
     mysql_init(&mysql);
@@ -16,6 +18,36 @@ int mysql_connection(){
         printf("MYSQL CONNECT SUCCESS");
         return 0;
     }
+}
+
+void makeQuery(){
+}
+
+void readExcel(){
+    FILE* file;
+    file = fopen("upload/new.csv","r");
+    char character;
+    int col = 0;
+    int i =0;
+
+    if(file){
+        while(feof(file)==0){
+            character = fgetc(file);
+            if(character=='\n'){
+                makeQuery();
+                i=0;
+                col=0;
+            }else if (character == ';'){
+                col +=1;
+                i=0;
+            }else{
+                infoParcel[col][i] = character;
+                //printf("%s\n",infoParcel[col]);
+                i+=1;
+            }
+        }
+    }
+    fclose(file);
 }
 
 int main(int argc,char **argv)
