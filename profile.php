@@ -18,31 +18,23 @@
 <body>
     <?php require_once('include/header.php'); ?>
     <br>
-        <div class="container mt-5">
-            <h1 class="banner-item text-center">Mon Profil</h1>
-            <div class="row">
-    <?php
-
-    $users = getData();
-
-    foreach ($users as $user){?>
-                <ul class="puces">
-                    <li><p class="banner-item text-center h5">Nom: <?php echo $user['nom']; ?> </p> </li>
-                    <br>
-                    <li><p class="banner-item text-center h5">Prénom: <?php echo $user['prenom'] ?> </p></li>
-                    <br>
-                    <li><p class="banner-item text-center h5">Adresse: <?php echo $user['adresse'] . ' ' . $user['ville'] ?></p></li>
-                    <br>
-                    <li><p class="banner-item text-center h5">Code Postal: <?php echo $user['codePostal'] ?></p></li>
-                    <br>
-                    <li><p class="banner-item text-center h5">Numero: <?php echo $user['numPhone'] ?></p></li>
-                </ul>
-
-    <?php } ?>
-
+    <h1 class="banner-item text-center">Mon Profil</h1>
+    <form class="border bg-light border-dark rounded text-align" action="include/registercheck.php" method="post" enctype="multipart/form-data">
+        <?php
+        $users = getData();
+        foreach ($users as $user){?>
+            <div class="form-row">
+                <br>
+                <div class="form-group col-md-6">
+                    <label for="name">Nom: </label>
+                    <input id="lastname" class="form-control" name="lastname" type ="text" value="<?php echo $user['lastname'] ?>">
                 </div>
-
-            <p class="banner-item text-center h5">Vous souhaitez mettre à jour vos informations ? N'attendez plus et cliquez <?php echo "<a href=\"modifprof.php\">ici</a>"; ?></p>
-             </div>
+                <div class="form-group col-md-6">
+                    <label for="name">Prenom: </label>
+                    <input id="firstname" class="form-control" name="firstname" type ="text" value="<?php echo $user['firstname'] ?>">
+                </div>
+            </div>
+    <?php } ?>
+    </form>
 </body>
 </html>
