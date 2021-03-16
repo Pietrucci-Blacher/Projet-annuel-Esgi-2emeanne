@@ -25,20 +25,21 @@
          <?php
          $users = getData();
          foreach ($users as $user){?>
+            <hr class="mx-4">
             <div class="form-row">
                 <br>
-                <div class="form-group col-md-6">
+                <div class="form-group flex-fill mx-2">
                     <label for="lastname">Nom: </label>
                     <input id="lastname" class="form-control" name="lastname" type ="text" value="<?php echo $user['nom'] ?>">
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group flex-fill mx-2">
                     <label for="firstname">Prenom: </label>
                     <input id="firstname" class="form-control" name="firstname" type ="text" value="<?php echo $user['prenom'] ?>">
                 </div>
             </div>
             <br>
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group flex-fill mx-2">
                    <label for="addresse">Adresse: </label>
                   <input id="addresse" class="form-control" type ="text" value="<?php echo $user['adresse'] ?>">
                   <label for="cdPostal">Code Postal: </label>
@@ -46,15 +47,16 @@
                 </div>
             </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group flex-fill mx-2">
                     <label for="nbPhone">Numéro: </label>
                     <input id="nbPhone" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['numPhone'] ?>">
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group flex-fill mx-2">
                     <label for="mail">Email: </label>
                     <input id="mail" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['email'] ?>">
                 </div>
             </div>
+             <br>
     <?php } ?>
         </form>
     </div>
