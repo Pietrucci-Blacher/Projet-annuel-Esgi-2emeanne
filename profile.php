@@ -29,30 +29,30 @@
                 <br>
                 <div class="form-group col-md-6">
                     <label for="lastname">Nom: </label>
-                    <input id="lastname" class="form-control" name="lastname" type ="text" value="<?php echo $users['nom'] ?>">
+                    <input id="lastname" class="form-control" name="lastname" type ="text" value="<?php echo $user['nom'] ?>">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="firstname">Prenom: </label>
-                    <input id="firstname" class="form-control" name="firstname" type ="text" value="<?php echo $users['prenom'] ?>">
+                    <input id="firstname" class="form-control" name="firstname" type ="text" value="<?php echo $user['prenom'] ?>">
                 </div>
             </div>
             <br>
             <div class="form-row">
                 <div class="form-group col-md-6">
                    <label for="addresse">Adresse: </label>
-                  <input id="addresse" class="form-control" type ="text" value="<?php echo $users['adresse'] ?>">
+                  <input id="addresse" class="form-control" type ="text" value="<?php echo $user['adresse'] ?>">
                   <label for="cdPostal">Code Postal: </label>
-                    <input id="cdPostal" class="form-control" name="cdPostal" type ="text" value="<?php echo $users['codePostal'] ?>">
+                    <input id="cdPostal" class="form-control" name="cdPostal" type ="text" value="<?php echo $user['codePostal'] ?>">
                 </div>
             </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                     <label for="nbPhone">Numéro: </label>
-                    <input id="nbPhone" class="form-control" name="nbPhone" type ="text" value="<?php echo $users['numPhone'] ?>">
+                    <input id="nbPhone" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['numPhone'] ?>">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="mail">Email: </label>
-                    <input id="mail" class="form-control" name="nbPhone" type ="text" value="<?php echo $users['email'] ?>">
+                    <input id="mail" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['email'] ?>">
                 </div>
             </div>
     <?php } ?>
