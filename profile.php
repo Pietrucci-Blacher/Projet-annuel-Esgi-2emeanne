@@ -25,7 +25,6 @@
          <?php
          $users = getData();
          foreach ($users as $user){?>
-            <hr class="mx-4">
             <div class="form-row">
                 <br>
                 <div class="form-group flex-fill mx-2">
@@ -38,17 +37,21 @@
                 </div>
             </div>
             <br>
-            <div class="form-row">
-                <div class="form-group flex-fill mx-2">
-                   <label for="addresse">Adresse: </label>
-                  <input id="addresse" class="form-control" type ="text" value="<?php echo $user['adresse'] ?>">
-                </div>
-                <div class="form-group flex-fill mx-3">
-                    <label for="cdPostal">Code Postal: </label>
-                    <input id="cdPostal" class="form-control" name="cdPostal" type ="text" value="<?php echo $user['codePostal'] ?>">
+             <hr class="mx-4">
+             <div class="d-flex mt-3 justify-content-around">
+                <div class="form-row">
+                    <div class="form-group flex-fill mx-2">
+                       <label for="addresse">Adresse: </label>
+                      <input id="addresse" class="form-control" type ="text" value="<?php echo $user['adresse'] ?>">
+                    </div>
+                    <div class="form-group flex-fill mx-3">
+                        <label for="cdPostal">Code Postal: </label>
+                        <input id="cdPostal" class="form-control" name="cdPostal" type ="text" value="<?php echo $user['codePostal'] ?>">
+                    </div>
                 </div>
             </div>
-                <div class="form-row">
+             <hr class="mx-4">
+             <div class="form-row">
                     <div class="form-group flex-fill mx-2">
                     <label for="nbPhone">Numéro: </label>
                     <input id="nbPhone" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['numPhone'] ?>">
