@@ -28,15 +28,24 @@
             <div class="form-row">
                 <br>
                 <div class="form-group col-md-6">
-                    <label for="name">Nom: </label>
-                    <input id="lastname" class="form-control" name="lastname" type ="text" value="<?php echo $users['lastname'] ?>">
+                    <label for="lastname">Nom: </label>
+                    <input id="lastname" class="form-control" name="lastname" type ="text" value="<?php echo $users['nom'] ?>">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="name">Prenom: </label>
-                    <input id="firstname" class="form-control" name="firstname" type ="text" value="<?php echo $users['firstname'] ?>">
+                    <label for="firstname">Prenom: </label>
+                    <input id="firstname" class="form-control" name="firstname" type ="text" value="<?php echo $users['prenom'] ?>">
                 </div>
             </div>
-             <br>
+            <br>
+            <div class="form-group col-md-6">
+                <label for="addresse">Adresse: </label>
+                <input id="addresse" class="form-control" name="addresse" type ="text" value="<?php echo $users['adresse'] ?>"> .  . <input id="cdPostal" class="form-control" name="cdPostal" type ="text" value="<?php echo $users['codePostal'] ?>">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="nbPhone">Code Postal: </label>
+                <input id="nbPhone" class="form-control" name="nbPhone" type ="text" value="<?php echo $users['numPhone'] ?>">
+            </div>
+    </div>
     <?php } ?>
         </form>
     </div>
