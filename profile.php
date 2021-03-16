@@ -20,7 +20,7 @@
     <br>
         <div class="container mt-5">
             <h1 class="banner-item text-center">Mon Profil</h1>
-            <div class="row">
+            <div class="border bg-light border-dark rounded text-align">
     <?php
 
     $users = getData();
