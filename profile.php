@@ -42,7 +42,9 @@
                 <div class="form-group flex-fill mx-2">
                    <label for="addresse">Adresse: </label>
                   <input id="addresse" class="form-control" type ="text" value="<?php echo $user['adresse'] ?>">
-                  <label for="cdPostal">Code Postal: </label>
+                </div>
+                <div class="form-group flex-fill mx-3">
+                    <label for="cdPostal">Code Postal: </label>
                     <input id="cdPostal" class="form-control" name="cdPostal" type ="text" value="<?php echo $user['codePostal'] ?>">
                 </div>
             </div>
