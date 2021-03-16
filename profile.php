@@ -38,9 +38,9 @@
             </div>
             <br>
              <hr class="mx-4">
-             <div class="d-flex mt-3 justify-content-around">
+             <div class="d-flex mt-3 justify-content-end">
                 <div class="form-row">
-                    <div class="form-group flex-fill mx-2">
+                    <div class="form-group flex-fill mx-3">
                        <label for="addresse">Adresse: </label>
                       <input id="addresse" class="form-control" type ="text" value="<?php echo $user['adresse'] ?>">
                     </div>
