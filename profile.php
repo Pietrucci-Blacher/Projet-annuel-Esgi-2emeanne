@@ -42,7 +42,7 @@
 
                 </div>
 
-            <p class="banner-item text-center h5">Vous souhaitez mettre à jour vos informations ? N'attendez plus et <?php echo "<a href=\"modifprof.php\">ici<\a>"; ?></p>
+            <p class="banner-item text-center h5">Vous souhaitez mettre à jour vos informations ? N'attendez plus et <?php echo "<a href=\"modifprof.php\">ici</a>"; ?></p>
              </div>
 </body>
 </html>
