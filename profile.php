@@ -26,7 +26,7 @@
     $users = getData();
 
     foreach ($users as $user){?>
-                <ul list-style="none">
+                <ul class="puces">
                     <li><p class="banner-item text-center h5">Nom: <?php echo $user['nom']; ?> </p> </li>
                     <br>
                     <li><p class="banner-item text-center h5">Prénom: <?php echo $user['prenom'] ?> </p></li>
@@ -42,7 +42,7 @@
 
                 </div>
 
-            <p class="banner-item text-center h5">Vous souhaitez mettre à jour vos informations ? N'attendez plus et <?php echo "<a href=\"modifprof.php\">ici</a>"; ?></p>
+            <p class="banner-item text-center h5">Vous souhaitez mettre à jour vos informations ? N'attendez plus et cliquez <?php echo "<a href=\"modifprof.php\">ici</a>"; ?></p>
              </div>
 </body>
 </html>
