@@ -37,15 +37,24 @@
                 </div>
             </div>
             <br>
-            <div class="form-group col-md-6">
-                <label for="addresse">Adresse: </label>
-                <input id="addresse" class="form-control" name="addresse" type ="text" value="<?php echo $users['adresse'] ?>"> .  . <input id="cdPostal" class="form-control" name="cdPostal" type ="text" value="<?php echo $users['codePostal'] ?>">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                   <label for="addresse">Adresse: </label>
+                  <input id="addresse" class="form-control" type ="text" value="<?php echo $users['adresse'] ?>">
+                  <label for="cdPostal">Code Postal: </label>
+                    <input id="cdPostal" class="form-control" name="cdPostal" type ="text" value="<?php echo $users['codePostal'] ?>">
+                </div>
             </div>
-            <div class="form-group col-md-6">
-                <label for="nbPhone">Code Postal: </label>
-                <input id="nbPhone" class="form-control" name="nbPhone" type ="text" value="<?php echo $users['numPhone'] ?>">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                    <label for="nbPhone">Numéro: </label>
+                    <input id="nbPhone" class="form-control" name="nbPhone" type ="text" value="<?php echo $users['numPhone'] ?>">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="mail">Email: </label>
+                    <input id="mail" class="form-control" name="nbPhone" type ="text" value="<?php echo $users['email'] ?>">
+                </div>
             </div>
-    </div>
     <?php } ?>
         </form>
     </div>
