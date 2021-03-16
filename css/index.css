@@ -76,6 +76,6 @@
 .puces{
   list-style: none;
 }
-div > a:link{
+a:link{
  text-decoration: none;
 }
