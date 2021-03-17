@@ -36,15 +36,15 @@
                     <input id="firstname" class="form-control" name="firstname" type ="text" value="<?php echo $user['prenom'] ?>">
                 </div>
              </div>
-                <div class="d-flex mt-3 justify-content-end">
+            </div>
+             <div class="d-flex mt-3 justify-content-end">
                     <div class="form-row">
                         <div class="form-group flex-fill mx-2">
                             <label for="permis">Votre permis: </label>
                             <input id="permis" class="form-control" name="permis" type="text" value="test">
                         </div>
                     </div>
-                </div>
-            </div>
+             </div>
             <br>
              <hr class="mx-4">
              <!--<div class="d-flex mt-3 justify-content-end">-->
