@@ -1,5 +1,4 @@
 <?php
-ini_set('display_errors',1);
 require_once( __DIR__ . '/connexionbdd.php');
 require_once(__DIR__ . '/variable.php');
 require_once('../request/user.php');
