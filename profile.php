@@ -27,7 +27,6 @@
          foreach ($users as $user){?>
             <div class="d-flex mt-3 justify-content-start">
              <div class="form-row">
-                <br>
                 <div class="form-group flex-fill mx-2">
                     <label for="lastname">Nom: </label>
                     <input id="lastname" class="form-control" name="lastname" type ="text" value="<?php echo $user['nom'] ?>">
@@ -37,6 +36,13 @@
                     <input id="firstname" class="form-control" name="firstname" type ="text" value="<?php echo $user['prenom'] ?>">
                 </div>
              </div>
+                <div class="form-row">
+                    <div class="form-group flex-fill mx-2">
+                        <label for="permis">Votre permis: </label>
+                        <input id="permis" class="form-control" name="permis" type="text" value="test">
+                    </div>
+                </div>
+            </div>
             <br>
              <hr class="mx-4">
              <!--<div class="d-flex mt-3 justify-content-end">-->
@@ -61,7 +67,6 @@
                     <label for="mail">Email: </label>
                     <input id="mail" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['email'] ?>">
                 </div>
-            </div>
             </div>
              <br>
     <?php } ?>
