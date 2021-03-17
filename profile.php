@@ -66,11 +66,16 @@
                     </div>
                     <div class="form-group flex-fill mx-2">
                         <label for="mail">Email: </label>
-                        <input id="mail" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['email'] ?>">
+                        <input id="mail" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['email'] ?>" disabled>
                     </div>
                  </div>
             </div>
+            <div class="d-flex mt-3 justify-content-middle">
+                <div class="form-group mx-5 mb-5">
+                    <input class="form-control" type="submit" value="Modifier mes informations">
+                </div>
 
+            </div>
              <br>
     <?php } ?>
         </form>
