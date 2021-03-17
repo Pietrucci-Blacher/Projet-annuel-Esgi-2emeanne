@@ -35,16 +35,16 @@
                     <label for="firstname">Prenom: </label>
                     <input id="firstname" class="form-control" name="firstname" type ="text" value="<?php echo $user['prenom'] ?>">
                 </div>
-             </div>
-            </div>
-             <div class="d-flex mt-3 justify-content-end">
-                 <div class="form-row">
-                     <div class="form-group flex-fill mx-2">
-                         <label for="permis">Votre permis: </label>
-                         <input id="permis" class="form-control" name="permis" type="text" value="test">
+                 <div class="d-flex mt-3 justify-content-end">
+                     <div class="form-row">
+                         <div class="form-group flex-fill mx-2">
+                             <label for="permis">Votre permis: </label>
+                             <input id="permis" class="form-control" name="permis" type="text" value="test">
+                         </div>
                      </div>
                  </div>
              </div>
+            </div>
             <br>
              <hr class="mx-4">
              <div class="d-flex mt-3 justify-content-start">
@@ -58,7 +58,9 @@
                         <input id="cdPostal" class="form-control" name="cdPostal" type ="text" value="<?php echo $user['codePostal'] ?>">
                     </div>
                 </div>
+             </div>
              <hr class="mx-4">
+            <div class="d-flex mt-3 justify-content-start">
                  <div class="form-row">
                         <div class="form-group flex-fill mx-2">
                         <label for="nbPhone">Numéro: </label>
@@ -69,7 +71,8 @@
                         <input id="mail" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['email'] ?>">
                     </div>
                  </div>
-             </div>
+            </div>
+
              <br>
     <?php } ?>
         </form>
