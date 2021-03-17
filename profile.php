@@ -25,7 +25,8 @@
          <?php
          $users = getData();
          foreach ($users as $user){?>
-            <div class="form-row">
+            <div class="d-flex mt-3 justify-content-start">
+             <div class="form-row">
                 <br>
                 <div class="form-group flex-fill mx-2">
                     <label for="lastname">Nom: </label>
@@ -35,6 +36,7 @@
                     <label for="firstname">Prenom: </label>
                     <input id="firstname" class="form-control" name="firstname" type ="text" value="<?php echo $user['prenom'] ?>">
                 </div>
+             </div>
             </div>
             <br>
              <hr class="mx-4">
