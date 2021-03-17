@@ -11,3 +11,13 @@ function getData(){
     return $uinfo;
 
 }
+
+function checkfirstconnect(){
+    $bdd = connexionBDD();
+    $q = "SELECT Firstconnect from client WHERE id = :id";
+    $req = $bdd->prepare($q);
+    $req->bindValue(":id", $_SESSION['id'], PDO::PARAM_INT);
+    $req->execute();
+    $bool = $req->fetch(PDO::FETCH_ASSOC);
+    return $bool["Firstconnect"];
+}
