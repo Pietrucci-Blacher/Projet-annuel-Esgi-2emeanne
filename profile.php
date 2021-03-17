@@ -47,7 +47,7 @@
              </div>
             <br>
              <hr class="mx-4">
-             <!--<div class="d-flex mt-3 justify-content-end">-->
+             <div class="d-flex mt-3 justify-content-start">
                 <div class="form-row">
                     <div class="form-group flex-fill mx-3">
                        <label for="addresse">Adresse: </label>
@@ -58,18 +58,18 @@
                         <input id="cdPostal" class="form-control" name="cdPostal" type ="text" value="<?php echo $user['codePostal'] ?>">
                     </div>
                 </div>
-            <!--</div>-->
              <hr class="mx-4">
-             <div class="form-row">
+                 <div class="form-row">
+                        <div class="form-group flex-fill mx-2">
+                        <label for="nbPhone">Numéro: </label>
+                        <input id="nbPhone" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['numPhone'] ?>">
+                    </div>
                     <div class="form-group flex-fill mx-2">
-                    <label for="nbPhone">Numéro: </label>
-                    <input id="nbPhone" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['numPhone'] ?>">
-                </div>
-                <div class="form-group flex-fill mx-2">
-                    <label for="mail">Email: </label>
-                    <input id="mail" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['email'] ?>">
-                </div>
-            </div>
+                        <label for="mail">Email: </label>
+                        <input id="mail" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['email'] ?>">
+                    </div>
+                 </div>
+             </div>
              <br>
     <?php } ?>
         </form>
