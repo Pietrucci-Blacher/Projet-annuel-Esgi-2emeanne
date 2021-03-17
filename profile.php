@@ -38,11 +38,12 @@
              </div>
             </div>
              <div class="d-flex mt-3 justify-content-end">
-                    <div class="form-group flex-fill mx-2">
-                        <label for="permis">Votre permis: </label>
-                        <input id="permis" class="form-control" name="permis" type="text" value="test">
-                    </div>
-                </div>
+                 <div class="form-row">
+                     <div class="form-group flex-fill mx-2">
+                         <label for="permis">Votre permis: </label>
+                         <input id="permis" class="form-control" name="permis" type="text" value="test">
+                     </div>
+                 </div>
              </div>
             <br>
              <hr class="mx-4">
