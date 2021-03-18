@@ -35,11 +35,11 @@
                     <label for="firstname">Prenom: </label>
                     <input id="firstname" class="form-control" name="firstname" type ="text" value="<?php echo $user['prenom'] ?>">
                 </div>
-                 <div class="d-flex flex-fill justify-content-end">
+                 <div class="d-flex justify-content-end">
                      <div class="form-row">
                              <label for="permis">Votre permis: </label>
-                             <input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
-                             <input id="permis" class="form-control" name="uploadpermis" type="file" value="test">
+                             <input type="hidden" name="MAX_FILE_SIZE" value="4194304"/>
+                             <input id="permis" class="form-control" name="uploadpermis" type="file" value="test"/>
                      </div>
                  </div>
              </div>
