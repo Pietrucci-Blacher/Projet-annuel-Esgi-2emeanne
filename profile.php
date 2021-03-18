@@ -21,7 +21,7 @@
 <div class="row">
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <h1 class="banner-item text-center">Mon Profil</h1>
-        <form class="border bg-light border-dark rounded text-align" action="include/registercheck.php" method="post" enctype="multipart/form-data">
+        <form class="border bg-light border-dark rounded text-align" action="request/user.php" method="post" enctype="multipart/form-data">
          <?php
          $users = getData();
          foreach ($users as $user){?>
@@ -71,9 +71,9 @@
                     </div>
                  </div>
             </div>
-            <div class="d-flex mt-3 justify-content-middle">
-                <div class="form-group mx-5 mb-5">
-                    <button class="form-control" type="submit" value="Modifier mes informations">
+            <div id="divpush" class="d-flex mt-3 justify-content-middle">
+                <div id="divpus" class="form-group mx-5 mb-5">
+                    <input class="form-control" type="submit" value="Modifier mes informations">
                 </div>
 
             </div>
