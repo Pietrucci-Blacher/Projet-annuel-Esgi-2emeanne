@@ -38,7 +38,8 @@
                  <div class="d-flex flex-fill justify-content-end">
                      <div class="form-row">
                              <label for="permis">Votre permis: </label>
-                             <input id="permis" class="form-control" name="permis" type="text" value="test">
+                             <input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
+                             <input id="permis" class="form-control" name="uploadpermis" type="file" value="test">
                      </div>
                  </div>
              </div>
