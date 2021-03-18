@@ -80,6 +80,7 @@ a:link{
   color: #ffffff;
  text-decoration: none;
 }
-#divpush > #divpus > input{
-  color: #00ffff;
+#divpush > #divpus{
+  color: #0000ff;
+  text-decoration-color: #000000;
 }
