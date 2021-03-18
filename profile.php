@@ -73,7 +73,7 @@
             </div>
             <div class="d-flex mt-3 justify-content-middle">
                 <div class="form-group mx-5 mb-5">
-                    <input class="form-control" type="submit" value="Modifier mes informations">
+                    <button class="form-control" type="submit" value="Modifier mes informations">
                 </div>
 
             </div>
