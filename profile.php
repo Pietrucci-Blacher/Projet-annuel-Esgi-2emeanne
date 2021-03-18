@@ -35,7 +35,7 @@
                     <label for="firstname">Prenom: </label>
                     <input id="firstname" class="form-control" name="firstname" type ="text" value="<?php echo $user['prenom'] ?>">
                 </div>
-                 <div class="d-flex mt-3 justify-content-end">
+                 <div class="d-flex flex-fill justify-content-end">
                      <div class="form-row">
                              <label for="permis">Votre permis: </label>
                              <input id="permis" class="form-control" name="permis" type="text" value="test">
