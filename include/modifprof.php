@@ -12,11 +12,11 @@ $cdPostal = htmlspecialchars(trim($_POST['cdPostal']));
 $nbPhone = htmlspecialchars(trim($_POST['nbPhone']));
 
 
-$q = "SELECT id FROM client WHERE email = :val1";
+$q = "SELECT nom, prenom, email, adresse, codePostal, numPhone FROM client WHERE id = :id";
 $req = $bdd->prepare($q);
-$req->bindValue(':val1',$_POST['email'],PDO::PARAM_STR);
+$req->bindValue(":id", $_SESSION['id'], PDO::PARAM_INT);
 $req->execute();
-$checkempty= $req->fetch();
+$checkempty= $req->fetchAll(PDO::FETCH_ASSOC);
 
 if($checkempty != 0){
     if(isset($_POST['lastname']) && strlen($_POST['lastname']) >= 1 && strlen($_POST['lastname']) <= 70 && is_string($_POST['lastname'])){
