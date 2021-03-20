@@ -26,12 +26,12 @@ $checkempty= $req->fetchAll(PDO::FETCH_ASSOC);*/
                     if (isset($_POST['cdPostal']) && strlen($_POST['cdPostal']) == 5 && is_numeric($_POST['cdPostal'])) {
                         $q = 'UPDATE client SET nom = :val1, prenom = :val2, adresse = :val4, codePostal = :val5, numPhone = :val6 WHERE email = :val3)';
                         $mod = $bdd->prepare($q);
-                        $mod->bindValue(":val1", $lastname);
-                        $mod->bindValue(":val2", $firstname);
-                        $mod->bindValue(":val3", $email);
-                        $mod->bindValue(":val4", $address);
-                        $mod->bindValue(":val5", $cdPostal);
-                        $mod->bindValue(":val6", $nbPhone);
+                        $mod->bindValue(":val1", $lastname, PDO::PARAM_STR);
+                        $mod->bindValue(":val2", $firstname, PDO::PARAM_STR);
+                        $mod->bindValue(":val3", $email, PDO::PARAM_STR);
+                        $mod->bindValue(":val4", $address, PDO::PARAM_STR);
+                        $mod->bindValue(":val5", $cdPostal, PDO::PARAM_STR);
+                        $mod->bindValue(":val6", $nbPhone, PDO::PARAM_STR);
                         $mod->execute();
                         header('Location: ../index.php');
                         exit();
