@@ -21,7 +21,7 @@
 <div class="row">
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <h1 class="banner-item text-center">Mon Profil</h1>
-        <form class="border bg-light border-dark rounded text-align" action="request/user.php" method="post" enctype="multipart/form-data">
+        <form class="border bg-light border-dark rounded text-align" action="include/modifprof.php" method="post" enctype="multipart/form-data">
          <?php
          $users = getData();
          foreach ($users as $user){?>
@@ -49,8 +49,8 @@
              <div class="d-flex mt-3 justify-content-start">
                 <div class="form-row">
                     <div class="form-group flex-fill mx-3">
-                       <label for="addresse">Adresse: </label>
-                      <input id="addresse" class="form-control" type ="text" value="<?php echo $user['adresse'] ?>">
+                       <label for="address">Adresse: </label>
+                      <input id="address" class="form-control" type ="text" value="<?php echo $user['adresse'] ?>">
                     </div>
                     <div class="form-group flex-fill mx-3">
                         <label for="cdPostal">Code Postal: </label>
@@ -66,8 +66,8 @@
                         <input id="nbPhone" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['numPhone'] ?>">
                     </div>
                     <div class="form-group flex-fill mx-2">
-                        <label for="mail">Email: </label>
-                        <input id="mail" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['email'] ?>" disabled>
+                        <label for="email">Email: </label>
+                        <input id="email" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['email'] ?>" disabled>
                     </div>
                  </div>
             </div>
