@@ -18,25 +18,26 @@ $req->bindValue(':val1',$_POST['email'],PDO::PARAM_STR);
 $req->execute();
 $checkempty= $req->fetch();
 
-if($checkempty == 0){
+if($checkempty != 0){
     if(isset($_POST['lastname']) && strlen($_POST['lastname']) >= 1 && strlen($_POST['lastname']) <= 70 && is_string($_POST['lastname'])){
-        if(isset($_POST['firstname']) && strlen($_POST['firstname']) >= 1 && strlen($_POST['firstname']) <= 60 && is_string($_POST['firstname'])){
-            if(isset($_POST['address']) && strlen($_POST['address']) > 1 && is_string($_POST['address'])){
-                if(isset($_POST['nbPhone']) && strlen($_POST['nbPhone']) == 10 && is_string($_POST['nbPhone'])){
-                    if(isset($_POST['cdPostal']) && strlen($_POST['cdPostal']) == 5 && is_numeric($_POST['cdPostal'])){
+        if(isset($_POST['firstname']) && strlen($_POST['firstname']) >= 1 && strlen($_POST['firstname']) <= 60 && is_string($_POST['firstname'])) {
+            if (isset($_POST['address']) && strlen($_POST['address']) > 1 && is_string($_POST['address'])) {
+                if (isset($_POST['nbPhone']) && strlen($_POST['nbPhone']) == 10 && is_string($_POST['nbPhone'])) {
+                    if (isset($_POST['cdPostal']) && strlen($_POST['cdPostal']) == 5 && is_numeric($_POST['cdPostal'])) {
                         $q = 'INSERT INTO client(nom, prenom, email, adresse, codePostal, numPhone) VALUES (:val1,:val2,:val3,:val4,:val5,:val6)';
-                        $req = $bdd->prepare($q);
-                        $req->bindValue(":val1", $lastname, PDO::PARAM_STR);
-                        $req->bindValue(":val2", $firstname, PDO::PARAM_STR);
-                        $req->bindValue(":val3", $email, PDO::PARAM_STR);
-                        $req->bindValue(":val4", $address, PDO::PARAM_STR);
-                        $req->bindValue(":val5", $cdPostal, PDO::PARAM_STR);
-                        $req->bindValue(":val6", $nbPhone, PDO::PARAM_STR);
-                        $req->execute();
+                        $mod = $bdd->prepare($q);
+                        $mod->bindValue(":val1", $lastname, PDO::PARAM_STR);
+                        $mod->bindValue(":val2", $firstname, PDO::PARAM_STR);
+                        $mod->bindValue(":val3", $email, PDO::PARAM_STR);
+                        $mod->bindValue(":val4", $address, PDO::PARAM_STR);
+                        $mod->bindValue(":val5", $cdPostal, PDO::PARAM_STR);
+                        $mod->bindValue(":val6", $nbPhone, PDO::PARAM_STR);
+                        $mod->execute();
                         header('Location: ../profile.php');
                         exit();
                     }
-
+                }
             }
+        }
     }
 }
