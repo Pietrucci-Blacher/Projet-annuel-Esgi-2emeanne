@@ -50,7 +50,7 @@
                 <div class="form-row">
                     <div class="form-group flex-fill mx-3">
                        <label for="address">Adresse: </label>
-                      <input id="address" class="form-control" type ="text" value="<?php echo $user['adresse'] ?>">
+                      <input id="address" class="form-control" name="address" type ="text" value="<?php echo $user['adresse'] ?>">
                     </div>
                     <div class="form-group flex-fill mx-3">
                         <label for="cdPostal">Code Postal: </label>
@@ -67,7 +67,7 @@
                     </div>
                     <div class="form-group flex-fill mx-2">
                         <label for="email">Email: </label>
-                        <input id="email" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['email'] ?>" disabled>
+                        <input id="email" class="form-control" name="email" type ="text" value="<?php echo $user['email'] ?>" disabled>
                     </div>
                  </div>
             </div>
