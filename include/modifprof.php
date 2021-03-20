@@ -12,20 +12,21 @@ $cdPostal = htmlspecialchars(trim($_POST['cdPostal']));
 $nbPhone = htmlspecialchars(trim($_POST['nbPhone']));
 
 
-$q = "SELECT nom, prenom, email, adresse, codePostal, numPhone FROM client WHERE id = :id";
+/*$q = "SELECT nom, prenom, email, adresse, codePostal, numPhone FROM client WHERE id = :id";
 $req = $bdd->prepare($q);
 $req->bindValue(":id", $_SESSION['id'], PDO::PARAM_INT);
 $req->execute();
-$checkempty= $req->fetchAll(PDO::FETCH_ASSOC);
+$checkempty= $req->fetchAll(PDO::FETCH_ASSOC);*/
 
-if($checkempty != 0){
+//if($checkempty != 0){
     if(isset($_POST['lastname']) && strlen($_POST['lastname']) >= 1 && strlen($_POST['lastname']) <= 70 && is_string($_POST['lastname'])){
         if(isset($_POST['firstname']) && strlen($_POST['firstname']) >= 1 && strlen($_POST['firstname']) <= 60 && is_string($_POST['firstname'])) {
             if (isset($_POST['address']) && strlen($_POST['address']) > 1 && is_string($_POST['address'])) {
                 if (isset($_POST['nbPhone']) && strlen($_POST['nbPhone']) == 10 && is_string($_POST['nbPhone'])) {
                     if (isset($_POST['cdPostal']) && strlen($_POST['cdPostal']) == 5 && is_numeric($_POST['cdPostal'])) {
-                        $q = 'INSERT INTO client(nom, prenom, email, adresse, codePostal, numPhone) VALUES (:val1,:val2,:val3,:val4,:val5,:val6)';
+                        $q = 'UPDATE client SET nom = :val1, prenom = :val2, email = :val3, adresse = :val4, codePostal = :val5, numPhone = :val6 WHERE id = :id)';
                         $mod = $bdd->prepare($q);
+                        $mod->bindValue(":id", $_SESSION['id'], PDO::PARAM_INT);
                         $mod->bindValue(":val1", $lastname, PDO::PARAM_STR);
                         $mod->bindValue(":val2", $firstname, PDO::PARAM_STR);
                         $mod->bindValue(":val3", $email, PDO::PARAM_STR);
@@ -33,11 +34,11 @@ if($checkempty != 0){
                         $mod->bindValue(":val5", $cdPostal, PDO::PARAM_STR);
                         $mod->bindValue(":val6", $nbPhone, PDO::PARAM_STR);
                         $mod->execute();
-                        header('Location: ../profile.php');
+                        header('Location: ../index.php');
                         exit();
                     }
                 }
             }
         }
     }
-}
+//}
