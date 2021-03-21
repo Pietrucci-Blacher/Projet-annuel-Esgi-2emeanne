@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1615488913 source:c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\main.c
+1616346437 source:c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\main.c
 	<common.h>
 
 1366407812 c:\users\pierre\desktop\esgi\projet annuel\appliclientc\librarie\include\gtk-3.0\gtk\gtk.h
@@ -2486,4 +2486,74 @@
 	<stdbool.h>
 	<stddef.h>
 	<stdint.h>
+
+1616346438 source:c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\curl.c
+	<common.h>
+
+1615488711 c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\common\common.h
+	<gtk/gtk.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<curl/curl.h>
+	<time.h>
+	<qrcodegen.h>
+	<libbmp.h>
+
+1607411654 c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\libraries\curl library\include\curl\curl.h
+	"curlver.h"
+	"system.h"
+	<stdio.h>
+	<limits.h>
+	<osreldate.h>
+	<sys/types.h>
+	<time.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/select.h>
+	<sys/socket.h>
+	<sys/time.h>
+	<support/SupportDefs.h>
+	"easy.h"
+	"multi.h"
+	"urlapi.h"
+	"options.h"
+	"typecheck-gcc.h"
+
+1607492426 c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\libraries\curl library\include\curl\curlver.h
+
+1607325854 c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\libraries\curl library\include\curl\system.h
+	<winsock2.h>
+	<windows.h>
+	<ws2tcpip.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<sys/poll.h>
+
+1607325854 c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\libraries\curl library\include\curl\easy.h
+
+1607325854 c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\libraries\curl library\include\curl\multi.h
+	"curl.h"
+
+1607325854 c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\libraries\curl library\include\curl\urlapi.h
+	"curl.h"
+
+1607325854 c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\libraries\curl library\include\curl\options.h
+
+1607325854 c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\libraries\curl library\include\curl\typecheck-gcc.h
+
+1616346438 source:c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\excel.c
+	<common.h>
+
+1615405966 source:c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\gtk.c
+	<common.h>
+
+1616346439 source:c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\menu.c
+	<common.h>
+
+1615489363 source:c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\parcel.c
+	<common.h>
+
+1615489854 source:c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\qrcode.c
+	<common.h>
 

@@ -141,7 +141,7 @@ void allParcelScreen(){
     gtk_box_pack_start(GTK_BOX(boxFrame), btn[0], TRUE, FALSE, 0);
 
     FILE* file;
-    file = fopen("new.csv","r");
+    file = fopen("generated/excel/new.csv","r");
 
     if(file){
         btn[1] = gtk_button_new_with_label("Valider");
