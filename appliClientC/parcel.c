@@ -74,8 +74,9 @@ void deleteParcel(GtkButton *btn, gpointer index){
     deleteQrcode(nbIndex);
 
     for(int i  = 0; i< 10; i++){
+        memset(infoParcel[i][nbIndex],0,sizeof(infoParcel[i][nbIndex]));
         strcpy(infoParcel[i][nbIndex],infoParcel[i][actualIndex]);
-        strcpy(infoParcel[i][actualIndex],"");
+        memset(infoParcel[i][actualIndex],0,sizeof(infoParcel[i][actualIndex]));
     }
 
     dataToExcell();

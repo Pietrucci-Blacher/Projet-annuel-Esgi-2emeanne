@@ -16,6 +16,7 @@
 					<Add directory="libraries/curl library/include" />
 					<Add directory="libraries/bmp library" />
 					<Add directory="libraries/qrcode library/include" />
+					<Add directory="common" />
 				</Compiler>
 				<Linker>
 					<Add library="libraries/qrcode library/lib/libqrcodegen.a" />
@@ -35,6 +36,7 @@
 					<Add directory="libraries/curl library/include" />
 					<Add directory="libraries/bmp library" />
 					<Add directory="libraries/qrcode library/include" />
+					<Add directory="common" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
