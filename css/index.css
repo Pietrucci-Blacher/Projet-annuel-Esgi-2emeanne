@@ -74,20 +74,20 @@
 }
 
 .tabLink{
-  box-shadow: none;
-  background-color: #6d6a75;
-  border-color: #6d6a75;
+  background-color: #37323e;
+  border-width: 2px !important;
+  border-color: #bfbdc1 !important;
 }
 
 .tabLink:hover{
-  border-color: #6d6a75 !important;
+  border-color: white white #bfbdc1 white !important;
   color: white;
 }
 
 .tabLink.active{
   background-color:#bfbdc1 !important;
   border-color: #bfbdc1 !important;
-  color: #37323e !important;
+  color: black !important;
 }
 
 .tabLink:focus{
