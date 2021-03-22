@@ -1,6 +1,6 @@
 <?php
   $_SESSION['siret']= 754879;
-    if(empty($_SESSION)){
+    if(empty($_SESSION['siret'])){
         header('Location: connect.php');
     }
 ?>
@@ -13,16 +13,17 @@
   <?php require_once('include/header.php'); ?>
   <body>
     <script>
-      function showMore(weight,speed,surname,firstname,address,city,zip,phone,info,price,date){
+      function showMore(weight,speed,surname,firstname,address,city,zip,phone,info,price,date,status){
         document.getElementById('weight').innerHTML = 'Poids : ' + weight + ' kg';
         if(price == '' && date == ''){
             document.getElementById('price').innerHTML = '';
             document.getElementById('date').innerHTML = '';
+            document.getElementById('status').innerHTML = '';
         }else{
           document.getElementById('price').innerHTML = 'Prix de la liraison : ' + price + ' €';
           document.getElementById('date').innerHTML = 'Date de livraison prévue : ' + date;
+          document.getElementById('status').innerHTML = 'Etat du colis : ' + status;
         }
-
         document.getElementById('speed').innerHTML = 'Mode de livraison : ' + speed;
         document.getElementById('surname').innerHTML = 'Nom du destinataire : ' + surname + ' ' + firstname;
         document.getElementById('address').innerHTML = 'Adresse : ' + address;
@@ -66,6 +67,7 @@
             <p class="h5" id="speed"></p>
             <p class="h5" id="price"></p>
             <p class="h5" id="date"></p>
+            <p class="h5" id="status"></p>
             <p class="h5" id="surname"></p>
             <p class="h5" id="address"></p>
             <p class="h5" id="city"></p>
@@ -119,7 +121,7 @@
                     <td>'.$client['nom'].' '.$client['prenom'].'</td>
                     <td>'.$client['codePostal'].'</td>
                     <td><button type="button" name="button" class="btn btn-primary" onclick="showMore('.$parcel['poids'].',\''.$parcel['modeLivraison'].'\',\''.$client['nom'].'\',\''.$client['prenom'].'\',\''.$client['adresse'].'\',\''.$client['ville'].'\',\''.$client['codePostal'].
-                    '\',\''.$client['numPhone'].'\',\''.$client['info'].'\',\''.$parcel['prix'].'\',\''.$parcel['date'].'\')">Détails</button>
+                    '\',\''.$client['numPhone'].'\',\''.$client['info'].'\',\''.$parcel['prix'].'\',\''.$parcel['date'].'\',\''.$parcel['status'].'\')">Détails</button>
                     <button type="button" name="button" class="btn btn-primary ms-5" onclick="delParcel(\''.$parcel['id'].'\',\''.$parcel['client'].'\')">Supprimer</button></td>
                   </tr>';
                 }
@@ -156,7 +158,7 @@
                   <td>'.$client['nom'].' '.$client['prenom'].'</td>
                   <td>'.$client['codePostal'].'</td>
                   <td><button type="button" name="button" class="btn btn-primary" onclick="showMore('.$parcel['poids'].',\''.$parcel['modeLivraison'].'\',\''.$client['nom'].'\',\''.$client['prenom'].'\',\''.$client['adresse'].'\',\''.$client['ville'].'\',\''.$client['codePostal'].
-                  '\',\''.$client['numPhone'].'\',\''.$client['info'].'\',\''.$parcel['prix'].'\',\''.$parcel['date'].'\')">Détails</button></td>
+                  '\',\''.$client['numPhone'].'\',\''.$client['info'].'\',\''.$parcel['prix'].'\',\''.$parcel['date'].'\',\''.$parcel['status'].'\')">Détails</button></td>
                 </tr>';
               }
                ?>

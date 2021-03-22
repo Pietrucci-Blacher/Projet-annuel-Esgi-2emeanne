@@ -29,6 +29,7 @@
             <li class="nav-item"><a class="nav-link" href="#">Gestion des livraisons</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Mes statistiques </a></li>
         <?php } if(isset($_SESSION['name']) && $_SESSION['rank'] == "entreprise"){ ?>
+              <li class="nav-item"><a class="nav-link" href="parcelListCompany.php">Liste des colis</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Gestion de l'entreprise</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Nos statistiques </a></li>
         <?php } if(isset($_SESSION['name']) &&  isset($_SESSION['id'])){ ?>
