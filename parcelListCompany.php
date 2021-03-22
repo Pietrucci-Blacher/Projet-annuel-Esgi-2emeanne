@@ -32,7 +32,7 @@
           document.getElementById('phone').innerHTML = 'Numéro de téléphone : ' + phone;
         }
         if(info != ''){
-          document.getElementById('info').innerHTML = 'Informations supplémentaire : ' + info;
+          document.getElementById('info').innerHTML = 'Informations supplémentaires : ' + info;
         }
         $(function () {
            $('#exampleModal').modal('toggle');
@@ -79,7 +79,7 @@
     </div>
 
     <div class="container mt-5">
-      <h1 class="banner-item text-center mb-5">Liste des colis</h1>
+      <h1 class="banner-item text-center mb-5">Liste des colis en cours</h1>
 
       <ul class="nav nav-tabs result" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -120,9 +120,9 @@
                     <td>'.$parcel['modeLivraison'].'</td>
                     <td>'.$client['nom'].' '.$client['prenom'].'</td>
                     <td>'.$client['codePostal'].'</td>
-                    <td><button type="button" name="button" class="btn btn-primary" onclick="showMore('.$parcel['poids'].',\''.$parcel['modeLivraison'].'\',\''.$client['nom'].'\',\''.$client['prenom'].'\',\''.$client['adresse'].'\',\''.$client['ville'].'\',\''.$client['codePostal'].
+                    <td><button type="button" name="button" class="btn btnTable" onclick="showMore('.$parcel['poids'].',\''.$parcel['modeLivraison'].'\',\''.$client['nom'].'\',\''.$client['prenom'].'\',\''.$client['adresse'].'\',\''.$client['ville'].'\',\''.$client['codePostal'].
                     '\',\''.$client['numPhone'].'\',\''.$client['info'].'\',\''.$parcel['prix'].'\',\''.$parcel['date'].'\',\''.$parcel['status'].'\')">Détails</button>
-                    <button type="button" name="button" class="btn btn-primary ms-5" onclick="delParcel(\''.$parcel['id'].'\',\''.$parcel['client'].'\')">Supprimer</button></td>
+                    <button type="button" name="button" class="btn btnTable ms-5" onclick="delParcel(\''.$parcel['id'].'\',\''.$parcel['client'].'\')">Supprimer</button></td>
                   </tr>';
                 }
 
@@ -145,7 +145,7 @@
 
               $bdd = connexionBDD();
 
-              $req = $bdd->prepare('SELECT * FROM COLIS WHERE entreprise = ? AND status != "En attente du partenaire" AND status != "Payé"');
+              $req = $bdd->prepare('SELECT * FROM COLIS WHERE entreprise = ? AND status != "En attente du partenaire" AND status != "Délivré"');
               $req->execute([$_SESSION['siret']]);
 
               while($parcel = $req->fetch()){
@@ -157,7 +157,7 @@
                   <td>'.$parcel['modeLivraison'].'</td>
                   <td>'.$client['nom'].' '.$client['prenom'].'</td>
                   <td>'.$client['codePostal'].'</td>
-                  <td><button type="button" name="button" class="btn btn-primary" onclick="showMore('.$parcel['poids'].',\''.$parcel['modeLivraison'].'\',\''.$client['nom'].'\',\''.$client['prenom'].'\',\''.$client['adresse'].'\',\''.$client['ville'].'\',\''.$client['codePostal'].
+                  <td><button type="button" name="button" class="btn btnTable" onclick="showMore('.$parcel['poids'].',\''.$parcel['modeLivraison'].'\',\''.$client['nom'].'\',\''.$client['prenom'].'\',\''.$client['adresse'].'\',\''.$client['ville'].'\',\''.$client['codePostal'].
                   '\',\''.$client['numPhone'].'\',\''.$client['info'].'\',\''.$parcel['prix'].'\',\''.$parcel['date'].'\',\''.$parcel['status'].'\')">Détails</button></td>
                 </tr>';
               }

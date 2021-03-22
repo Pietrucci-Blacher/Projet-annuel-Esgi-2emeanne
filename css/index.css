@@ -17,7 +17,6 @@
 }
 
 .textslider{
-
   text-shadow: black 0.1em 0.1em 0.3em;
 }
 
@@ -70,7 +69,7 @@
 }
 
 .tab-pane{
-  background-color: white;
+  background-color: #bfbdc1;
   box-shadow: 0px 5px 10px black;
 }
 
@@ -78,15 +77,29 @@
   box-shadow: none;
   background-color: #6d6a75;
   border-color: #6d6a75;
-  color:white;
 }
 
 .tabLink:hover{
-  color:white;
+  border-color: #6d6a75 !important;
+}
+
+.tabLink.active{
+  background-color:#bfbdc1 !important;
+  border-color: #bfbdc1 !important;
+  color: #37323e !important;
 }
 
 .nav{
   padding-top: 10px;
+}
+
+.btnTable{
+  background-color: #6d6a75;
+  color : white;
+}
+
+.btnTable:hover{
+  color: #deb841;
 }
 
 .table-bordered{

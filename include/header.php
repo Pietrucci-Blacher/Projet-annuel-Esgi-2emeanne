@@ -30,8 +30,8 @@
             <li class="nav-item"><a class="nav-link" href="#">Mes statistiques </a></li>
         <?php } if(isset($_SESSION['name']) && $_SESSION['rank'] == "entreprise"){ ?>
               <li class="nav-item"><a class="nav-link" href="parcelListCompany.php">Liste des colis</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Gestion de l'entreprise</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Nos statistiques </a></li>
+              <li class="nav-item"><a class="nav-link" href="searchParcelCompany.php">Rechercher un colis</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Payer les colis</a></li>
         <?php } if(isset($_SESSION['name']) &&  isset($_SESSION['id'])){ ?>
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
