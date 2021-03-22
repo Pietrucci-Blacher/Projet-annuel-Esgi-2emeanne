@@ -100,14 +100,16 @@ void readExcel(){
     DIR *d;
     struct dirent *dir;
     char path[255];
+    char movePath[255];
     FILE* file;
 
-    strcpy(path,"upload/");
+    strcpy(path,"excel/upload/");
+    strcpy(movePath,"excel/processed/");
     char character;
     int col = 0;
     int i =0;
 
-    d = opendir("upload");
+    d = opendir("excel/upload");
     if(d){
 
         while ((dir = readdir(d)) != NULL)
@@ -115,6 +117,7 @@ void readExcel(){
             if(strcmp(dir->d_name,".") != 0 && strcmp(dir->d_name,"..") != 0){
                 //printf("-%s-",dir->d_name);
                 strcat(path,dir->d_name);
+                strcat(movePath,dir->d_name);
                 file = fopen(path,"r");
                 if(file){
                     printf("file");
@@ -136,6 +139,7 @@ void readExcel(){
                         }
                     }
                     fclose(file);
+                    rename(path,movePath);
                 }
             }
         }
