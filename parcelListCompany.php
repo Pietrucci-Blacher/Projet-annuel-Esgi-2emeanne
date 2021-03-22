@@ -9,33 +9,25 @@
     <?php require_once('include/head.php'); ?>
     <?php require_once('include/script.php'); ?>
     <link rel="stylesheet" href="css/index.css" type="text/css">
+    <meta charset="utf-8"/>
   </head>
   <?php require_once('include/header.php'); ?>
   <body>
     <script>
-      function showMore(weight,speed,surname,firstname,address,city,zip,phone,info,price,date,status){
-        document.getElementById('weight').innerHTML = 'Poids : ' + weight + ' kg';
-        if(price == '' && date == ''){
-            document.getElementById('price').innerHTML = '';
-            document.getElementById('date').innerHTML = '';
-            document.getElementById('status').innerHTML = '';
-        }else{
-          document.getElementById('price').innerHTML = 'Prix de la liraison : ' + price + ' €';
-          document.getElementById('date').innerHTML = 'Date de livraison prévue : ' + date;
-          document.getElementById('status').innerHTML = 'Etat du colis : ' + status;
-        }
-        document.getElementById('speed').innerHTML = 'Mode de livraison : ' + speed;
-        document.getElementById('surname').innerHTML = 'Nom du destinataire : ' + surname + ' ' + firstname;
-        document.getElementById('address').innerHTML = 'Adresse : ' + address;
-        document.getElementById('city').innerHTML = 'Ville : ' + city + ' ' + zip;
-        if(phone != ''){
-          document.getElementById('phone').innerHTML = 'Numéro de téléphone : ' + phone;
-        }
-        if(info != ''){
-          document.getElementById('info').innerHTML = 'Informations supplémentaires : ' + info;
-        }
-        $(function () {
-           $('#exampleModal').modal('toggle');
+
+      function showMore(idParcel){
+
+        $.ajax({
+           url : 'parcelInfo.php',
+           type : 'POST',
+           data : 'idParcel='+idParcel,
+           dataType : 'html',
+           success : function(result){
+             document.getElementById('moreInfo').innerHTML = result;
+             $(function () {
+                $('#exampleModal').modal('toggle');
+             });
+           }
         });
       }
 
@@ -62,17 +54,7 @@
             <h5 class="modal-title" id="exampleModalLabel">Détails du colis</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-            <p class="h5" id="weight"></p>
-            <p class="h5" id="speed"></p>
-            <p class="h5" id="price"></p>
-            <p class="h5" id="date"></p>
-            <p class="h5" id="status"></p>
-            <p class="h5" id="surname"></p>
-            <p class="h5" id="address"></p>
-            <p class="h5" id="city"></p>
-            <p class="h5" id="phone"></p>
-            <p class="h5" id="info"></p>
+          <div class="modal-body" id="moreInfo">
           </div>
         </div>
       </div>
@@ -100,7 +82,8 @@
                   <th scope="col">Mode de livraison</th>
                   <th scope="col">Destinataire</th>
                   <th scope="col">Code Postal</th>
-                  <th scope="col" colspan="2"></th>
+                  <th scope="col">Référence</th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
@@ -120,8 +103,8 @@
                     <td>'.$parcel['modeLivraison'].'</td>
                     <td>'.$client['nom'].' '.$client['prenom'].'</td>
                     <td>'.$client['codePostal'].'</td>
-                    <td><button type="button" name="button" class="btn btnTable" onclick="showMore('.$parcel['poids'].',\''.$parcel['modeLivraison'].'\',\''.$client['nom'].'\',\''.$client['prenom'].'\',\''.$client['adresse'].'\',\''.$client['ville'].'\',\''.$client['codePostal'].
-                    '\',\''.$client['numPhone'].'\',\''.$client['info'].'\',\''.$parcel['prix'].'\',\''.$parcel['date'].'\',\''.$parcel['status'].'\')">Détails</button>
+                    <td>'.$parcel['refQrcode'].'</td>
+                    <td><button type="button" name="button" class="btn btnTable" onclick="showMore(\''.$parcel['id'].'\')">Détails</button>
                     <button type="button" name="button" class="btn btnTable ms-5" onclick="delParcel(\''.$parcel['id'].'\',\''.$parcel['client'].'\')">Supprimer</button></td>
                   </tr>';
                 }
@@ -137,6 +120,7 @@
                 <th scope="col">Mode de livraison</th>
                 <th scope="col">Destinataire</th>
                 <th scope="col">Code Postal</th>
+                <th scope="col">Référence</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -157,8 +141,8 @@
                   <td>'.$parcel['modeLivraison'].'</td>
                   <td>'.$client['nom'].' '.$client['prenom'].'</td>
                   <td>'.$client['codePostal'].'</td>
-                  <td><button type="button" name="button" class="btn btnTable" onclick="showMore('.$parcel['poids'].',\''.$parcel['modeLivraison'].'\',\''.$client['nom'].'\',\''.$client['prenom'].'\',\''.$client['adresse'].'\',\''.$client['ville'].'\',\''.$client['codePostal'].
-                  '\',\''.$client['numPhone'].'\',\''.$client['info'].'\',\''.$parcel['prix'].'\',\''.$parcel['date'].'\',\''.$parcel['status'].'\')">Détails</button></td>
+                  <td>'.$parcel['refQrcode'].'</td>
+                  <td><button type="button" name="button" class="btn btnTable" onclick="showMore(\''.$parcel['id'].'\')">Détails</button></td>
                 </tr>';
               }
                ?>
