@@ -81,12 +81,17 @@
 
 .tabLink:hover{
   border-color: #6d6a75 !important;
+  color: white;
 }
 
 .tabLink.active{
   background-color:#bfbdc1 !important;
   border-color: #bfbdc1 !important;
   color: #37323e !important;
+}
+
+.tabLink:focus{
+  outline:none;
 }
 
 .nav{
@@ -99,7 +104,9 @@
 }
 
 .btnTable:hover{
-  color: #deb841;
+  color : white;
+  border-color:  #37323e;
+  box-shadow: 0px 0px 10px  #37323e;
 }
 
 .table-bordered{
@@ -110,6 +117,7 @@
 .puces{
   list-style: none;
 }
+
 a:link{
   color: #ffffff;
  text-decoration: none;
