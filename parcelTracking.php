@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="fr" dir="ltr">
   <head>
     <?php require_once('include/head.php'); ?>
     <?php require_once('include/script.php'); ?>

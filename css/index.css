@@ -69,10 +69,31 @@
   color: red;
 }
 
+.tab-pane{
+  background-color: white;
+  box-shadow: 0px 5px 10px black;
+}
+
+.tabLink{
+  box-shadow: none;
+  background-color: #6d6a75;
+  border-color: #6d6a75;
+  color:white;
+}
+
+.tabLink:hover{
+  color:white;
+}
+
+.nav{
+  padding-top: 10px;
+}
+
 .table-bordered{
   box-shadow: 0px 0px 10px black;
   border-color: #deb841;
 }
+
 .puces{
   list-style: none;
 }

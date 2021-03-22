@@ -11,7 +11,6 @@ $req = $bdd->prepare($query);
 $req->execute([$id]);
 $success = $req->fetch();
 
-// !!! return code (echo) must be 7 caracters long
 if(empty($success)){
   echo "1";
 }else{
