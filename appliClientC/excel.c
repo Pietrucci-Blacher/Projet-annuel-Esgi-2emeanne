@@ -1,13 +1,25 @@
 #include <common.h>
 
 void sendExcel(){
-    sendExcelFTP();
 
-    remove("generated/excel/new.csv");
+    char newName[255];
+    char timestamp[255];
+    strcpy(newName, "generated/excel/");
+    sprintf(timestamp,"%d",(int)time(NULL));
+    strcat(newName,idEntreprise);
+    strcat(newName,timestamp);
+    strcat(newName,".csv");
+
+    //printf("\n%s",newName);
+    rename("generated/excel/new.csv", newName);
+
+    sendExcelFTP(newName);
+
+    remove(newName);
+
     for (int i = 0 ; i<25; i++){
         for(int j = 0; j<11; j++){
-            strcpy(infoParcel[j][i],"");
-
+            memset(infoParcel[j][i],0,sizeof(infoParcel[j][i]));
         }
     }
 

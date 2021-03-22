@@ -60,13 +60,13 @@ void connexion(){
     curl_global_cleanup();
 }
 
-void sendExcelFTP(){
+void sendExcelFTP(char *path){
 
     CURL *curl;
     CURLcode res;
     FILE *file;
 
-    file = fopen("new.csv", "rb");
+    file = fopen(path, "rb");
 
     curl = curl_easy_init();
     if(curl) {
