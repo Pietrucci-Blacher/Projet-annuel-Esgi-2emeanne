@@ -157,6 +157,12 @@
 
             displayInfo($nbParcelExpress,$priceParcelExpress,1);
             displayInfo($nbParcelStandard,$priceParcelStandard,2);
+
+            echo '<tr>
+                <td colspan="2"></td>
+                <th scope="col">Total à payer</th>
+                <td class="fw-bold">'.$totalPrice.' €</td>
+                </tr>';
              ?>
         </tbody>
       </table>
