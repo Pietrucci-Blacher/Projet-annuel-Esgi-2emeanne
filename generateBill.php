@@ -6,7 +6,7 @@ $bdd = connexionBDD();
 
 $siret = $_SESSION['siret'];
 
-$today = date("d.m.y");
+$today = date("Y-m-d");
 
 $priceParcelExpress =[];
 $priceParcelStandard=[];
@@ -26,7 +26,7 @@ while ($price = $queryPrice->fetch()) {
 
 $totalPrice = 0;
 $totalParcel = 0;
-function calculatePrice($weight,$priceParcellist){
+function calculatePrice($weight,$priceParcelList){
   global $weightParcel;
   global $totalPrice;
   global $totalParcel;
@@ -56,10 +56,10 @@ $queryParcel->execute([$siret]);
 while($parcel=$queryParcel->fetch()){
   if($parcel['modeLivraison'] == 'express'){
     $parcelPrice = calculatePrice($parcel['poids'],$priceParcelExpress);
-    $date = mktime(0, 0, 0, date("d")+2, date("m"), date("Y"));
+    $date = date("Y-m-d",mktime(0, 0, 0, date("m"), date("d")+2, date("Y")));
   }elseif($parcel['modeLivraison'] == 'standard'){
     $parcelPrice = calculatePrice($parcel['poids'],$priceParcelStandard);
-    $date = mktime(0, 0, 0, date("d")+5, date("m"), date("Y"));
+    $date = date("Y-m-d",mktime(0, 0, 0, date("m"), date("d")+5, date("Y")));
   }
   $insertParcel=$bdd->prepare("UPDATE colis SET prix = ?, status = 'En attente de récupération par le livreur', facture = ?, date = ? WHERE id = ?");
   $insertParcel->execute([$parcelPrice,$billId,$date,$parcel['id']]);
