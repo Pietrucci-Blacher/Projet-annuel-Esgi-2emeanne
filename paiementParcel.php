@@ -21,20 +21,24 @@
 
       $priceParcelExpress =[];
       $priceParcelStandard=[];
-      $queryPrice= $bdd->prepare("SELECT * FROM tarifcolis");
+      $weightParcel = [];
+      $queryPrice= $bdd->prepare("SELECT * FROM tarifcolis ORDER BY id");
       $queryPrice->execute();
 
+      $count = 0;
       while ($price = $queryPrice->fetch()) {
         array_push($priceParcelExpress,$price['prixExpress']);
         array_push($priceParcelStandard,$price['prixStandard']);
+        $count+=1;
+        if($count < 10){
+          array_push($weightParcel,$price['poidsMax']);
+        }
       }
-
       $queryParcel = $bdd->prepare("SELECT * FROM colis WHERE entreprise = ? AND status = 'En attente du partenaire'");
       $queryParcel->execute([$_SESSION['siret']]);
 
       $nbParcelExpress = array(0,0,0,0,0,0,0,0,0,0);
       $nbParcelStandard=array(0,0,0,0,0,0,0,0,0,0);
-      $weightParcel = array(0.5,1,2,3,5,7,10,15,30);
       $totalStdSup30 = 0;
       $totalPrice = 0;
 
