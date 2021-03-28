@@ -1,5 +1,6 @@
 <?php
-require_once('../request/user.php'); 
+require_once('../request/user.php');
+require_once('../request/enterprise.php');
 require_once(__DIR__.'/connexionbdd.php');
 
 $bdd = connexionBDD(); 
@@ -27,8 +28,16 @@ if($data = $req->fetch()){
 		setcookie("password","");
 		setcookie("rank", ""); 
 	}
-	if($data['status'] == "livreur" && checkfirstconnect() == true){
+	if($data['status'] == "entreprise" && checkfirstconnect() == false){
+        $siret = getSiretByid($_SESSION['id']);
+        $_SESSION['siret'] = $siret;
+        header('location: ../index.php');
+        exit();
+    }else if($data['status'] == "livreur" && checkfirstconnect() == true){
 	    header('Location: ../deliveryform.php');
+        exit();
+    }else if($data['status'] == "entreprise" && checkfirstconnect() == true){
+        header('location: ../enterpriseform.php');
         exit();
     }else{
         header('location: ../index.php');
