@@ -9,7 +9,6 @@ $searchBy = $_POST['searchBy'];
 $speed = $_POST['speed'];
 $paiement = $_POST['paiement'];
 $siret = $_SESSION['siret'];
-$countWhere = 0;
 
 
 $query = "SELECT client.nom,client.prenom,colis.modeLivraison,client.codePostal,colis.refQrcode,colis.id,colis.client,colis.status FROM colis INNER JOIN client ON colis.client = client.id WHERE colis.entreprise = ?";
@@ -19,10 +18,10 @@ if($searchBy == '1'){
   $query .= " AND client.nom LIKE ?";
   array_push($params,"%" .$search. "%");
 }elseif ($searchBy == '2'){
-  $query .= " AND client.codePostal = ?";
-  array_push($params,$search);
+  $query .= " AND client.codePostal LIKE ?";
+  array_push($params,"%" .$search. "%");
 }elseif ($searchBy == '3' ){
-  $query .= " AND colis.refQrcode = ?";
+  $query .= " AND colis.refQrcode LIKE ?";
   array_push($params,"%" .$search. "%");
 }
 

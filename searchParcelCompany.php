@@ -94,7 +94,7 @@
                '<thead><tr><th scope="col">Mode de livraison</th> <th scope="col">Destinataire</th><th scope="col">Code Postal</th><th scope="col">Référence</th><th scope="col"></th></tr></thead>' + result;
              }else{
                document.getElementById('searchResult').innerHTML = '';
-               document.getElementById('error').innerHTML = '<h1 class="mt-5 error text-center">Vérifiez les information saisies</h1>';
+               document.getElementById('error').innerHTML = '<h1 class="mt-5 error text-center">Aucun colis correspondant aux paramètres de recherche</h1>';
              }
            }
         });
