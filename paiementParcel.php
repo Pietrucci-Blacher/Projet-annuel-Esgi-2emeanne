@@ -178,7 +178,7 @@
         $.ajax({
            url : 'generateBill.php',
            success : function(result){
-             window.open("billHistoric.php");
+             window.location.href = "billHistoric.php";
            }
         });
       }
