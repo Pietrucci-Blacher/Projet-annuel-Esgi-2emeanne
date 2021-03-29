@@ -4,7 +4,8 @@ require_once('include/connexionbdd.php');
 $bdd = connexionBDD();
 
 $id = $_POST['id'];
-$mdp = $_POST['mdp'];
+
+$mdp = isset($_POST['mdp']) ? sha1(htmlspecialchars($_POST['mdp'])) : '';
 
 $query = 'SELECT numSiret,client FROM ENTREPRISE WHERE numSiret = ?';
 $req = $bdd->prepare($query);
