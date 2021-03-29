@@ -6,18 +6,31 @@ if(empty($_SESSION) || !$_SESSION['rank'] == "entreprise" || !empty($_SESSION['s
     header('Location: index.php');
     exit();
 }
-$siret = $_POST['siret'];
+$siret = htmlspecialchars($_POST['siret']);
 $bdd = connexionBDD();
-if(isset($_POST['siret']) && is_numeric($_POST['siret']) && strlen($_POST['siret']) == 14){
-    $q = "UPDATE client SET Firstconnect = false WHERE email = :val1";
-    $req = $bdd->prepare($q);
-    $req->bindValue(':val1',$_SESSION['email'],PDO::PARAM_STR);
-    $req->execute();
-    
-    EnterprisepushSiret($siret);
-    $_SESSION['siret'] = $siret;
-    header('Location: index.php');
-    exit();
+$error = NULL;
+
+$q = "SELECT numSiret FROM entreprise WHERE numSiret = :siret";
+$req = $bdd->prepare($q);
+$req->bindValue(":siret", $siret,PDO::PARAM_STR);
+$req->execute();
+$ressiret = $req->fetch(PDO::FETCH_ASSOC);
+
+
+if($ressiret == 0){
+    if(isset($_POST['siret']) && is_numeric($_POST['siret']) && strlen($_POST['siret']) == 14){
+        $q = "UPDATE client SET Firstconnect = false WHERE email = :val1";
+        $req = $bdd->prepare($q);
+        $req->bindValue(':val1',$_SESSION['email'],PDO::PARAM_STR);
+        $req->execute();
+
+        EnterprisepushSiret($siret);
+        $_SESSION['siret'] = $siret;
+        header('Location: index.php');
+        exit();
+    }
+}else{
+    $error = "Ce numéro Siret est déjà utilisé";
 }
 ?>
 
@@ -45,17 +58,16 @@ if(isset($_POST['siret']) && is_numeric($_POST['siret']) && strlen($_POST['siret
             <br>
             <div class="form-group flex-fill mx-3 mb-2" id="enterpriseform">
                 <h4 class=" text-center fw-bold mb-4">Veuillez insérer votre SIRET</h4>
-                <input class="form-control my-2 " type="number" name="siret" id="siret" placeholder="SIRET">
+                <input class="form-control my-2 " type="number" name="siret" id="siret" placeholder="SIRET" value="<?php echo $siret ?>">
             <br>
             <div class="form-group mx-5 mb-5 mt-3">
                 <input class="form-control" type="submit" name="submit" value="Envoyer">
             </div>
+            <h5 class="text-center pb-5"><?php echo $error; ?></h5>
         </form>
     </div>
 </div>
 <br>
 </body>
 </html>
-
-
 
