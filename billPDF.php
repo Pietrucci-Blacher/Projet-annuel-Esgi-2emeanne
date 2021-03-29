@@ -8,8 +8,6 @@ $bdd = connexionBDD();
 $siret=$_SESSION['siret'];
 $billId=$_SESSION['idBill'];
 
-$siret = '754879';
-
 $pdf = new FPDF();
 $pdf->AddPage();
 $pdf->SetFont('Arial','',12);

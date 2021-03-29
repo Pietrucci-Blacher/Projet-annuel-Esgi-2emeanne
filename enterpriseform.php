@@ -51,12 +51,12 @@ if($ressiret == 0){
 <body style="background-repeat:no-repeat;"  onCopy="return false" onPaste="return false" onCut="return false">
 <?php include('include/header.php'); ?>
 <br><br>
-<div class="row">
+<div class="container-fluid">
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <h3 class="text-center fw-bold mb-3">Enregistrement Entreprise</h3>
-        <form class="border bg-light border-dark rounded text-align"  id="enterpiseformcheck" method="post" enctype="multipart/form-data">
+        <form class="border bg-light border-dark rounded text-align mt-5"  id="enterpiseformcheck" method="post" enctype="multipart/form-data">
             <br>
-            <div class="form-group flex-fill mx-3 mb-2" id="enterpriseform">
+            <div class="form-group flex-fill mx-3 mb-2 mt" id="enterpriseform">
                 <h4 class=" text-center fw-bold mb-4">Veuillez insérer votre SIRET</h4>
                 <input class="form-control my-2 " type="number" name="siret" id="siret" placeholder="SIRET" value="<?php echo $siret ?>">
             <br>
@@ -70,4 +70,3 @@ if($ressiret == 0){
 <br>
 </body>
 </html>
-

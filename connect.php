@@ -19,7 +19,7 @@
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-signin my-5">
           <div class="card-body bg-light">
-            <h5 class="card-title text-center mb-3">Se Connecter</h5>
+            <h5 class="card-title text-center mb-3">Se connecter</h5>
             <form class="col-md-12" id="formconnectcheck" action="include/signincheck.php" method="POST" enctype="multipart/form-data">
             <div class="form-group mb-2">
                 <input name="email" class="form-control" type="email" placeholder="E-Mail" autocomplete="email" autofocus><br>
@@ -29,7 +29,7 @@
             </div>
             <div class="custom-control custom-checkbox mb-4">
                 <input type="checkbox" class="custom-control-input" id="showpassword">
-                <label class="custom-control-label" for="customCheck1">Afficher le mot de passe</label>
+                <label class="custom-control-label" for="showpassword">Afficher le mot de passe</label>
             </div>
             <hr>
             <div class="custom-control custom-checkbox mb-4">

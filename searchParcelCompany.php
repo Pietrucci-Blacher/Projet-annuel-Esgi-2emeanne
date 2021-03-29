@@ -1,8 +1,7 @@
 <?php
   session_start();
-  $_SESSION['siret']= '754879';
   if(empty($_SESSION['siret'])){
-      header('Location: connect.php');
+      header('Location: enterpriseform.php');
   }
 ?>
 <!DOCTYPE html>

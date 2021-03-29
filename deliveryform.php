@@ -4,7 +4,7 @@ if(empty($_SESSION) || !$_SESSION['rank'] == "livreur" || checkfirstconnect() ==
    header('Location: index.php');
    exit();
 }
-?> 
+?>
 
 <!Doctype html>
 <html lang="fr" dir="ltr">
@@ -23,7 +23,7 @@ if(empty($_SESSION) || !$_SESSION['rank'] == "livreur" || checkfirstconnect() ==
 <body  onCopy="return false" onPaste="return false" onCut="return false">
 <?php include('include/header.php'); ?>
 <br><br>
-<div class="row">
+<div class="container-fluid">
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <h3 class="text-center fw-bold mb-3">Enregistrement livreurs</h3>
         <form class="border bg-light border-dark rounded text-align" action="include/deliverycheck.php" id="deliveryformcheck" method="post" enctype="multipart/form-data">
@@ -178,4 +178,3 @@ if(empty($_SESSION) || !$_SESSION['rank'] == "livreur" || checkfirstconnect() ==
 <br>
 </body>
 </html>
-

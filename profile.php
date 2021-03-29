@@ -18,60 +18,68 @@
 <body>
 <?php require_once('include/header.php'); ?>
 <br>
-<div class="row">
+<div class="container">
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <h1 class="banner-item text-center">Mon Profil</h1>
-        <form class="border bg-light border-dark rounded text-align" action="include/modifprof.php" method="post" enctype="multipart/form-data">
+        <form class="border bg-light border-dark rounded text-align mt-4" action="include/modifprof.php" method="post" enctype="multipart/form-data">
          <?php
          $users = getData();
          foreach ($users as $user){?>
-            <div class="d-flex mt-3 justify-content-start">
+            <div class="d-flex mt-3 justify-content-center">
              <div class="form-row">
                 <div class="form-group flex-fill mx-2">
-                    <label for="lastname">Nom: </label>
+                    <label for="lastname">Nom : </label>
                     <input id="lastname" class="form-control" name="lastname" type ="text" value="<?php echo $user['nom'] ?>">
                 </div>
-                <div class="form-group flex-fill mx-2">
-                    <label for="firstname">Prenom: </label>
+                <div class="form-group flex-fill mx-2 mt-2">
+                    <label for="firstname">Prénom : </label>
                     <input id="firstname" class="form-control" name="firstname" type ="text" value="<?php echo $user['prenom'] ?>">
                 </div>
-                 <div class="d-flex justify-content-end">
+                <?php if($_SESSION['rank'] == "livreur"){ ?>
+                 <div class="d-flex justify-content-end mt-2">
                      <div class="form-row">
-                             <label for="permis">Votre permis: </label>
+                             <label for="permis">Votre permis : </label>
                              <input type="hidden" name="MAX_FILE_SIZE" value="4194304"/>
                              <input id="permis" class="form-control" name="uploadpermis" type="file" value="test"/>
                      </div>
                  </div>
+               <?php } ?>
              </div>
             </div>
-            <br>
              <hr class="mx-4">
-             <div class="d-flex mt-3 justify-content-start">
+             <div class="d-flex mt-3 justify-content-center">
                 <div class="form-row">
                     <div class="form-group flex-fill mx-3">
-                       <label for="address">Adresse: </label>
+                       <label for="address">Adresse : </label>
                       <input id="address" class="form-control" name="address" type ="text" value="<?php echo $user['adresse'] ?>">
                     </div>
-                    <div class="form-group flex-fill mx-3">
-                        <label for="cdPostal">Code Postal: </label>
+                    <div class="form-group flex-fill mx-3 mt-2">
+                        <label for="cdPostal">Code Postal : </label>
                         <input id="cdPostal" class="form-control" name="cdPostal" type ="text" value="<?php echo $user['codePostal'] ?>">
                     </div>
                 </div>
              </div>
              <hr class="mx-4">
-            <div class="d-flex mt-3 justify-content-start">
+            <div class="d-flex mt-3 justify-content-center">
                  <div class="form-row">
                         <div class="form-group flex-fill mx-2">
-                        <label for="nbPhone">Numéro: </label>
+                        <label for="nbPhone">Numéro de téléphone : </label>
                         <input id="nbPhone" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['numPhone'] ?>">
                     </div>
-                    <div class="form-group flex-fill mx-2">
-                        <label for="email">Email: </label>
+                    <div class="form-group flex-fill mx-2 mt-2">
+                        <label for="email">Email : </label>
                         <input id="email" class="form-control" name="email" type ="text" value="<?php echo $user['email'] ?>" disabled>
                     </div>
+                    <?php if(!empty($_SESSION['siret']) && ($_SESSION['rank'] == "entreprise")){ ?>
+
+                    <div class="form-group flex-fill mx-2 mt-2">
+                        <label for="email">Numéro siret : </label>
+                        <input id="email" class="form-control" name="email" type ="text" value="<?php echo $_SESSION['siret'] ?>" disabled>
+                    </div>
+                  <?php } ?>
                  </div>
             </div>
-            <div id="divpush" class="d-flex mt-3 justify-content-middle">
+            <div id="divpush" class="d-flex mt-4 justify-content-center">
                 <div id="divpus" class="form-group mx-5 mb-5">
                     <input class="form-control" type="submit" value="Modifier mes informations">
                 </div>

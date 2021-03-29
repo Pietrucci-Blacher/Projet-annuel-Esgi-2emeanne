@@ -1,9 +1,8 @@
 <?php
-  session_start();
-  $_SESSION['siret']= '754879';
-  if(empty($_SESSION['siret'])){
-      header('Location: connect.php');
-  }
+session_start();
+if(empty($_SESSION['siret'])){
+    header('Location: enterpriseform.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -37,6 +36,7 @@
         <h2 class="banner-item w-50 text-center">Montant total des factures payées : <?php echo $totalPrice; ?> €</h2>
         <h2 class="banner-item w-50 text-center">Nombre total de colis traités : <?php echo $totalParcel; ?> </h2>
       </div>
+      <?php if($totalParcel != 0){ ?>
       <h1 class="banner-item text-center mt-5">Historique des factures</h1>
       <table class=" mt-5 table banner table-bordered text-center banner-item fs-4">
         <thead>
@@ -66,6 +66,7 @@
            ?>
         </tbody>
       </table>
+    <?php } ?>
     </div>
     <script type="text/javascript">
     function toPDF(idBill){
