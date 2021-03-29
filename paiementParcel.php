@@ -100,8 +100,9 @@
         <h2 class="banner-item w-50 text-center">Total à payer : <?php echo $totalPrice ?> €</h2>
         <h2 class="banner-item w-50 text-center">Nombre de colis en attente : <?php echo $countParcel ?> </h2>
       </div>
+      <?php if($countParcel != 0){ ?>
       <div class="d-grid gap-2 mx-auto">
-        <button id="pay" type="button" class="btn btn-primary mt-5 btn-lg"><a class="serviceslink h4">Payer les colis</a></button>
+        <button type="button" class="btn btn-primary mt-5 btn-lg" onclick="payBill()"><a class="serviceslink h4">Payer les colis</a></button>
       </div>
       <h1 class="banner-item text-center mt-5">Détails du paiement</h1>
       <table class=" mt-5 table banner table-bordered text-center banner-item fs-4">
@@ -170,7 +171,18 @@
              ?>
         </tbody>
       </table>
+    <?php } ?>
     </div>
+    <script type="text/javascript">
+      function payBill(){
+        $.ajax({
+           url : 'generateBill.php',
+           success : function(result){
+             window.open("billHistoric.php");
+           }
+        });
+      }
+    </script>
   </body>
 
 </html>

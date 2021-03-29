@@ -32,7 +32,7 @@ if(empty($parcel)){
             <h5 class="p-1">Référence du colis : '.$parcel['refQrcode'].'</h5>
             <h5 class="p-1">Ville de destination : '.$client['codePostal'].', '.$client['ville'].'</h5>
             <h5 class="p-1">Status du colis : '.$parcel['status'].'</h5>
-            <h5 class="p-1">Livraison prévue le : '.date('d/m/y', strtotime($parcel['date'])).'</h5>
+            <h5 class="p-1">Livraison prévue le : '.date('d/m/Y', strtotime($parcel['date'])).'</h5>
           </div>
         </div>
       ';

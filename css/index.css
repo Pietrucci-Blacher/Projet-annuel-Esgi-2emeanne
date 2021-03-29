@@ -73,27 +73,6 @@
   box-shadow: 0px 5px 10px black;
 }
 
-.tabLink{
-  background-color: #37323e;
-  border-width: 2px !important;
-  border-color: #bfbdc1 !important;
-}
-
-.tabLink:hover{
-  border-color: white white #bfbdc1 white !important;
-  color: white;
-}
-
-.tabLink.active{
-  background-color:#bfbdc1 !important;
-  border-color: #bfbdc1 !important;
-  color: black !important;
-}
-
-.tabLink:focus{
-  outline:none;
-}
-
 .nav{
   padding-top: 10px;
 }
@@ -118,10 +97,6 @@
   list-style: none;
 }
 
-a:link{
-  color: #ffffff;
- text-decoration: none;
-}
 #divpush > #divpus{
   color: #0000ff;
   text-decoration-color: #000000;

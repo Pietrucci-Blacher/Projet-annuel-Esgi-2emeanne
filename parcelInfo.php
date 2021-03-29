@@ -19,7 +19,7 @@ $return =  '<p class="h5">Référence : '.$parcel['refQrcode'].'</p>
 if($parcel['status'] != 'En attente du partenaire'){
   $return = $return . '<p class="h5">Prix de la livraison : '.$parcel['prix'].' €</p>
                       <p class="h5">Status : '.$parcel['status'].'</p>
-                      <p class="h5">Date de livraison prévue : '.$parcel['date'].'</p>';
+                      <p class="h5">Date de livraison prévue : '.date('d/m/Y', strtotime($parcel['date'])).'</p>';
 }elseif($parcel['status'] == 'En attente du partenaire'){
   $priceParcelExpress =[];
   $priceParcelStandard=[];
