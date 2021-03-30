@@ -73,8 +73,8 @@
                     <?php if(!empty($_SESSION['siret']) && ($_SESSION['rank'] == "entreprise")){ ?>
 
                     <div class="form-group flex-fill mx-2 mt-2">
-                        <label for="email">Numéro siret : </label>
-                        <input id="email" class="form-control" name="email" type ="text" value="<?php echo $_SESSION['siret'] ?>" disabled>
+                        <label for="siret">Numéro siret : </label>
+                        <input id="siret" class="form-control" name="siret" type ="text" value="<?php echo $_SESSION['siret'] ?>" disabled>
                     </div>
                   <?php } ?>
                  </div>
@@ -83,7 +83,6 @@
                 <div id="divpus" class="form-group mx-5 mb-5">
                     <input class="form-control" type="submit" value="Modifier mes informations">
                 </div>
-
             </div>
              <br>
     <?php } ?>
