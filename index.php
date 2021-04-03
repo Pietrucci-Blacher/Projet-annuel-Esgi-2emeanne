@@ -1,6 +1,5 @@
 <?php
 session_start();
-ini_set('display_errors',1);
 ?>
 
 <!DOCTYPE html>
@@ -9,6 +8,8 @@ ini_set('display_errors',1);
     <?php require_once('include/head.php'); ?>
     <?php require_once('include/script.php'); ?>
     <link rel="stylesheet" href="css/index.css" type="text/css">
+    <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.1/leaflet.css" rel="stylesheet" />
   </head>
   <?php require_once('include/header.php'); ?>
   <body>
@@ -72,9 +73,9 @@ ini_set('display_errors',1);
     </div>
     <div class="container mt-5 mb-5">
       <div class="webgl">
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <p class="h1 text-center">WEBGL</p>
+          <div class="w-100 h-100" id="map"></div>
       </div>
     </div>
   </body>
+  <script src="js/map.js"></script>
 </html>
