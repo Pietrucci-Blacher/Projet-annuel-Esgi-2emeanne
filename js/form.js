@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("#showPassword").click(function(e){
-        $(this).is(':checked') ? $('#passwordinput').attr('type', 'text') : $('#passwordinput').attr('type', 'password');
-        $(this).is(':checked') ? $('#passwordinputcheck').attr('type', 'text') : $('#passwordinputcheck').attr('type', 'password');
+        $(this).is(':checked') ? $('#password').attr('type', 'text') : $('#password').attr('type', 'password');
+        $(this).is(':checked') ? $('#passwordcheck').attr('type', 'text') : $('#passwordcheck').attr('type', 'password');
     });
     // Vérification du mot de passe
     $.validator.addMethod("passwordcheck", function (value, element){
