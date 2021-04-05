@@ -105,7 +105,7 @@ if($resultcheck == 0){
                 <div class="form-group ">
                     <input class="form-control" id="email" type="email" name="email" placeholder="Email" aria-describedby="emailHelp" autocomplete="email"><br>
                     <dl>
-                        <dt>Le mail doit etre du type : test@gmail.com</dt>
+                        <dt>Le mail doit etre du type : test.test@gmail.com</dt>
                     </dl>
                 </div>
                 <div class="form-group">
