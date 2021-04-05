@@ -66,6 +66,7 @@ if(isset($_POST['lastname']) && strlen($_POST['lastname']) >= 1 && strlen($_POST
                 <h1 class="text-center fw-bold my-3">Gestion du site</h1>
                 <hr>
                 <h2 class="text-center">Gestion des utilisateurs</h2>
+                <br>
                 <div>
                 <div class="table-responsive">
                 <table class="table">
