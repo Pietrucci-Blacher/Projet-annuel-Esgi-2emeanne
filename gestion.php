@@ -1,5 +1,4 @@
 <?php
-ini_set('display_errors',1);
 require_once(__DIR__ . '/request/user.php');
 require_once('include/connexionbdd.php');
 if(getUserStatus($_SESSION['id']) != "admin" || !isset($_SESSION)){
