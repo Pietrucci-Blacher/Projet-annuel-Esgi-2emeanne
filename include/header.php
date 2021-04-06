@@ -51,6 +51,7 @@
                   <li><a class="dropdown-item" href="#">Mes livraisons</a></li>
               <?php } ?>
               <li><a class="dropdown-item" href="logout.php">Se déconnecter</a></li>
+           </ul>
         <?php } ?>
 
           </li>
@@ -58,7 +59,13 @@
             <li class="nav-item"><a class="nav-link" href="connect.php">Connexion</a></li>
             <li class="nav-item"><a class="nav-link" href="register.php">Inscription</a></li>
         <?php } ?>
-      </ul>
+                <li class="nav-item dropdown" id="translate">
+         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="flag flag-fr mr-2"></i> Français</a>
+         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><button id="english" class="dropdown-item" value="english"><i class="flag flag-gb"></i> English</button></li>
+          <li><button id="espagnol" class="dropdown-item" value="espagnol"><i class="flag flag-es"></i> Español</button></li>
+         </ul>
+        </li>
     </div>
   </div>
 </nav>
