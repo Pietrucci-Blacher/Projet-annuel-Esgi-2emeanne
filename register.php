@@ -14,6 +14,7 @@ $phonenum = htmlspecialchars(trim($_POST['phonenum']));
 $gender = $_POST['gender'];
 $status = $_POST['status'];
 $token = $_POST['h-captcha-response'];
+print_r($token); 
 
 $q = "SELECT id FROM client WHERE email = :val1";
 $req = $bdd->prepare($q);
