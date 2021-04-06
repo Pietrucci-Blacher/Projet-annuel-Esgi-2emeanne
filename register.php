@@ -14,6 +14,7 @@ $phonenum = htmlspecialchars(trim($_POST['phonenum']));
 $gender = $_POST['gender'];
 $status = $_POST['status'];
 $token = $_POST['h-captcha-response'];
+print_r($token); 
 
 $q = "SELECT id FROM client WHERE email = :val1";
 $req = $bdd->prepare($q);
@@ -34,7 +35,6 @@ if($resultcheck == 0){
                                 if(isset($_POST['phonenum']) && strlen($_POST['phonenum']) == 10 && is_string($_POST['phonenum'])) {
                                     if(isset($_POST['status']) && isset($_POST['h-captcha-response'])){
                                         $response = getcaptchareponse($token);
-                                        echo $response; 
                                         if($response == true){
                                             $q = 'INSERT INTO client(genre,nom, prenom, email, mdp, status, adresse, ville, codePostal, numPhone) VALUES (:val1,:val2,:val3,:val4,:val5,:val6,:val7,:val8, :val9, :val10)';
                                             $req = $bdd->prepare($q);
@@ -157,9 +157,9 @@ if($resultcheck == 0){
                 </div>
             </div>
             <br>
-            <div id="captcha" name="captcha" class="h-captcha text-center" data-sitekey="75ae82a3-a741-4f26-9eec-db8201d34794">
-                <span><?php echo $errorcaptcha ?></span>
-            </div><br>
+            <div id="captcha" name="captcha" class="h-captcha text-center" data-sitekey="75ae82a3-a741-4f26-9eec-db8201d34794"></div>
+            <span><?php echo $errorcaptcha ?></span>
+            <br>
             <hr class="mx-4">
             <div class="form-check mx-3">
                 <input class="custom-control-input" type="radio" name="status" id="delivery" value="livreur">
