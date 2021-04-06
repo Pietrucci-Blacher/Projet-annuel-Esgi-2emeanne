@@ -4,6 +4,8 @@
 #include <string.h>
 #include <winsock.h>
 #include <mysql.h>
+#include <math.h>
+#include <time.h>
 
 MYSQL mysql;
 char infoParcel[11][255];
@@ -36,13 +38,98 @@ void emptyArray(){
 
 }
 
+const char* calculateDate(){
+    int skip;
+
+    if(strcmp(infoParcel[2],"standard")==0){
+        skip = 5;
+    }else{
+        skip = 2;
+    }
+
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+
+    tm.tm_mday += skip;
+    mktime(&tm);
+
+    char *buffer=malloc(sizeof(char)*30);
+    strftime(buffer, 30, "%Y-%m-%d", &tm);
+    printf("\nDate : %s",buffer);
+    return buffer;
+}
+
+double calculatePrice(){
+    double weight[10]={0.5,1,2,3,5,7,10,15,30};
+    double parcelWeight;
+    char strParcelWeight[255];
+    int indexWeight;
+    double price=0;
+
+    parcelWeight=atof(infoParcel[1]);
+
+    for(int i = 0;i<10;i++){
+        if(parcelWeight <= weight[i]){
+            indexWeight = i;
+            break;
+        }else if(parcelWeight > weight[8] ){
+            indexWeight = 9;
+            break;
+        }
+    }
+
+    char query[1000];
+    strcpy(query,"SELECT ");
+    if(strcmp(infoParcel[2],"standard")==0){
+        strcat(query,"prixStandard FROM tarifcolis WHERE poidsMax = ");
+    }else{
+        strcat(query,"prixExpress FROM tarifcolis WHERE poidsMax = ");
+    }
+
+    if(indexWeight == 0){
+        sprintf(strParcelWeight, "%.1lf", weight[indexWeight]);
+    }else if(indexWeight < 9){
+        sprintf(strParcelWeight, "%.0lf", weight[indexWeight]);
+    }else{
+        strcpy(strParcelWeight,"31");
+    }
+
+    strcat(query,"\"");
+    strcat(query,strParcelWeight);
+    strcat(query,"\"");
+    strcat(query," ORDER BY date DESC;");
+    printf("\n\n%s",query);
+    if (mysql_query(&mysql, query)) {
+        printf("\nRETRIEVE DATA ERROR");
+    }else{
+        printf("\nRETRIEVE DATA SUCCESS");
+        MYSQL_RES *result = mysql_store_result(&mysql);
+        if(result == NULL){
+            fprintf(stderr, "%s\n", mysql_error(&mysql));
+            mysql_free_result(result);
+        }else{
+            MYSQL_ROW row;
+            row = mysql_fetch_row(result);
+            if(indexWeight != 9){
+                price = atof(row[0]);
+            }else{
+                price = ceil(parcelWeight/20)*atof(row[0]);
+            }
+            printf("\nPrice : %lf",price);
+            mysql_free_result(result);
+            return price;
+        }
+    }
+    return price;
+}
+
 void queryParcel(int idClient){
     char idClientStr[50];
     char query[1000];
-
+    char price[10];
     sprintf(idClientStr, "%d", idClient);
 
-    strcpy(query,"INSERT INTO COLIS(entreprise,poids,modeLivraison,refQrcode,status,client) VALUES (");
+    strcpy(query,"INSERT INTO COLIS(entreprise,poids,modeLivraison,refQrcode,status,client,prix,date) VALUES (");
     for(int i = 0; i<3; i++){
         strcat(query,"\"");
         strcat(query,infoParcel[i]);
@@ -54,19 +141,25 @@ void queryParcel(int idClient){
     strcat(query,infoParcel[10]);
     strcat(query,"\"");
     strcat(query,",");
-    strcat(query,"\"En attente du partenaire\"");
+    strcat(query,"\"En attente de récupération par le livreur\"");
     strcat(query,",");
     strcat(query,idClientStr);
+    strcat(query,",");
+    sprintf(price, "%.2lf", calculatePrice());
+    strcat(query,price);
+    strcat(query,",");
+    strcat(query,"\"");
+    strcat(query,calculateDate());
+    strcat(query,"\"");
     strcat(query,");");
 
-    printf("\n%s",query);
+    printf("\n\n%s",query);
     if (mysql_query(&mysql, query)) {
         printf("\nINSERT ERROR");
     }else{
         printf("\nINSERT SUCCESS");
     }
 }
-
 
 void queryClient(){
     int userId;
@@ -84,7 +177,8 @@ void queryClient(){
         }
     }
 
-    printf("\n%s",query);
+    printf("\n\n----------------------------------------------");
+    printf("\n\n%s",query);
 
     if (mysql_query(&mysql, query)) {
         printf("\nINSERT ERROR");
@@ -94,7 +188,6 @@ void queryClient(){
         queryParcel(userId);
     }
 }
-
 
 void readExcel(){
     DIR *d;
@@ -120,7 +213,6 @@ void readExcel(){
                 strcat(movePath,dir->d_name);
                 file = fopen(path,"r");
                 if(file){
-                    printf("file");
                     while(feof(file)==0){
                         character = fgetc(file);
                         if(character=='\n'){
