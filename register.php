@@ -34,7 +34,6 @@ if($resultcheck == 0){
                                 if(isset($_POST['phonenum']) && strlen($_POST['phonenum']) == 10 && is_string($_POST['phonenum'])) {
                                     if(isset($_POST['status']) && isset($_POST['h-captcha-response'])){
                                         $response = getcaptchareponse($token);
-                                        echo $response; 
                                         if($response == true){
                                             $q = 'INSERT INTO client(genre,nom, prenom, email, mdp, status, adresse, ville, codePostal, numPhone) VALUES (:val1,:val2,:val3,:val4,:val5,:val6,:val7,:val8, :val9, :val10)';
                                             $req = $bdd->prepare($q);
