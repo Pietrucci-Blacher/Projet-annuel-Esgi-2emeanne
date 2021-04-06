@@ -78,7 +78,7 @@ if(isset($_POST['lastname']) && strlen($_POST['lastname']) >= 1 && strlen($_POST
                         <th scope="col">Statut</th>
                         <th scope="col">Email</th>
                         <th scope="col">Ville</th>
-                        <th scope="col"></th>
+                        <th scope="col">Actions</th>
                     </tr>
                     </thead>
                     <?php
