@@ -28,9 +28,8 @@
           $req = $bdd->prepare("SELECT poidsMax,max_date,prixExpress,prixStandard FROM tarifcolis t INNER JOIN (SELECT poidsMax as pdM,MAX(date) as max_date FROM tarifcolis GROUP BY pdM)a ON a.pdM = t.poidsMax and a.max_date = date ORDER BY a.pdM");
           $req->execute();
 
-          $count = 0;
           while($price = $req->fetch()){
-            $count +=1;
+
             if($price['poidsMax'] == 31){
               echo'
               <tr>

@@ -9,10 +9,10 @@ $siret = $_SESSION['siret'];
 $totalPrice = 0;
 $totalParcel = 0;
 
-$today = date("Y-m-d");
 
-$query = $bdd->prepare("INSERT INTO facture(date,entreprise) VALUES (?,?) ");
-$query->execute([$today,$siret]);
+
+$query = $bdd->prepare("INSERT INTO facture(date,entreprise) VALUES (NOW(),?) ");
+$query->execute([$siret]);
 $billId = $bdd->lastInsertId();
 
 $queryParcel = $bdd->prepare("SELECT * FROM colis WHERE entreprise = ? AND statusPaiement = 'non'");
