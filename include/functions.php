@@ -1,4 +1,9 @@
 <?php
+if(empty($_POST)){
+    header('Location: ../index.php');
+    exit();
+}
+
 function getcaptchareponse($token):bool{
     $apikey = "0x2c2a7110F346623cbe0b87cDDeee1d29a33bA23f";
     $verifyURL = 'https://hcaptcha.com/siteverify';
