@@ -42,7 +42,7 @@
               <li class="nav-item"><a class="nav-link" href="billHistoric.php">Historique des factures</a></li>
         <?php } if(isset($_SESSION['name']) &&  isset($_SESSION['id'])){ ?>
           <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle lastLink" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <?php echo $_SESSION['name'] ?>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -60,7 +60,7 @@
             <li class="nav-item"><a class="nav-link" href="register.php">Inscription</a></li>
         <?php } ?>
                 <li class="nav-item dropdown" id="translate">
-         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="flag flag-fr mr-2"></i> Français</a>
+         <a class="nav-link dropdown-toggle lastLink" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="flag flag-fr mr-2"></i> Français</a>
          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li><button id="english" class="dropdown-item" value="english"><i class="flag flag-gb"></i> English</button></li>
           <li><button id="espagnol" class="dropdown-item" value="espagnol"><i class="flag flag-es"></i> Español</button></li>

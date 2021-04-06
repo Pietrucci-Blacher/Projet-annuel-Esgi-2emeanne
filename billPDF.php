@@ -73,7 +73,7 @@ $pdf->Cell(40,10,convertUTF('Poids'),0,0,'C');
 $pdf->Cell(30,10,convertUTF('Prix'),0,0,'C');
 $pdf->Ln();
 $pdf->SetFont('Arial','',12);
-$queryParcel = $bdd->prepare("SELECT * FROM colis WHERE facture = ?");
+$queryParcel = $bdd->prepare("SELECT * FROM colis WHERE facture = ? ORDER BY prix");
 $queryParcel->execute([$billId]);
 while($parcel=$queryParcel->fetch()){
   $pdf->Cell(50,10,$parcel['refQrcode'],0,0,'C');

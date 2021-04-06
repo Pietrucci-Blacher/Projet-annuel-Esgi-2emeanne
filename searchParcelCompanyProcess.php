@@ -11,7 +11,7 @@ $paiement = $_POST['paiement'];
 $siret = $_SESSION['siret'];
 
 
-$query = "SELECT client.nom,client.prenom,colis.modeLivraison,client.codePostal,colis.refQrcode,colis.id,colis.client,colis.status FROM colis INNER JOIN client ON colis.client = client.id WHERE colis.entreprise = ?";
+$query = "SELECT client.nom,client.prenom,colis.modeLivraison,client.codePostal,colis.refQrcode,colis.id,colis.client,colis.statusPaiement,colis.status FROM colis INNER JOIN client ON colis.client = client.id WHERE colis.entreprise = ?";
 $params[] = $siret;
 
 if($searchBy == '1'){
@@ -32,16 +32,18 @@ if ($speed =='1') {
 }
 
 if ($paiement =='1') {
-    $query .= " AND colis.status != 'En attente du partenaire'";
+    $query .= " AND colis.statusPaiement = 'oui'";
 }elseif ($paiement=='2'){
-    $query .= "AND colis.status = 'En attente du partenaire'";
+    $query .= " AND colis.statusPaiement = 'non'";
 }
+
+$query .= " ORDER BY colis.statusPaiement";
 
 $data = $bdd->prepare($query);
 $data->execute($params);
 
 while($parcel = $data->fetch()){
-  if($parcel['status'] == 'En attente du partenaire'){
+  if($parcel['statusPaiement'] == 'non'){
     echo
     '<tbody><tr id="'.$parcel['id'].'">
       <td>'.$parcel['modeLivraison'].'</td>
@@ -51,7 +53,7 @@ while($parcel = $data->fetch()){
       <td><button type="button" name="button" class="btn btnTable" onclick="showMore(\''.$parcel['id'].'\')">Détails</button>
       <button type="button" name="button" class="btn btnTable ms-5" onclick="delParcel(\''.$parcel['id'].'\',\''.$parcel['client'].'\')">Supprimer</button></td>
     </tr></tbody>';
-  }elseif($parcel['status'] != 'En attente du partenaire' && $parcel['status'] != 'Délivré'){
+  }elseif($parcel['statusPaiement'] == 'oui' && $parcel['status'] != 'Délivré'){
     echo '
     <tbody><tr>
       <td>'.$parcel['modeLivraison'].'</td>
