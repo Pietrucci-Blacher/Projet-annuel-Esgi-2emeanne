@@ -69,7 +69,7 @@ if(isset($_POST['lastname']) && strlen($_POST['lastname']) >= 1 && strlen($_POST
                 <br>
                 <div>
                 <div class="table-responsive">
-                <table class="table">
+                <table class="table table-bordered">
                     <thead class="thead-light">
                     <tr>
                         <th scope="col">#</th>
