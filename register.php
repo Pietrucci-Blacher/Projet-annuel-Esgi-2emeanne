@@ -156,9 +156,9 @@ if($resultcheck == 0){
                 </div>
             </div>
             <br>
-            <div id="captcha" name="captcha" class="h-captcha text-center" data-sitekey="75ae82a3-a741-4f26-9eec-db8201d34794">
-                <span><?php echo $errorcaptcha ?></span>
-            </div><br>
+            <div id="captcha" name="captcha" class="h-captcha text-center" data-sitekey="75ae82a3-a741-4f26-9eec-db8201d34794"></div>
+            <span><?php echo $errorcaptcha ?></span>
+            <br>
             <hr class="mx-4">
             <div class="form-check mx-3">
                 <input class="custom-control-input" type="radio" name="status" id="delivery" value="livreur">
