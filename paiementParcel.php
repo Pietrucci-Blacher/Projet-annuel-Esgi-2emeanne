@@ -7,9 +7,11 @@ if(empty($_SESSION['siret'])){
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php require_once('include/head.php'); ?>
     <?php require_once('include/script.php'); ?>
     <link rel="stylesheet" href="css/index.css" type="text/css">
+    <script src="https://js.stripe.com/v3/"></script>
   </head>
   <?php require_once('include/header.php'); ?>
   <body>
@@ -28,6 +30,37 @@ if(empty($_SESSION['siret'])){
         $totalParcel +=1;
       }
      ?>
+
+     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h5 class="modal-title" id="exampleModalLabel"></h5>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+           </div>
+           <div class="modal-body" id="moreInfo">
+             <div class="container px-5">
+               <div class="input-group mt-2">
+                 <input id="name" type="text" class="form-control text-center border fw-bold" placeholder="NOM" autocomplete="off">
+               </div>
+               <div class="input-group mt-4">
+                 <input id="zipcode" type="text" class="form-control text-center border fw-bold" placeholder="CODE POSTAL" autocomplete="off">
+               </div>
+               <div class="mt-4">
+                 <div id="card-element"  class="stripeField">
+                 </div>
+               </div>
+               <div class="d-grid gap-2 mx-auto">
+                 <button id="submit" type="button" class="btn btn-primary mt-4" onclick="generateToken()"><a class="serviceslink" id="btnTxt"></a></button>
+               </div>
+               <div id="card-errors"  class="text-center mt-3 error"></div>
+             </div>
+             <p class="mt-3 mb-1 me-2 fw-bold float-end">🔒 Paiement sécurisé par STRIPE</p>
+           </div>
+         </div>
+       </div>
+     </div>
+
     <div class="container mt-5">
       <h1 class="banner-item text-center">Paiement de vos colis</h1>
       <div class="d-flex justify-content-center mt-5">
@@ -36,7 +69,7 @@ if(empty($_SESSION['siret'])){
       </div>
       <?php if($totalParcel != 0){ ?>
       <div class="d-grid gap-2 mx-auto">
-        <button type="button" class="btn btn-primary mt-5 btn-lg" onclick="payBill()"><a class="serviceslink h4">Payer les colis</a></button>
+        <button type="button" class="btn btn-primary mt-5 btn-lg" onclick="displayModal(<?php echo $totalParcel ?>,<?php echo $totalPrice ?>)"><a class="serviceslink h4">Payer les colis</a></button>
       </div>
       <h1 class="banner-item text-center mt-5">Détails du paiement</h1>
       <table class=" mt-5 table banner table-bordered text-center banner-item fs-4">
@@ -75,13 +108,64 @@ if(empty($_SESSION['siret'])){
     <?php } ?>
     </div>
     <script type="text/javascript">
-      function payBill(){
-        $.ajax({
-           url : 'generateBill.php',
-           success : function(result){
-             window.location.href = "billHistoric.php";
-           }
-        });
+
+      function displayModal(nbParcel,totalPrice){
+        document.getElementById('exampleModalLabel').innerHTML = "Paiement de vos "+nbParcel+" colis en attente";
+        document.getElementById('btnTxt').innerHTML = "Payer "+totalPrice+" €";
+        $('#exampleModal').modal('toggle');
+      }
+
+    </script>
+    <script type="text/javascript">
+      var stripe = Stripe('pk_test_51IOoGkAympjcdUislCnFLyUKEcpV1zt08ZfwxAnw8uaxnrkLON5jBXbnEdAtK54sc3Jg2jK28FaXxqXsFRKc4zjA00833D4MXa');
+      var elements = stripe.elements();
+      var style = {
+        base: {
+          fontSize: '18px',
+          fontWeight: 600,
+        },
+      };
+
+      var card = elements.create('card', {hidePostalCode: true,style: style});
+
+      card.mount('#card-element');
+
+      function generateToken(){
+        let nameInput = document.getElementById('name');
+        let zipInput = document.getElementById('zipcode');
+        let error = document.getElementById('card-errors');
+        if(nameInput.value == "" || zipInput.value == ""){
+          error.innerHTML = "Merci de remplir les champs NOM et CODE POSTAL";
+        }else{
+          let extraDetails = {
+            name: nameInput.value,
+            address_zip: zipInput.value
+          }
+          stripe.createToken(card, extraDetails).then(function(result) {
+            if (result.error) {
+              error.innerHTML = result.error.message;
+            } else {
+              $.ajax({
+                 url : 'verifyPaiement.php',
+                 type : 'POST',
+                 data : 'stripeToken='+result.token.id,
+                 dataType : 'html',
+                 success : function(result){
+                   if(result == "succeeded"){
+                     $.ajax({
+                        url : 'billHistoric.php',
+                        success : function(result){
+                          window.location.href = 'priceHistory.php';
+                        }
+                     });
+                   }else{
+                     error.innerHTML = "Erreur lors du paiement, vérifier vos informations et/ou réessayer plus tard";
+                   }
+                 }
+              });
+            }
+          });
+        }
       }
     </script>
   </body>

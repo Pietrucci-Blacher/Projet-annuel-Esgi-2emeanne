@@ -9,8 +9,6 @@ $siret = $_SESSION['siret'];
 $totalPrice = 0;
 $totalParcel = 0;
 
-
-
 $query = $bdd->prepare("INSERT INTO facture(date,entreprise) VALUES (NOW(),?) ");
 $query->execute([$siret]);
 $billId = $bdd->lastInsertId();
