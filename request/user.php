@@ -40,6 +40,10 @@ function getAdminDatabyid($id){
 
 function deleteuserbyID($id){
     $bdd = connexionBDD();
+    $res = $bdd->prepare("DELETE FROM colis WHERE client = :id_user");
+    $res->bindValue(":id_user",$id,PDO::PARAM_INT);
+    $res->execute();
+
     $res = $bdd->prepare("DELETE FROM client WHERE id = :id_user");
     $res->bindValue(":id_user",$id,PDO::PARAM_INT);
     $res->execute();
