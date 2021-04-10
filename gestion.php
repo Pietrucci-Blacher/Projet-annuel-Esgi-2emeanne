@@ -15,18 +15,16 @@ $city = htmlspecialchars(trim($_POST['city']));
 $phonenum = htmlspecialchars(trim($_POST['phonenum']));
 $status = $_POST['status'];
 
-if(isset($_POST['lastname']) && strlen($_POST['lastname']) >= 1 && strlen($_POST['lastname']) <= 70 && is_string($_POST['lastname'])) {
-    if (isset($_POST['firstname']) && strlen($_POST['firstname']) >= 1 && strlen($_POST['firstname']) <= 60 && is_string($_POST['firstname'])) {
-        if (isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-            if(isset($_POST['address']) && isset($_POST['city']) && strlen($_POST['address']) > 1 && strlen($_POST['city']) > 1 && is_string($_POST['address']) && is_string($_POST['city'])) {
-                if(isset($_POST['zipcode']) && strlen($_POST['zipcode']) == 5 && is_string($_POST['zipcode'])) {
-                    if(isset($_POST['address']) && isset($_POST['city']) && strlen($_POST['address']) > 1 && strlen($_POST['city']) > 1 && is_string($_POST['address']) && is_string($_POST['city'])){
-                        if(isset($_POST['phonenum']) && strlen($_POST['phonenum']) == 10 && is_string($_POST['phonenum'])) {
-                            if(isset($_POST['status'])){
-                                UpdateUserinfo($lastname,$firstname,$email,$address,$zipcode,$city,$phonenum,$status);
-                                header('Refresh:0');
-                                exit();
-                            }
+if(isset($_POST['lastname']) && strlen($_POST['lastname']) >= 1 && strlen($_POST['lastname']) <= 70 && is_string($_POST['lastname']) || empty($_POST['lastname'])) {
+    if (isset($_POST['firstname']) && strlen($_POST['firstname']) >= 1 && strlen($_POST['firstname']) <= 60 && is_string($_POST['firstname']) || empty($_POST['firstname'])) {
+        if (isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || empty($_POST['email'])){
+            if(isset($_POST['address']) && isset($_POST['city']) && strlen($_POST['address']) > 1 && strlen($_POST['city']) > 1 && is_string($_POST['address']) && is_string($_POST['city']) || empty($_POST['city']) || empty($_POST['address'])){
+                if(isset($_POST['zipcode']) && strlen($_POST['zipcode']) == 5 && is_string($_POST['zipcode']) || empty($_POST['zipcode'])){
+                    if(isset($_POST['phonenum']) && strlen($_POST['phonenum']) == 10 && is_string($_POST['phonenum']) || empty($_POST['phonenum'])){
+                        if(isset($_POST['status'])){
+                            UpdateUserinfo($lastname,$firstname,$email,$address,$zipcode,$city,$phonenum,$status);
+                            header('Refresh:0');
+                            exit();
                         }
                     }
                 }
