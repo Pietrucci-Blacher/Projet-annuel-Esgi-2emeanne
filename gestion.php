@@ -19,15 +19,11 @@ if(isset($_POST['lastname']) && strlen($_POST['lastname']) >= 1 && strlen($_POST
     if (isset($_POST['firstname']) && strlen($_POST['firstname']) >= 1 && strlen($_POST['firstname']) <= 60 && is_string($_POST['firstname'])) {
         if (isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             if(isset($_POST['address']) && isset($_POST['city']) && strlen($_POST['address']) > 1 && strlen($_POST['city']) > 1 && is_string($_POST['address']) && is_string($_POST['city'])) {
-                echo 'ok';
-                if(isset($_POST['zipcode']) && strlen($_POST['zipcode']) == 5 && is_numeric($_POST['zipcode'])) {
-                    echo 'ok';
+                if(isset($_POST['zipcode']) && strlen($_POST['zipcode']) == 5 && is_string($_POST['zipcode'])) {
                     if(isset($_POST['address']) && isset($_POST['city']) && strlen($_POST['address']) > 1 && strlen($_POST['city']) > 1 && is_string($_POST['address']) && is_string($_POST['city'])){
-                        echo 'ok';
                         if(isset($_POST['phonenum']) && strlen($_POST['phonenum']) == 10 && is_string($_POST['phonenum'])) {
                             if(isset($_POST['status'])){
-                                echo "ok";
-                                UpdateUserinfo($lastname,$firstname,$email,$zipcode,$city,$phonenum,$status,$_SESSION['id']);
+                                UpdateUserinfo($lastname,$firstname,$email,$address,$zipcode,$city,$phonenum,$status);
                                 header('Refresh:0');
                                 exit();
                             }
@@ -38,10 +34,8 @@ if(isset($_POST['lastname']) && strlen($_POST['lastname']) >= 1 && strlen($_POST
         }
     }
 }
-
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
     <head>
@@ -130,7 +124,7 @@ if(isset($_POST['lastname']) && strlen($_POST['lastname']) >= 1 && strlen($_POST
                                    <label class="m-2" for="city">Ville :</label>
                                    <input type="text" class="form-control mx-3" name="city" id="city" aria-describedby="city" placeholder="Ville">
                                    <label class="m-1"  for="zipcode">Code Postal :</label>
-                                   <input type="number" min="0" minlength="5" maxlength="5" class="form-control mx-3" name="cpostal" id="cpostal" aria-describedby="codepostale" placeholder="Code Postale">
+                                   <input type="number" min="0" minlength="5" maxlength="5" class="form-control mx-3" name="zipcode" id="zipcode" aria-describedby="codepostale" placeholder="Code Postale">
                                    <label class="m-1" for="tel">Numéro Téléphone :</label>
                                    <input class="form-control mx-3" type="number" maxlength="10" minlength="10" name="phonenum" id="phonenum" aria-describedby="telephone"  placeholder="Numéro de téléphone">
                                </div>
