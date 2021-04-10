@@ -1,3 +1,22 @@
+Date.prototype.toDatetimeLocal =
+    function toDatetimeLocal() {
+        let
+            date = this,
+            ten = function (i) {
+                return (i < 10 ? '0' : '') + i;
+            },
+            YYYY = date.getFullYear(),
+            MM = ten(date.getMonth() + 1),
+            DD = ten(date.getDate()),
+            HH = ten(date.getHours()),
+            II = ten(date.getMinutes()),
+            SS = ten(date.getSeconds())
+        ;
+        return YYYY + '-' + MM + '-' + DD + 'T' +
+            HH + ':' + II + ':' + SS;
+    };
+
+
 $(document).ready(function (){
     $(".edituser").click(function (){
         let user_id = $(this).attr("user-id");
@@ -18,8 +37,8 @@ $(document).ready(function (){
                if($("#bandiv").not(':has("#bantime")')){
                    $("#bandiv").append("<label class='m-2' for='bantime' id='labeltime'>Temps de ban</label>");
                    $("#bandiv").append("<input class='form-control mx-3 bantime text-center fw-bold' name='bantime' id='bantime' type='datetime-local' disabled>");
-                   $("#bantime").val(result['bantime']);
-                   console.log("ok");
+                   let date = new Date(result['bantime']);
+                   $("#bantime").val(date.toDatetimeLocal());
                }
            }
            if(result['bannedAcount'] == false){
