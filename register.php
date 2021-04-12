@@ -1,6 +1,5 @@
 <?php
 require_once('include/connexionbdd.php');
-require_once('include/functions.php');
 $bdd = connexionBDD();
 
 $lastname = htmlspecialchars(trim($_POST['lastname']));
@@ -50,7 +49,8 @@ if($resultcheck == 0){
                                         $response = curl_exec($ch); 
                                         curl_close($ch); 
                                         $responseData = json_decode($response); 
-                                        if($responseData->success){
+                                        print_r($responseData);
+                                        if($responseData);->success){
                                             $q = 'INSERT INTO client(genre,nom, prenom, email, mdp, status, adresse, ville, codePostal, numPhone) VALUES (:val1,:val2,:val3,:val4,:val5,:val6,:val7,:val8, :val9, :val10)';
                                             $req = $bdd->prepare($q);
                                             $req->bindValue(":val1",$gender,PDO::PARAM_STR);
