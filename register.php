@@ -22,8 +22,6 @@ $req->bindValue(':val1',$_POST['email'],PDO::PARAM_STR);
 $req->execute();
 $resultcheck = $req->fetch();
 
-// Faire la vérification de  l'adresse et de l'adresse postale  via Curl$handle = curl_init();
-
 if($resultcheck == 0){
     if(isset($_POST['gender'])){
         if(isset($_POST['lastname']) && strlen($_POST['lastname']) >= 1 && strlen($_POST['lastname']) <= 70 && is_string($_POST['lastname'])){
