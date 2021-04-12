@@ -18,6 +18,7 @@ function getcaptchareponse($token):bool{
     curl_setopt_array($ch,$curlcfg);
     $response = curl_exec($ch);
     $responseData = json_decode($response);
+    print_r($responseData);
     if($responseData->success) {
         return true;
     }else{
