@@ -50,7 +50,7 @@ if($resultcheck == 0){
                                         curl_close($ch); 
                                         $responseData = json_decode($response); 
                                         print_r($responseData);
-                                        if($responseData)->success){
+                                        if($responseData->success){
                                             $q = 'INSERT INTO client(genre,nom, prenom, email, mdp, status, adresse, ville, codePostal, numPhone) VALUES (:val1,:val2,:val3,:val4,:val5,:val6,:val7,:val8, :val9, :val10)';
                                             $req = $bdd->prepare($q);
                                             $req->bindValue(":val1",$gender,PDO::PARAM_STR);
