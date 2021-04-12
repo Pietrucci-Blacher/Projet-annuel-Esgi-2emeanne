@@ -172,7 +172,7 @@ if($resultcheck == 0){
                 </div>
             </div>
             <br>
-            <div id="captcha" name="captcha" class="h-captcha text-center" data-sitekey="203bba98-5e91-4d72-aa5c-faceadac7f87"></div>
+            <div class="h-captcha text-center" data-sitekey="203bba98-5e91-4d72-aa5c-faceadac7f87"></div>
             <span><?php echo $errorcaptcha ?></span>
             <br>
             <hr class="mx-4">
