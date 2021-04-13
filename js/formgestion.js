@@ -71,7 +71,7 @@ $(document).ready(function (){
     });
 
     $(".deleteuser").click(function (){
-        let user_id = $(".deleteuser").attr("user-id");
+        let user_id = $(this).attr("user-id");
         if(window.confirm("Voulez vous supprimer l'utilisateur ?")){
             $.post("request/ges/deleteuser.php",{"userid": user_id}).then(function(){
                 window.location.reload();
