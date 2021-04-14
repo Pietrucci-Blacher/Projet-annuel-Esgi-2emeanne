@@ -18,52 +18,83 @@ Date.prototype.toDatetimeLocal =
 
 
 $(document).ready(function (){
+    $('#modifyzone').hide();
     $(".edituser").click(function (){
         let user_id = $(this).attr("user-id");
-       $.post("request/ges/editprofileuser.php", {"userid": user_id}).then(function(res){
+        $.post("request/ges/editprofileuser.php", {"userid": user_id}).then(function(res){
            if(res.includes("Unknow parameters")){alert("Unknow id");}
            let result = JSON.parse(res);
+           if(!(Object.keys(result) === 0)){
+               $('#modifyzone').show();
+           }
            $("#lastname").val(result['nom']);
            $("#firstname").val(result['prenom']);
            $("#status").val(result['status']);
            $("#city").val(result['ville']);
-           $("#cpostal").val(result['codePostal']);
+           $("#zipcode").val(result['codePostal']);
            $("#phonenum").val(result['numphone']);
            $("#address").val(result['adresse']);
            $("#email").val(result['email']);
+           $("#banacount").addClass("border rounded border-3");
            if(result['bannedAcount'] == true){
                $("#banacount").val("Oui");
-               $("#banacount").addClass("border border-danger rounded border-3");
-               if($("#bandiv").not(':has("#bantime")')){
-                   $("#bandiv").append("<label class='m-2' for='bantime' id='labeltime'>Temps de ban</label>");
-                   $("#bandiv").append("<input class='form-control mx-3 bantime text-center fw-bold' name='bantime' id='bantime' type='datetime-local' disabled>");
-                   let date = new Date(result['bantime']);
-                   $("#bantime").val(date.toDatetimeLocal());
+               if($("#banacount").hasClass("border-success")) {
+                   $("#banacount").removeClass("border-success");
+                   $("#banacount").addClass("border-danger");
+               }else{
+                   $("#banacount").addClass("border-danger");
                }
-           }
-           if(result['bannedAcount'] == false){
+               $("#labeltime").show();
+               $("#bantime").show();
+               let date = new Date(result['bantime']);
+               $("#bantime").val(date.toDatetimeLocal());
+           }else{
                $("#banacount").val("Non");
-               $("#banacount").addClass("border border-success rounded border-3");
-               $("#bandiv").remove("#bantime");
-               $("#bandiv").remove("#labeltime");
-               $("#banacount").addClass("ms-1 me-5");
+               if($("#banacount").hasClass("border-danger")){
+                   $("#banacount").removeClass("border-danger");
+                   $("#banacount").addClass("border-success");
+               }else {
+               $("#banacount").addClass("border-success");
+               }
+               $("#labeltime").hide();
+               $("#bantime").hide();
            }
+
            if(result['status'] == "livreur"){
                $.post("request/ges/deliveryinfo.php", {"userid": user_id}).then(function(result2) {
                     let resultdelivery = JSON.parse(result2);
-                    const inputdelivery = "<div class='input-group'><label class='m-2' for='brandvehicule'>Marque du véhicule : </label><input type='text' class='form-control mx-3' name='brandvehicule' id='brandvehicule' aria-describedby='brandvehicule' placeholder='Marque du Véhicule'><label class='m-2' for='ptacvehicule'>PTAC du Véhicule</label><input class='form-control mx-3' name='ptacvehicule' id='ptacvehicule' aria-describedby='ptacvehicule' placeholder='PTAC du véhicule'><label class='m-2' for='vehiculetype'>Type de vehicule</label><input class='form-control mx-3' name='vehiculetype' id='vehiculetype' aria-describedby='vehiculetype' placeholder='Type du véhicule'></div><br><div class='input-group'><label class='m-2' for='geozone'>Zone Géographique :</label><input type='text' class='form-control mx-3' name='geozone' id='geozone' aria-describedby='geozone' placeholder='Zone Géo'></div>";
-                    $('#deliveryzone').append(inputdelivery);
-                    $('#geozone').val(resultdelivery['zoneGeo']);
+                    if(!(Object.keys(resultdelivery) === 0)){
+                        $("#deliveryzone").show();
+                    }
                     $('#brandvehicule').val(resultdelivery['brandvehicule']);
                     $('#ptacvehicule').val(resultdelivery['ptacvehicule']);
                     $('#vehiculetype').val(resultdelivery['vehiculetype']);
-
-                    $('#drivinglicence').attr("href", window.location.origin + "/" + resultdelivery['lienPermis']);
-                    $('#pointslicence').attr("href",  window.location.origin + "/" + resultdelivery['etatPermis']);
+                    $('#geozone').val(resultdelivery['zoneGeo']);
+                    $("#volvehicule").addClass("border rounded border-3");
+                    if(resultdelivery['volVehicule'] == true) {
+                        $('#volvehicule').val("Oui");
+                        if($("#volvehicule").hasClass("border-success")) {
+                            $("#volvehicule").removeClass("border-success");
+                            $("#volvehicule").addClass("border-danger");
+                        }else{
+                            $("#volvehicule").addClass("border-danger");
+                        }
+                    }else{
+                        $("#volvehicule").val("Non");
+                        if($("#volvehicule").hasClass("border-danger")) {
+                            $("#volvehicule").removeClass("border-danger");
+                            $("#volvehicule").addClass("border-success");
+                        }else {
+                            $("#volvehicule").addClass("border-success");
+                        }
+                    }
                });
+           }else{
+               $("#deliveryzone").hide();
            }
        });
     });
+    
     $(".banuser").click(function (){
         let user_id = $(this).attr("user-id");
         const bantime = $("#bantime").val();
