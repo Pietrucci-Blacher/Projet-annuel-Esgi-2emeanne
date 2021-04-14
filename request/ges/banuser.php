@@ -5,10 +5,10 @@ if(empty($_POST)){
     exit();
 }
 
-$id = (int)$_POST['userid'];
+$id = (int)$_POST['useridban'];
 $bantime = $_POST['bantime'];
 
-if(isset($_POST['userid'])){
+if(isset($_POST['useridban'])){
     if(isset($_POST['bantime'])){
         banuser($id,$bantime);
     }else{
