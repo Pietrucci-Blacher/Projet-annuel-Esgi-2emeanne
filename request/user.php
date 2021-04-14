@@ -106,3 +106,20 @@ function updateCheckpackage($id){
     $req->bindValue(":id",$id,PDO::PARAM_INT);
     $req->execute();
 }
+
+function Updatedeliverinfo($email, $geozone,$brand,$vehiculetype,$ptac){
+    $bdd = connexionBDD();
+    $res = $bdd->prepare("SELECT id FROM client WHERE email = :email");
+    $res->bindValue(":email",$email,PDO::PARAM_STR);
+    $res->execute();
+    $uid = $res->fetch(PDO::FETCH_ASSOC);
+    $uidf = $uid['id'];
+
+    $req = $bdd->prepare("UPDATE livreur SET zoneGeo = :geo, vehiculetype = :type, brandvehicule = :brand, ptacvehicule = :ptac WHERE client = :id");
+    $req->bindValue(":geo",$geozone,PDO::PARAM_STR);
+    $req->bindValue(":type",$vehiculetype,PDO::PARAM_STR);
+    $req->bindValue(":brand",$brand,PDO::PARAM_STR);
+    $req->bindValue(":ptac",$ptac,PDO::PARAM_STR);
+    $req->bindValue(":id",$uidf,PDO::PARAM_STR);
+    $req->execute();
+}
