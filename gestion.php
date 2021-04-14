@@ -5,7 +5,6 @@ if(getUserStatus($_SESSION['id']) != "admin" || !isset($_SESSION)){
     header('Location: index.php');
     exit();
 }
-
 $lastname = htmlspecialchars(trim($_POST['lastname']));
 $firstname = htmlspecialchars(trim($_POST['firstname']));
 $email = htmlspecialchars(trim($_POST['email']));
@@ -14,23 +13,18 @@ $zipcode = htmlspecialchars(trim($_POST['zipcode']));
 $city = htmlspecialchars(trim($_POST['city']));
 $phonenum = htmlspecialchars(trim($_POST['phonenum']));
 $status = $_POST['status'];
+$zonegeo = $_POST['geozone'];
+$brandvehicule = $_POST['brandvehicule'];
+$vehiculetype = $_POST['vehiculetype'];
+$ptac = $_POST['ptacvehicule'];
 
-if(isset($_POST['lastname']) && strlen($_POST['lastname']) >= 1 && strlen($_POST['lastname']) <= 70 && is_string($_POST['lastname']) || empty($_POST['lastname'])) {
-    if (isset($_POST['firstname']) && strlen($_POST['firstname']) >= 1 && strlen($_POST['firstname']) <= 60 && is_string($_POST['firstname']) || empty($_POST['firstname'])) {
-        if (isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || empty($_POST['email'])){
-            if(isset($_POST['address']) && isset($_POST['city']) && strlen($_POST['address']) > 1 && strlen($_POST['city']) > 1 && is_string($_POST['address']) && is_string($_POST['city']) || empty($_POST['city']) || empty($_POST['address'])){
-                if(isset($_POST['zipcode']) && strlen($_POST['zipcode']) == 5 && is_string($_POST['zipcode']) || empty($_POST['zipcode'])){
-                    if(isset($_POST['phonenum']) && strlen($_POST['phonenum']) == 10 && is_string($_POST['phonenum']) || empty($_POST['phonenum'])){
-                        if(isset($_POST['status'])){
-                            UpdateUserinfo($lastname,$firstname,$email,$address,$zipcode,$city,$phonenum,$status);
-                            header('Refresh:0');
-                            exit();
-                        }
-                    }
-                }
-            }
-        }
+if(isset($_POST) && !empty($_POST)){
+    if($status == "livreur") {
+        Updatedeliverinfo($email, $zonegeo, $brandvehicule, $vehiculetype, $ptac);
     }
+    UpdateUserinfo($lastname,$firstname,$email,$address,$zipcode,$city,$phonenum,$status);
+    header('Refresh:0');
+    exit();
 }
 ?>
 
@@ -122,7 +116,7 @@ if(isset($_POST['lastname']) && strlen($_POST['lastname']) >= 1 && strlen($_POST
                                    <label class="m-2" for="city">Ville :</label>
                                    <input type="text" class="form-control mx-3" name="city" id="city" aria-describedby="city" placeholder="Ville">
                                    <label class="m-1"  for="zipcode">Code Postal :</label>
-                                   <input type="number" min="0" minlength="5" maxlength="5" class="form-control mx-3" name="zipcode" id="zipcode" aria-describedby="codepostale" placeholder="Code Postale">
+                                   <input type="number" min="0" minlength="5" maxlength="5" class="form-control mx-3" name="zipcode" id="zipcode" aria-describedby="codepostale" placeholder="Code Postale" min="0" max="99999">
                                    <label class="m-1" for="tel">Numéro Téléphone :</label>
                                    <input class="form-control mx-3" type="number" maxlength="10" minlength="10" name="phonenum" id="phonenum" aria-describedby="telephone"  placeholder="Numéro de téléphone">
                                </div>
