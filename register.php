@@ -1,6 +1,5 @@
 <?php
 require_once('include/connexionbdd.php');
-require_once('include/functions.php');
 $bdd = connexionBDD();
 
 $lastname = htmlspecialchars(trim($_POST['lastname']));
@@ -13,16 +12,14 @@ $city = htmlspecialchars(trim($_POST['city']));
 $phonenum = htmlspecialchars(trim($_POST['phonenum']));
 $gender = $_POST['gender'];
 $status = $_POST['status'];
-$token = $_POST['h-captcha-response'];
-print_r($token); 
+
 
 $q = "SELECT id FROM client WHERE email = :val1";
 $req = $bdd->prepare($q);
 $req->bindValue(':val1',$_POST['email'],PDO::PARAM_STR);
 $req->execute();
 $resultcheck = $req->fetch();
-
-// Faire la vérification de  l'adresse et de l'adresse postale  via Curl$handle = curl_init();
+$secretKey = '0x2c2a7110F346623cbe0b87cDDeee1d29a33bA23f'; 
 
 if($resultcheck == 0){
     if(isset($_POST['gender'])){
@@ -33,9 +30,26 @@ if($resultcheck == 0){
                         if(isset($_POST['address']) && isset($_POST['city']) && strlen($_POST['address']) > 1 && strlen($_POST['city']) > 1 && is_string($_POST['address']) && is_string($_POST['city'])){
                             if(isset($_POST['zipcode']) && strlen($_POST['zipcode']) == 5 && is_numeric($_POST['zipcode'])){
                                 if(isset($_POST['phonenum']) && strlen($_POST['phonenum']) == 10 && is_string($_POST['phonenum'])) {
-                                    if(isset($_POST['status']) && isset($_POST['h-captcha-response'])){
-                                        $response = getcaptchareponse($token);
-                                        if($response == true){
+                                    if(isset($_POST['status']) && isset($_POST['h-captcha-response']) && !empty($_POST['h-captcha-response'])){
+                                        $verifyURL = 'https://hcaptcha.com/siteverify';
+                                        $token = $_POST['h-captcha-response']; 
+                                        $data = array( 
+                                             'secret' => $secretKey, 
+                                             'response' => $token, 
+                                             'remoteip' => $_SERVER['REMOTE_ADDR'] 
+                                        );
+                                        $curlConfig = array( 
+                                            CURLOPT_URL => $verifyURL, 
+                                            CURLOPT_POST => true, 
+                                            CURLOPT_RETURNTRANSFER => true, 
+                                            CURLOPT_POSTFIELDS => $data 
+                                        );
+                                        $ch = curl_init(); 
+                                        curl_setopt_array($ch, $curlConfig); 
+                                        $response = curl_exec($ch); 
+                                        curl_close($ch); 
+                                        $responseData = json_decode($response); 
+                                        if($responseData->success){
                                             $q = 'INSERT INTO client(genre,nom, prenom, email, mdp, status, adresse, ville, codePostal, numPhone) VALUES (:val1,:val2,:val3,:val4,:val5,:val6,:val7,:val8, :val9, :val10)';
                                             $req = $bdd->prepare($q);
                                             $req->bindValue(":val1",$gender,PDO::PARAM_STR);
@@ -157,7 +171,7 @@ if($resultcheck == 0){
                 </div>
             </div>
             <br>
-            <div id="captcha" name="captcha" class="h-captcha text-center" data-sitekey="75ae82a3-a741-4f26-9eec-db8201d34794"></div>
+            <div class="h-captcha text-center" data-sitekey="caa7faa2-2f61-4f97-9a57-1285fdd1007a"></div>
             <span><?php echo $errorcaptcha ?></span>
             <br>
             <hr class="mx-4">
