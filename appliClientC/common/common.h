@@ -6,6 +6,8 @@
 #include <time.h>
 #include <qrcodegen.h>
 #include <libbmp.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 GtkWidget *window;
 GtkWidget *entry[10];

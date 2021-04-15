@@ -42,7 +42,7 @@ void connexion(){
         strcat(postContent,curl_escape(mdp,0));
         //printf("%s",postContent);
 
-        curl_easy_setopt(curl, CURLOPT_URL, "https://pa2021-esgi.herokuapp.com/connexionAppliC.php");
+        curl_easy_setopt(curl, CURLOPT_URL, "https://pa2021-esgi.herokuapp.com/appliC/connexionAppliC.php");
 
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L); //skip verif SSL
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
@@ -71,10 +71,12 @@ void sendExcelFTP(char *path){
     curl = curl_easy_init();
     if(curl) {
 
-    curl_easy_setopt(curl, CURLOPT_URL,"ftp://");
+    curl_easy_setopt(curl, CURLOPT_URL,"https://pa2021-esgi.herokuapp.com/appliC/uploadAppliC.php");
 
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+
+    curl_easy_setopt(curl, CURLOPT_READFUNCTION, &fread);
 
     curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
 
