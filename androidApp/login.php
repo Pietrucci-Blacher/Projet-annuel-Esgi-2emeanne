@@ -7,19 +7,22 @@ require_once('../include/connexionbdd.php');
 
   $mdp = isset($_POST['mdp']) ? sha1(htmlspecialchars($_POST['mdp'])) : '';
 
-  echo $_POST['email'].$_POST['mdp'];
-
-  $query = "SELECT client.nom,client.prenom,livreur.id FROM CLIENT INNER JOIN LIVREUR ON livreur.client = client.id WHERE client.email = ? AND client.mdp = ?";
+  $query = "SELECT nom,prenom,status FROM CLIENT WHERE email = ? AND mdp = ?";
 
   $connect=$bdd->prepare($query);
 
   $connect->execute([$email,$mdp]);
 
   $success = $connect->fetch();
+
   if (empty($success)) {
     echo "failed";
   }else{
-    echo $connect['prenom'].' '.$connect['nom'];
+    if($success['status'] != 'livreur'){
+      echo 'failed';
+    }else{
+      echo $success['prenom'].' '.$success['nom'];
+    }
   }
 
 ?>
