@@ -9,6 +9,15 @@ require_once('../include/connexionbdd.php');
 
   $query = "SELECT client.nom,client.prenom,livreur.id FROM CLIENT INNER JOIN LIVREUR ON livreur.client = client.id WHERE client.email = ? AND client.mdp = ?";
 
-  echo $query;
+  $connect=$bdd->prepare($query);
+
+  $connect->execute([$email,$mdp]);
+
+  $success = $connect->fetch();
+  if (empty($success)) {
+    echo "failed";
+  }else{
+    echo $connect['prenom'].' '.$connect['nom'];
+  }
 
 ?>
