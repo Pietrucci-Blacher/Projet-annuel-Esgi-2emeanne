@@ -19,7 +19,7 @@
 <?php require_once('include/header.php'); ?>
 <br>
 <div class="container">
-    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <div class="col-lg-6 mx-auto">
         <h1 class="banner-item text-center">Mon Profil</h1>
         <form class="border bg-light border-dark rounded text-align mt-4" action="include/modifprof.php" method="post" enctype="multipart/form-data">
          <?php
@@ -49,7 +49,7 @@
              <hr class="mx-4">
              <div class="d-flex mt-3 justify-content-center">
                 <div class="form-row">
-                    <div class="form-group flex-fill mx-3">
+                    <div class=" mx-3">
                        <label for="address">Adresse : </label>
                       <input id="address" class="form-control" name="address" type ="text" value="<?php echo $user['adresse'] ?>">
                     </div>

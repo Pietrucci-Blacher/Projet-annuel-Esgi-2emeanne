@@ -19,7 +19,7 @@ $req = $bdd->prepare($q);
 $req->bindValue(':val1',$_POST['email'],PDO::PARAM_STR);
 $req->execute();
 $resultcheck = $req->fetch();
-$secretKey = '0x2c2a7110F346623cbe0b87cDDeee1d29a33bA23f'; 
+$secretKey = '0x2c2a7110F346623cbe0b87cDDeee1d29a33bA23f';
 
 if($resultcheck == 0){
     if(isset($_POST['gender'])){
@@ -32,23 +32,23 @@ if($resultcheck == 0){
                                 if(isset($_POST['phonenum']) && strlen($_POST['phonenum']) == 10 && is_string($_POST['phonenum'])) {
                                     if(isset($_POST['status']) && isset($_POST['h-captcha-response']) && !empty($_POST['h-captcha-response'])){
                                         $verifyURL = 'https://hcaptcha.com/siteverify';
-                                        $token = $_POST['h-captcha-response']; 
-                                        $data = array( 
-                                             'secret' => $secretKey, 
-                                             'response' => $token, 
-                                             'remoteip' => $_SERVER['REMOTE_ADDR'] 
+                                        $token = $_POST['h-captcha-response'];
+                                        $data = array(
+                                             'secret' => $secretKey,
+                                             'response' => $token,
+                                             'remoteip' => $_SERVER['REMOTE_ADDR']
                                         );
-                                        $curlConfig = array( 
-                                            CURLOPT_URL => $verifyURL, 
-                                            CURLOPT_POST => true, 
-                                            CURLOPT_RETURNTRANSFER => true, 
-                                            CURLOPT_POSTFIELDS => $data 
+                                        $curlConfig = array(
+                                            CURLOPT_URL => $verifyURL,
+                                            CURLOPT_POST => true,
+                                            CURLOPT_RETURNTRANSFER => true,
+                                            CURLOPT_POSTFIELDS => $data
                                         );
-                                        $ch = curl_init(); 
-                                        curl_setopt_array($ch, $curlConfig); 
-                                        $response = curl_exec($ch); 
-                                        curl_close($ch); 
-                                        $responseData = json_decode($response); 
+                                        $ch = curl_init();
+                                        curl_setopt_array($ch, $curlConfig);
+                                        $response = curl_exec($ch);
+                                        curl_close($ch);
+                                        $responseData = json_decode($response);
                                         if($responseData->success){
                                             $q = 'INSERT INTO client(genre,nom, prenom, email, mdp, status, adresse, ville, codePostal, numPhone) VALUES (:val1,:val2,:val3,:val4,:val5,:val6,:val7,:val8, :val9, :val10)';
                                             $req = $bdd->prepare($q);
@@ -97,10 +97,10 @@ if($resultcheck == 0){
 <body  onCopy="return false" onPaste="return false" onCut="return false">
 <?php include('include/header.php'); ?>
 <br><br>
-<div class="row">
-    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+<div class="container">
+    <div class="col-lg-8 mx-auto">
         <h3 class="text-center fw-bold mb-3">S'enregistrer</h3>
-        <form class="border bg-light border-dark rounded text-align" id="formcheck" method="post" enctype="multipart/form-data">
+        <form class="border bg-light border-dark rounded text-align p-4" id="formcheck" method="post" enctype="multipart/form-data">
             <br>
             <div class="d-flex mt-3 justify-content-around">
                 <div class="form-group flex-fill mx-2">
@@ -197,4 +197,3 @@ if($resultcheck == 0){
 <br>
 </body>
 </html>
-

@@ -21,8 +21,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] != "entreprise"){ ?>
             <li><a class="dropdown-item" href="priceListDeliverer.php">Livreurs</a></li>
-            <?php } ?>
-            <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] != "livreur"){ ?>
+          <?php } elseif(isset($_SESSION['rank']) && $_SESSION['rank'] != "livreur"){ ?>
             <li><a class="dropdown-item" href="priceListParcel.php">Entreprises</a></li>
           <?php }else{ ?>
               <li><a class="dropdown-item" href="priceListDeliverer.php">Livreurs</a></li>
@@ -34,8 +33,7 @@
             <li class="nav-item"><a class="nav-link" href="gestion.php">Gestion du site</a></li>
             <li class="nav-item"><a class="nav-link" href="priceParcelAdmin.php">Gérer les tarifs des colis</a></li>
         <?php } if(isset($_SESSION['name']) && $_SESSION['rank'] == "livreur"){ ?>
-            <li class="nav-item"><a class="nav-link" href="#">Gestion des livraisons</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Mes statistiques </a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Mes livraisons</a></li>
         <?php } if(isset($_SESSION['name']) && $_SESSION['rank'] == "entreprise"){ ?>
               <li class="nav-item"><a class="nav-link" href="searchParcelCompany.php">Gérer les colis</a></li>
               <li class="nav-item"><a class="nav-link" href="paiementParcel.php">Payer les colis</a></li>
@@ -47,13 +45,9 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="profile.php">Mon profil</a></li>
-              <?php if(isset($_SESSION['name']) && $_SESSION['rank'] == "livreur"){ ?>
-                  <li><a class="dropdown-item" href="#">Mes livraisons</a></li>
-              <?php } ?>
               <li><a class="dropdown-item" href="logout.php">Se déconnecter</a></li>
            </ul>
         <?php } ?>
-
           </li>
         <?php if(!isset($_SESSION['name'])){ ?>
             <li class="nav-item"><a class="nav-link" href="connect.php">Connexion</a></li>

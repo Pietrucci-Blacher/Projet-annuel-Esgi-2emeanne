@@ -77,5 +77,4 @@ session_start();
       </div>
     </div>
   </body>
-  <script src="js/map.js"></script>
 </html>
