@@ -37,10 +37,6 @@ if(isset($_POST) && !empty($_POST)){
         <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@bf7775b/css/all.css" rel="stylesheet" type="text/css" />
         <meta name="description" content="Page de gestion du site web Ultimate Parcer">
         <meta name="keywords" content="livraison,colis">
-        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
         <script src="js/formgestion.js"></script>
         <title>Ultimate Parcel - Gestion du site </title>
     </head>
