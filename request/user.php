@@ -107,6 +107,14 @@ function updateCheckpackage($id){
     $req->execute();
 }
 
+function permischeckuser($permis,$user){
+    $bdd = connexionBDD();
+    $req = $bdd->prepare("UPDATE livreur SET validatedperm = :bool WHERE client = :id");
+    $req->bindValue(":bool",$permis,PDO::PARAM_STR);
+    $req->bindValue(":id",$user,PDO::PARAM_INT);
+    $req->execute();
+}
+
 function Updatedeliverinfo($email, $geozone,$brand,$vehiculetype,$ptac){
     $bdd = connexionBDD();
     $res = $bdd->prepare("SELECT id FROM client WHERE email = :email");
