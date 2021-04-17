@@ -22,6 +22,15 @@ size_t returnCodeCurl(char *ptr, size_t size, size_t nmemb, void *stream){
     return size*nmemb;
 }
 
+static size_t read_callback(char *ptr, size_t size, size_t nmemb, void *stream)
+{
+  size_t retcode;
+
+  retcode = fread(ptr, size, nmemb, stream);
+
+  return retcode;
+}
+
 void connexion(){
     const gchar *id;
     const gchar *mdp;
@@ -63,37 +72,43 @@ void connexion(){
 void sendExcelFTP(char *path){
 
     CURL *curl;
-    CURLcode res;
-    FILE *file;
+  CURLcode res;
+  FILE * fp;
+  struct stat file_info;
 
-    file = fopen(path, "rb");
+  char *url = "http://pa2021-esgi.herokuapp.com/appliC/uploadAppliC.php";
 
-    curl = curl_easy_init();
-    if(curl) {
+  stat(path, &file_info);
 
-    curl_easy_setopt(curl, CURLOPT_URL,"https://pa2021-esgi.herokuapp.com/appliC/uploadAppliC.php");
+  fp = fopen(path, "rb");
 
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+  curl_global_init(CURL_GLOBAL_ALL);
 
-    curl_easy_setopt(curl, CURLOPT_READFUNCTION, &fread);
+
+  curl = curl_easy_init();
+  if(curl) {
+
+    curl_easy_setopt(curl, CURLOPT_READFUNCTION, read_callback);
 
     curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
 
-    curl_easy_setopt(curl, CURLOPT_READDATA, file);
+    curl_easy_setopt(curl, CURLOPT_URL, url);
 
-    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+    curl_easy_setopt(curl, CURLOPT_READDATA, fp);
+
+    curl_easy_setopt(curl, CURLOPT_INFILESIZE_LARGE,
+                     (curl_off_t)file_info.st_size);
 
     res = curl_easy_perform(curl);
 
-    if(res != CURLE_OK) {
+    if(res != CURLE_OK)
       fprintf(stderr, "curl_easy_perform() failed: %s\n",
               curl_easy_strerror(res));
 
-    }
-
     curl_easy_cleanup(curl);
-    }
-    fclose(file);
+  }
+  fclose(fp);
+
+  curl_global_cleanup();
 
 }
