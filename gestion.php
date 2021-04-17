@@ -279,10 +279,10 @@ if(isset($_POST) && !empty($_POST)){
                         </div>
                         <div class="modal-body">
                             <form method="post" enctype="multipart/form-data">
-                                <input class="form-control my-2"  type="datetime-local" name="bantime" id="bantime">
+                                <input class="form-control my-2"  type="datetime-local" name="bantimeinp" id="bantimeinp">
                         </div>
                         <div class="modal-footer">
-                                <button class="btn btn-primary banuser" type="submit" data-bs-dismiss="modal">Valider</button>
+                                <button class="btn btn-primary banuserval" type="submit" data-bs-dismiss="modal">Valider</button>
                             </form>
                         </div>
                     </div>
