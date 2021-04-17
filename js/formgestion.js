@@ -97,8 +97,10 @@ $(document).ready(function (){
     
     $(".banuser").click(function (){
         let user_id = $(this).attr("user-id");
-        const bantime = $("#bantime").val();
-        $.post("request/ges/banuser.php", {"useridban": user_id, "bantime": bantime});
+        $(".banuserval").click(function(){
+            const bantime = $("#bantimeinp").val();
+            $.post("request/ges/banuser.php", {"userid": user_id, "bantime": bantime});
+        });
     });
 
     $(".deleteuser").click(function (){
