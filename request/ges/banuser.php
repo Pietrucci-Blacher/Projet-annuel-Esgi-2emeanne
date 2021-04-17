@@ -5,7 +5,7 @@ if(empty($_POST)){
     exit();
 }
 
-$id = (int)$_POST['useridban'];
+$id = (int)$_POST['userid'];
 $bantime = $_POST['bantime'];
 
 if(isset($_POST['userid'])){
