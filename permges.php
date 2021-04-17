@@ -76,10 +76,12 @@
                         </div>
                     </div>
                     <div class='col'>
-                        <form class='form-check form-switch' method='post' enctype='multipart/form-data'>
-                            <input type='checkbox' class='form-check-input' id='permval' name='permval'>
-                            <label for='permval'>Valider le permis</label>
-                        </form>
+                        <div class="col-10 offset-1 col-lg-8 offset-lg-2  d-flex justify-content-center align-self-center mt-5">
+                            <form class='form-check form-switch'>
+                                <input type='checkbox' class='form-check-input' id='permval' name='permval'>
+                                <label for='permval'>Valider le permis</label>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
