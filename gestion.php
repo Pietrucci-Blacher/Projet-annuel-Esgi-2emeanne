@@ -275,7 +275,7 @@ if(isset($_POST) && !empty($_POST)){
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title text-center" id="exampleModalLabel">Veuillez insérer le temps de bannissement (en jours) (1000 ou plus pour bannissement permanent) </h5>
+                            <h5 class="modal-title text-center" id="exampleModalLabel">Veuillez insérer le temps de bannissement (en jours)</h5>
                         </div>
                         <div class="modal-body">
                             <form method="post" enctype="multipart/form-data">
