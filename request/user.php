@@ -134,7 +134,7 @@ function Updatedeliverinfo($email, $geozone,$brand,$vehiculetype,$ptac){
 
 function getalldeliverydata(){
     $bdd = connexionBDD();
-    $res = $bdd->prepare("SELECT zoneGeo,nbKm,etatPermis,lienPermis,client,client.prenom, client.nom FROM livreur INNER JOIN client ON livreur.client = client.id");
+    $res = $bdd->prepare("SELECT zoneGeo,nbKm,etatPermis,lienPermis,client,validatedperm,client.prenom, client.nom FROM livreur INNER JOIN client ON livreur.client = client.id");
     $res->execute();
     return $res->fetchAll(PDO::FETCH_ASSOC);
 }
