@@ -99,7 +99,13 @@ $(document).ready(function (){
         let user_id = $(this).attr("user-id");
         $(".banuserval").click(function(){
             const bantime = $("#bantimeinp").val();
-            $.post("request/ges/banuser.php", {"userid": user_id, "bantime": bantime});
+            const todaydate = new Date();
+            const bantdate = new Date(bantime);
+            if(bantdate > todaydate){
+                $.post("request/ges/banuser.php", {"userid": user_id, "bantime": bantime});
+            }else{
+                window.alert("La date insérée est inférieur à la date d'aujourd'hui");
+            }
         });
     });
 
