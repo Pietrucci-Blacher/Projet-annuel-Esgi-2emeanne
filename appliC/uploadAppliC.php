@@ -1,16 +1,20 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 /* Les données PUT arrivent du flux */
 $putdata = fopen("php://input", "r");
 
 if (isset($putdata)) {
-  echo "JE SUIS LA";
+  echo "recieved";
 }
 
 $fp = fopen("new.csv" , "w");
 
 /* Lecture des données, 1 Ko à la fois et écriture dans le fichier */
-while ($data = fread($putdata, 1024))
-fwrite($fp, $data);
+while ($data = fread($putdata, 1024)){
+  fwrite($fp, $data);
+}
 
 fclose($putdata);
 fclose($fp);
@@ -29,5 +33,4 @@ require('../cloudinary/Api.php');
 
 //upload
 \Cloudinary\Uploader::upload("new.csv",["resource_type" => "auto", "folder" => "uploadExcell"]);
-
 ?>
