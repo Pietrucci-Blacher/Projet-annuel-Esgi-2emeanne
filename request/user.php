@@ -66,7 +66,7 @@ function banuser($id, $time){
     $bdd = connexionBDD();
     $res = $bdd->prepare("UPDATE client SET bannedAcount = TRUE, bantime = :bantime WHERE id = :id");
     $res->bindValue(":bantime",$time,PDO::PARAM_STR);
-    $res->bindValue(":id",$id,PDO::PARAM_STR);
+    $res->bindValue(":id",$id,PDO::PARAM_INT);
     $res->execute();
 }
 
