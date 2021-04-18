@@ -138,3 +138,33 @@ function getalldeliverydata(){
     $res->execute();
     return $res->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function getBaninfouser($id){
+    $bdd = connexionBDD();
+    $q = 'SELECT bannedAcount,bantime FROM client WHERE id = :id';
+    $req = $bdd->prepare($q);
+    $req->bindValue(":id",$id,PDO::PARAM_INT);
+    $req->execute();
+    $res = $req->fetchAll(PDO::FETCH_ASSOC);
+    return $res;
+}
+
+function updateBaninfo(){
+    $bdd = connexionBDD();
+    $q = 'UPDATE client SET bannedAcount = FALSE, bantime = NULL WHERE id = :id';
+    $req = $bdd->prepare($q);
+    $req->bindValue(":id",$_SESSION['id'],PDO::PARAM_INT);
+    $req->execute();
+}
+
+
+function checkvalitedperm(){
+    $bdd = connexionBDD();
+    $req = $bdd->prepare("SELECT validatedperm FROM livreur WHERE id = :id");
+    $req->bindValue(":id",$_SESSION['id'],PDO::PARAM_INT);
+    $req->execute();
+    $res = $req->fetch(PDO::FETCH_ASSOC);
+    if($res == true){
+        echo "<script>alert('Votre permis n\'a pas été encore validé')</script>";
+    }
+}
