@@ -1,6 +1,8 @@
 <?php
 require_once(__DIR__ . '/request/enterprise.php');
 require_once(__DIR__ . '/request/user.php');
+require_once('include/utilities/banuser.php');
+checkbanuser();
 
 if(empty($_SESSION) || !$_SESSION['rank'] == "entreprise" || !empty($_SESSION['siret']) || checkfirstconnect() == false){
     header('Location: index.php');
