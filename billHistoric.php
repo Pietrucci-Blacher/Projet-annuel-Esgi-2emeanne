@@ -1,5 +1,6 @@
 <?php
-session_start();
+require_once('include/utilities/banuser.php');
+checkbanuser();
 if(empty($_SESSION['siret'])){
     header('Location: enterpriseform.php');
 }
