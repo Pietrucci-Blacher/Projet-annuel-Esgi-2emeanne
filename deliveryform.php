@@ -1,5 +1,7 @@
 <?php
 require_once(__DIR__ . '/request/user.php');
+require_once('include/utilities/banuser.php');
+checkbanuser();
 if(empty($_SESSION) || !$_SESSION['rank'] == "livreur" || checkfirstconnect() == false){
    header('Location: index.php');
    exit();

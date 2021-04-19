@@ -1,4 +1,6 @@
-<?php session_start();
+<?php 
+require_once('include/utilities/banuser.php');
+checkbanuser();
 if(isset($_SESSION['rank'])){
   if($_SESSION['rank'] != "admin"){
       header('Location: index.php');

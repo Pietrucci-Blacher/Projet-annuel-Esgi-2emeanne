@@ -1,5 +1,7 @@
 <?php
 require_once(__DIR__ . '/request/user.php');
+require_once('include/utilities/banuser.php');
+checkbanuser();
 require_once('include/connexionbdd.php');
 if(getUserStatus($_SESSION['id']) != "admin" || !isset($_SESSION)){
     header('Location: index.php');
@@ -36,6 +38,7 @@ if(isset($_POST) && !empty($_POST)){
         <link rel="stylesheet" href="css/index.css" type="text/css">
         <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@bf7775b/css/all.css" rel="stylesheet" type="text/css" />
         <meta name="description" content="Page de gestion du site web Ultimate Parcer">
+        <meta charset="utf-8">
         <meta name="keywords" content="livraison,colis">
         <script src="js/formgestion.js"></script>
         <title>Ultimate Parcel - Gestion du site </title>

@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php 
+require_once('include/utilities/banuser.php');
+checkbanuser();
+?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
   <head>
