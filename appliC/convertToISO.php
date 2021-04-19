@@ -16,7 +16,7 @@ for ($i=0; $i < count($idArray); $i++) {
   $query->execute([$idArray[$count]]);
   $client = $query->fetch();
 
-  $query2 = $bdd->prepare("INSERT INTO CLIENT (adresse,nom,prenom) VALUES ?,?,? WHERE id = ?");
+  $query2 = $bdd->prepare("UPDATE CLIENT SET adresse = ?, nom = ?, prenom = ? WHERE id = ?");
   $query2->execute([utf8_decode($client['adresse']),utf8_decode($client['nom']),utf8_decode($client['prenom']),$idArray[$count]]);
 
   $count+=1;
