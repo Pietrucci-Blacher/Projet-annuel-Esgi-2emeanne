@@ -16,6 +16,7 @@
     <meta name="description" content="Page de profil utilisateur">
     <meta name="keywords" content="livraison,colis">
     <link rel="stylesheet" href="css/index.css" type="text/css">
+    <script src="js/translate.js"></script>
     <title>Ultimate Parcel - Profile page</title>
 </head>
 <body>
@@ -23,7 +24,7 @@
 <br>
 <div class="container">
     <div class="col-lg-6 mx-auto">
-        <h1 class="banner-item text-center">Mon Profil</h1>
+        <h1 class="banner-item text-center" langtrad="PRO">Mon Profil</h1>
         <form class="border bg-light border-dark rounded text-align mt-4" action="include/modifprof.php" method="post" enctype="multipart/form-data">
          <?php
          $users = getData();
@@ -31,17 +32,17 @@
             <div class="d-flex mt-3 justify-content-center">
              <div class="form-row">
                 <div class="form-group flex-fill mx-2">
-                    <label for="lastname">Nom : </label>
+                    <label for="lastname" langtrad="NAME">Nom : </label>
                     <input id="lastname" class="form-control" name="lastname" type ="text" value="<?php echo $user['nom'] ?>">
                 </div>
                 <div class="form-group flex-fill mx-2 mt-2">
-                    <label for="firstname">Prénom : </label>
+                    <label for="firstname" langtrad="FIRNAME">Prénom : </label>
                     <input id="firstname" class="form-control" name="firstname" type ="text" value="<?php echo $user['prenom'] ?>">
                 </div>
                 <?php if($_SESSION['rank'] == "livreur"){ ?>
                  <div class="d-flex justify-content-end mt-2">
                      <div class="form-row">
-                             <label for="permis">Votre permis : </label>
+                             <label for="permis" langtrad="PER">Votre permis : </label>
                              <input type="hidden" name="MAX_FILE_SIZE" value="4194304"/>
                              <input id="permis" class="form-control" name="uploadpermis" type="file" value="test"/>
                      </div>
@@ -53,11 +54,11 @@
              <div class="d-flex mt-3 justify-content-center">
                 <div class="form-row">
                     <div class=" mx-3">
-                       <label for="address">Adresse : </label>
+                       <label for="address" langtrad="ADD">Adresse : </label>
                       <input id="address" class="form-control" name="address" type ="text" value="<?php echo $user['adresse'] ?>">
                     </div>
                     <div class="form-group flex-fill mx-3 mt-2">
-                        <label for="cdPostal">Code Postal : </label>
+                        <label for="cdPostal" langtrad="CDEPO">Code Postal : </label>
                         <input id="cdPostal" class="form-control" name="cdPostal" type ="text" value="<?php echo $user['codePostal'] ?>">
                     </div>
                 </div>
@@ -66,7 +67,7 @@
             <div class="d-flex mt-3 justify-content-center">
                  <div class="form-row">
                         <div class="form-group flex-fill mx-2">
-                        <label for="nbPhone">Numéro de téléphone : </label>
+                        <label for="nbPhone" langtrad="NBP">Numéro de téléphone : </label>
                         <input id="nbPhone" class="form-control" name="nbPhone" type ="text" value="<?php echo $user['numPhone'] ?>">
                     </div>
                     <div class="form-group flex-fill mx-2 mt-2">
@@ -76,7 +77,7 @@
                     <?php if(!empty($_SESSION['siret']) && ($_SESSION['rank'] == "entreprise")){ ?>
 
                     <div class="form-group flex-fill mx-2 mt-2">
-                        <label for="siret">Numéro siret : </label>
+                        <label for="siret" langtrad="SIR">Numéro siret : </label>
                         <input id="siret" class="form-control" name="siret" type ="text" value="<?php echo $_SESSION['siret'] ?>" disabled>
                     </div>
                   <?php } ?>

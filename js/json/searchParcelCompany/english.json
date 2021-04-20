@@ -1,6 +1,7 @@
 {
   "DETCO": "Package details",
   "INFOCO": "Please enter the package information",
+  "NOCO": "No packages matching the search parameters",
   "SEAR": "Search by:",
   "1": "Anything",
   "2": "Name",
@@ -12,6 +13,5 @@
   "PAIER": "Paid",
   "PAIE": "Payment pending",
   "OK": "Validate",
-  "DEST": "Recipient",
-  "NOCO": "No packages matching the search parameters"
+  "DEST": "Recipient"
 }

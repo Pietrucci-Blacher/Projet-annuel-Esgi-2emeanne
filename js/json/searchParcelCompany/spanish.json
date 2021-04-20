@@ -1,5 +1,6 @@
 {
   "DETCO": "Detalles del paquete",
+  "NOCO": "No hay paquetes que coincidan con los parámetros de búsqueda",
   "INFOCO": "Por favor ingrese la información del paquete",
   "SEAR": "Búsqueda por:",
   "1": "cualquier cosa",
@@ -12,6 +13,5 @@
   "PAIER": "Pagado",
   "PAIE": "Pago pendiente",
   "OK": "Validar",
-  "DEST": "Beneficiario",
-  "NOCO": "No hay paquetes que coincidan con los parámetros de búsqueda"
+  "DEST": "Beneficiario"
 }
