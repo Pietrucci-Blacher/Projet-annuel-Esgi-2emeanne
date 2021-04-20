@@ -1,0 +1,9 @@
+{
+  "FACT": "Your Bills",
+  "MONTFACT": "Total amount of paid invoices: €",
+  "NUMCOL": "Total number of packages processed:",
+  "HISTOFACT": "Invoice history",
+  "MONT": "Amount",
+  "NUM": "Number of packages",
+  "DA": "Date"
+}
