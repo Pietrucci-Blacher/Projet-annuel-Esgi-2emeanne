@@ -58,7 +58,7 @@
          <a class="nav-link dropdown-toggle firstLink french" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" value="french"><i class="flag flag-fr mr-2"></i> Français</a>
          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li><button id="english" class="dropdown-item english" value="english"><i class="flag flag-gb"></i> English</button></li>
-          <li><button id="espagnol" class="dropdown-item spanish" value="espagnol"><i class="flag flag-es"></i> Español</button></li>
+          <li><button id="spanish" class="dropdown-item spanish" value="spanish"><i class="flag flag-es"></i> Español</button></li>
          </ul>
         </li>
     </div>
