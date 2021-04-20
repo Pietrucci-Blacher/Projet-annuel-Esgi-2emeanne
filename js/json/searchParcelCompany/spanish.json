@@ -11,5 +11,6 @@
   "EX": "Expreso",
   "PAIER": "Pagado",
   "PAIE": "Pago pendiente",
-  "OK": "Validar"
+  "OK": "Validar",
+  "NOCO": "No hay paquetes que coincidan con los parámetros de búsqueda"
 }

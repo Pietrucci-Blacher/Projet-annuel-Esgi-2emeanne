@@ -11,5 +11,6 @@
   "EX": "Express",
   "PAIER": "Paid",
   "PAIE": "Payment pending",
-  "OK": "Validate"
+  "OK": "Validate",
+  "NOCO": "No packages matching the search parameters"
 }
