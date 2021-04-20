@@ -20,8 +20,8 @@
       <div class="input-group input-group-lg mt-4">
         <input id="ref" type="text" class="form-control text-center" placeholder="Référence du colis">
       </div>
-      <div class="d-grid gap-2 mx-auto" langtrad="VAL">
-        <button id="submit" type="button" class="btn btn-primary mt-5 btn-lg"><a class="serviceslink">VALIDER</a></button>
+      <div class="d-grid gap-2 mx-auto">
+        <button id="submit" type="button" class="btn btn-primary mt-5 btn-lg"><a class="serviceslink"  langtrad="VAL">VALIDER</a></button>
       </div>
       <br>
       <div id="parcel">
