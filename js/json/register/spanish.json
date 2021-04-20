@@ -1,0 +1,14 @@
+{
+  "1" : "Registrarse",
+  "2" : "Sexo",
+  "3" : "El correo electrónico debe ser del tipo: test.test@gmail.com",
+  "4" : "La contraseña debe contener: ",
+  "5" : "- Al menos 8 carácteres",
+  "6" : "- Al menos una letra minúscula",
+  "7" : "- Al menos una letra mayuscula",
+  "8" : "- Al menos un número",
+  "9" : "- Al menos un personaje",
+  "10" : "Mostrar contraseña:",
+  "11" : "Repartidor",
+  "12" : "Negocio"
+}

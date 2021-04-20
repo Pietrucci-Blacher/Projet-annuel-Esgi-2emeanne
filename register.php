@@ -92,6 +92,7 @@ if($resultcheck == 0){
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
     <script src="https://hcaptcha.com/1/api.js" async defer></script>
     <script src="js/form.js"></script>
+    <script src="js/translate.js"></script>
     <title>Ultimate Parcel - Enregistrement</title>
 </head>
 <body  onCopy="return false" onPaste="return false" onCut="return false">
@@ -99,13 +100,13 @@ if($resultcheck == 0){
 <br><br>
 <div class="container">
     <div class="col-lg-8 mx-auto">
-        <h3 class="text-center fw-bold mb-3">S'enregistrer</h3>
+        <h3 class="text-center fw-bold mb-3" langtrad="1">S'enregistrer</h3>
         <form class="border bg-light border-dark rounded text-align p-4" id="formcheck" method="post" enctype="multipart/form-data">
             <br>
             <div class="d-flex mt-3 justify-content-around">
                 <div class="form-group flex-fill mx-2">
                     <select class="form-select" id="gender" name="gender">
-                        <option selected>Sexe</option>
+                        <option selected langtrad="2">Sexe</option>
                         <option value="Monsieur">Monsieur</option>
                         <option value="Madame">Madame</option>
                     </select>
@@ -122,7 +123,7 @@ if($resultcheck == 0){
                 <div class="form-group ">
                     <input class="form-control" id="email" type="email" name="email" placeholder="Email" aria-describedby="emailHelp" autocomplete="email"><br>
                     <dl>
-                        <dt>Le mail doit etre du type : test.test@gmail.com</dt>
+                        <dt langtrad="3">Le mail doit etre du type : test.test@gmail.com</dt>
                     </dl>
                 </div>
                 <div class="form-group">
@@ -134,18 +135,18 @@ if($resultcheck == 0){
                 <div class="form-group">
                     <input class="form-control" id="password" type="password"  name="password" placeholder="Mot de Passe" aria-describedby="password" autocomplete="new-password"><br>
                     <dl>
-                        <dt>Le mot de passe doit contenir : </dt>
-                        <dd>- Au moins 8 caractères</dd>
-                        <dd>- Au moins une lettre miniscule</dd>
-                        <dd>- Au moins une lettre majuscule</dd>
-                        <dd>- Au moins un chiffre</dd>
-                        <dd>- Au moins un caractère</dd>
+                        <dt langtrad="4">Le mot de passe doit contenir : </dt>
+                        <dd langtrad="5">- Au moins 8 caractères</dd>
+                        <dd langtrad="6">- Au moins une lettre miniscule</dd>
+                        <dd langtrad="7">- Au moins une lettre majuscule</dd>
+                        <dd langtrad="8">- Au moins un chiffre</dd>
+                        <dd langtrad="9">- Au moins un caractère</dd>
                     </dl>
                 </div>
                 <div class="form-group">
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input"  id="showPassword">
-                        <label class="form-check-label" for="showPassword">Montrer le mot de passe : </label>
+                        <label class="form-check-label" for="showPassword" langtrad="10">Montrer le mot de passe : </label>
                     </div>
                 </div>
                 <br>
@@ -177,13 +178,13 @@ if($resultcheck == 0){
             <hr class="mx-4">
             <div class="form-check mx-3">
                 <input class="custom-control-input" type="radio" name="status" id="delivery" value="livreur">
-                <label class="form-check-label" for="delivery">
+                <label class="form-check-label" for="delivery" langtrad="11">
                     Livreur
                 </label>
             </div>
             <div class="form-check mx-3">
                 <input class="custom-control-input" type="radio" name="status" id="company" value="entreprise">
-                <label class="form-check-label" for="company">
+                <label class="form-check-label" for="company" langtrad="12">
                     Entreprise
                 </label>
             </div>
