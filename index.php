@@ -25,10 +25,10 @@ checkbanuser();
           <div class="carousel-item active">
             <img src="asset/slider1.png" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-              <h1 class="pb-5 textslider">Vous êtes une entreprise ?</h1>
+              <h1 class="pb-5 textslider" langtrad="COMPANYQ">Vous êtes une entreprise ?</h1>
               <p class="mt-5 pb-5 h5 textslider">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
               <div class="d-grid gap-2 col-5 mx-auto">
-                <button type="button" class="btn btn-primary mt-5 btn-lg" onclick="location.href='register.php'"><a class="serviceslink" title="Redirection vers le menu d'enregistrement">S'INSCRIRE</a></button>
+                <button type="button" class="btn btn-primary mt-5 btn-lg" onclick="location.href='register.php'"><a class="serviceslink" title="Redirection vers le menu d'enregistrement" langtrad="REGISTER">S'INSCRIRE</a></button>
               </div>
             </div>
           </div>
@@ -38,14 +38,14 @@ checkbanuser();
               <h1 class="pb-5 textslider">Vous êtes un livreur indépendant ?</h1>
               <p class="mt-5 pb-5 h5 textslider">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
               <div class="d-grid gap-2 col-5 mx-auto">
-                <button type="button" class="btn btn-primary mt-5 btn-lg" onclick="location.href='register.php'"><a class="serviceslink">S'INSCRIRE</a></button>
+                <button type="button" class="btn btn-primary mt-5 btn-lg" onclick="location.href='register.php'"><a class="serviceslink" langtrad="REGISTER">S'INSCRIRE</a></button>
               </div>
             </div>
           </div>
           <div class="carousel-item">
             <img src="asset/slider3.png" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-              <h1 class="pb-5 textslider">Vous attendez un colis ?</h1>
+              <h1 class="pb-5 textslider" langtrad="APACKAGE">Vous attendez un colis ?</h1>
               <p class="mt-5 pb-5 h5 textslider">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
               <div class="d-grid gap-2 col-5 mx-auto">
                 <button type="button" class="btn btn-primary mt-5 btn-lg" onclick="location.href='parcelTracking.php'"><a class="serviceslink">SUIVRE MON COLIS</a></button>
