@@ -3,12 +3,16 @@ package com.example.step2app;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -26,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText email,mdp;
     private Button loginBtn;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         this.loginBtn = findViewById(R.id.loginBtn);
         this.email = findViewById(R.id.emailInput);
         this.mdp = findViewById(R.id.mdpInput);
+
+        this.email.setText("livreur@mail.com");
+        this.mdp.setText("Test1234!");
 
         this.loginBtn.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -59,13 +65,31 @@ public class MainActivity extends AppCompatActivity {
                         public void onResponse(Call call, Response response) throws IOException {
                             if (response.isSuccessful()) {
                                 final String myResponse = response.body().string();
+                                JSONObject jsonObj = null;
+                                try {
+                                    jsonObj = new JSONObject(myResponse);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                JSONObject finalJsonObj = jsonObj;
                                 MainActivity.this.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        if(myResponse.equals("failed")){
-                                            Toast.makeText(MainActivity.this,"Merci de vérifier votre email/mot de passe",Toast.LENGTH_SHORT).show();
-                                        }else{
-                                            Toast.makeText(MainActivity.this,"Bienvenue "+myResponse,Toast.LENGTH_SHORT).show();
+                                        try {
+                                            if(finalJsonObj.getString("status").equals("failed")){
+                                                Toast.makeText(MainActivity.this,"Merci de vérifier votre email/mot de passe",Toast.LENGTH_SHORT).show();
+                                            }else{
+                                                if(finalJsonObj.getString("status").equals("failed")){
+                                                    Toast.makeText(MainActivity.this,"Merci de vérifier votre email/mot de passe",Toast.LENGTH_SHORT).show();
+                                                }else{
+                                                    Intent myIntent = new Intent(MainActivity.this, MenuActivity.class);
+                                                    myIntent.putExtra("prenom", finalJsonObj.getString("prenom"));
+                                                    myIntent.putExtra("nom", finalJsonObj.getString("nom"));
+                                                    startActivity(myIntent);
+                                                }
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
                                         }
                                     }
                                 });
