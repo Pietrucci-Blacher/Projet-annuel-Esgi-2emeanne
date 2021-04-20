@@ -11,6 +11,7 @@ checkbanuser();
     <link rel="stylesheet" href="css/index.css" type="text/css">
     <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.1/leaflet.css" rel="stylesheet" />
+    <script src="js/translate.js"></script>
   </head>
   <?php require_once('include/header.php'); ?>
   <body>
