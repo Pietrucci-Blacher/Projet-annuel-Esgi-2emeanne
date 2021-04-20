@@ -55,11 +55,11 @@
             <li class="nav-item"><a class="nav-link" href="connect.php">Connexion</a></li>
             <li class="nav-item"><a class="nav-link" href="register.php">Inscription</a></li>
         <?php } ?>
-                <li class="nav-item dropdown" id="translate">
-         <a class="nav-link dropdown-toggle lastLink" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="flag flag-fr mr-2"></i> Français</a>
+         <li class="nav-item dropdown" id="translate">
+         <a class="nav-link dropdown-toggle firstLink french" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" value="french"><i class="flag flag-fr mr-2"></i> Français</a>
          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><button id="english" class="dropdown-item" value="english"><i class="flag flag-gb"></i> English</button></li>
-          <li><button id="espagnol" class="dropdown-item" value="espagnol"><i class="flag flag-es"></i> Español</button></li>
+          <li><button id="english" class="dropdown-item english" value="english"><i class="flag flag-gb"></i> English</button></li>
+          <li><button id="spanish" class="dropdown-item spanish" value="spanish"><i class="flag flag-es"></i> Español</button></li>
          </ul>
         </li>
     </div>
