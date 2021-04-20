@@ -8,17 +8,19 @@ checkbanuser();
     <?php require_once('include/head.php'); ?>
     <?php require_once('include/script.php'); ?>
     <link rel="stylesheet" href="css/index.css" type="text/css">
+      <script src="js/translate.js"></script>
+
   </head>
     <?php require_once('include/header.php'); ?>
   <body>
     <div class="container">
-      <h1 class="text-center mt-5 banner-item">Grille tarifaire des colis</h1>
+      <h1 class="text-center mt-5 banner-item" langtrad="GRILLE">Grille tarifaire des colis</h1>
       <table class=" mt-5 table banner table-bordered text-center banner-item fs-4">
         <thead>
           <tr>
-            <th scope="col">Poids maximum</th>
-            <th scope="col">Express (2j ouvrés)</th>
-            <th scope="col">Standard (5j ouvrés)</th>
+            <th scope="col" langtrad="HEAVY">Poids maximum</th>
+            <th scope="col" langtrad="EX">Express (2j ouvrés)</th>
+            <th scope="col" langtrad="ST">Standard (5j ouvrés)</th>
           </tr>
         </thead>
         <tbody>
@@ -36,9 +38,9 @@ checkbanuser();
             if($price['poidsMax'] == 31){
               echo'
               <tr>
-                <td>Au dessus de 30 kg</td>
+                <td langtrad="1">Au dessus de 30 kg</td>
                 <td>'.$price['prixExpress'].'</td>
-                <td>'.$price['prixStandard'].'€ par tranche de 20 kg</td>
+                <td langtrad="2">'.$price['prixStandard'].'€ par tranche de 20 kg</td>
               </tr>
               ';
             }else{

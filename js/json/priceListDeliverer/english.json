@@ -1,0 +1,13 @@
+{
+  "GRILLE": "Remuneration grid for delivery people",
+  "1": "Number of km traveled",
+  "2": "Number of packages delivered",
+  "3": "1.90 € / package",
+  "4": "Heavy load premium (packages> 30 kg)",
+  "5": "€3 per 22kg / package",
+  "6": "Monthly premium",
+  "7": "+ 10% on the total for the month",
+  "8": "- 15% on the total for the month",
+  "9": "(number of packages delivered out of all affected packages)"
+
+}
