@@ -1,0 +1,11 @@
+{
+  "PAISTR": "\uD83D\uDD12 Secure payment by STRIPE",
+  "PAIC": "Payment of your parcels",
+  "TOTPA": "Total to pay : ",
+  "NBCO": "Number of packages pending: ",
+  "DETPA": "Payment details",
+  "1": "Reference",
+  "2": "Delivery method",
+  "3": "Weight",
+  "4": "Price"
+}
