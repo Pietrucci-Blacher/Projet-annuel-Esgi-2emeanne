@@ -12,5 +12,6 @@
   "PAIER": "Paid",
   "PAIE": "Payment pending",
   "OK": "Validate",
+  "DEST": "Recipient",
   "NOCO": "No packages matching the search parameters"
 }

@@ -12,5 +12,6 @@
   "PAIER": "Pagado",
   "PAIE": "Pago pendiente",
   "OK": "Validar",
+  "DEST": "Beneficiario",
   "NOCO": "No hay paquetes que coincidan con los parámetros de búsqueda"
 }
