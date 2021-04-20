@@ -13,6 +13,8 @@ if(empty($_SESSION['siret'])){
     <?php require_once('include/script.php'); ?>
     <link rel="stylesheet" href="css/index.css" type="text/css">
     <script src="https://js.stripe.com/v3/"></script>
+      <script src="js/translate.js"></script>
+
   </head>
   <?php require_once('include/header.php'); ?>
   <body>
