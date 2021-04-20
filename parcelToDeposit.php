@@ -21,11 +21,15 @@
 
      ?>
      <div class="container mt-5">
-       <h1 class="banner-item text-center mb-5">Attribuer les colis au dépots</h1>
-       <h2 class="banner-item text-center mt-5">Colis en attente d'attribution : <?php echo $countParcel[0] ?></h2>
+       <h1 class="banner-item text-center mb-5">Attribuer les colis aux dépots</h1>
+       <?php if($countParcel[0] != 0){ ?>
+         <h2 class="banner-item text-center mt-5">Colis en attente d'attribution : <?php echo $countParcel[0] ?></h2>
        <div class="d-grid gap-2 mx-auto mt-5 col-6">
          <button type="button" class="btn btn-primary mt-5 btn-lg" onclick="processParcel()"><a class="serviceslink h4">Attribuer</a></button>
        </div>
+       <?php }else{ ?>
+          <h2 class="banner-item text-center mt-5">Aucun colis en attente</h2>
+        <?php } ?>
     </div>
     <script type="text/javascript">
       function processParcel(idParcel,idClient){

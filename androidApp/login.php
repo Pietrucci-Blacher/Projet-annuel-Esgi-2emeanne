@@ -15,14 +15,22 @@ require_once('../include/connexionbdd.php');
 
   $success = $connect->fetch();
 
+  $obj = array();
+
   if (empty($success)) {
-    echo "failed";
+    $obj['status']= "failed";
   }else{
     if($success['status'] != 'livreur'){
-      echo 'failed';
+      $obj['status']= "failed";
     }else{
-      echo $success['prenom'].' '.$success['nom'];
+      $obj['status']= "success";
+      $obj['prenom']= $success['prenom'];
+      $obj['nom']= $success['nom'];
     }
   }
 
+  $obj = json_encode($obj);
+
+  header("Content-Type: application/json");
+  echo $obj;
 ?>
