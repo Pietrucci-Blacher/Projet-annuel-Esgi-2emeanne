@@ -11,6 +11,7 @@ if(empty($_SESSION['siret'])){
     <?php require_once('include/head.php'); ?>
     <?php require_once('include/script.php'); ?>
     <link rel="stylesheet" href="css/index.css" type="text/css">
+      <script src="js/translate.js"></script>
   </head>
   <?php require_once('include/header.php'); ?>
   <body>
@@ -32,19 +33,19 @@ if(empty($_SESSION['siret'])){
 
      ?>
     <div class="container mt-5">
-      <h1 class="banner-item text-center">Vos factures</h1>
+      <h1 class="banner-item text-center" langtrad="FACT">Vos factures</h1>
       <div class="d-flex justify-content-center mt-5">
-        <h2 class="banner-item w-50 text-center">Montant total des factures payées : <?php echo $totalPrice; ?> €</h2>
-        <h2 class="banner-item w-50 text-center">Nombre total de colis traités : <?php echo $totalParcel; ?> </h2>
+        <h2 class="banner-item w-50 text-center" langtrad="MONTFACT">Montant total des factures payées : <?php echo $totalPrice; ?> €</h2>
+        <h2 class="banner-item w-50 text-center" langtrad="NUMCOL">Nombre total de colis traités : <?php echo $totalParcel; ?> </h2>
       </div>
       <?php if($totalParcel != 0){ ?>
-      <h1 class="banner-item text-center mt-5">Historique des factures</h1>
+      <h1 class="banner-item text-center mt-5" langtrad="HISTOFACT">Historique des factures</h1>
       <table class=" mt-5 table banner table-bordered text-center banner-item fs-4">
         <thead>
           <tr>
-            <th scope="col">Montant</th>
-            <th scope="col">Nombre de colis</th>
-            <th scope="col">Date</th>
+            <th scope="col" langtrad="MONT">Montant</th>
+            <th scope="col" langtrad="NUM">Nombre de colis</th>
+            <th scope="col" langtrad="DA">Date</th>
             <th scope="col"></th>
           </tr>
         </thead>

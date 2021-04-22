@@ -9,6 +9,8 @@ checkbanuser();
     <?php require_once('include/head.php'); ?>
     <?php require_once('include/script.php'); ?>
     <link rel="stylesheet" href="css/index.css" type="text/css">
+    <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.1/leaflet.css" rel="stylesheet" />
     <script src="js/translate.js"></script>
   </head>
   <?php require_once('include/header.php'); ?>
@@ -34,7 +36,7 @@ checkbanuser();
           <div class="carousel-item">
             <img src="asset/slider2.png" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-              <h1 class="pb-5 textslider" langtrad="DELIVERI">Vous êtes un livreur indépendant ?</h1>
+              <h1 class="pb-5 textslider" langtrad="DELI">Vous êtes un livreur indépendant ?</h1>
               <p class="mt-5 pb-5 h5 textslider">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
               <div class="d-grid gap-2 col-5 mx-auto">
                 <button type="button" class="btn btn-primary mt-5 btn-lg" onclick="location.href='register.php'"><a class="serviceslink" langtrad="REGISTER">S'INSCRIRE</a></button>
@@ -47,7 +49,7 @@ checkbanuser();
               <h1 class="pb-5 textslider" langtrad="APACKAGE">Vous attendez un colis ?</h1>
               <p class="mt-5 pb-5 h5 textslider">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
               <div class="d-grid gap-2 col-5 mx-auto">
-                <button type="button" class="btn btn-primary mt-5 btn-lg" onclick="location.href='parcelTracking.php'"><a class="serviceslink">SUIVRE MON COLIS</a></button>
+                <button type="button" class="btn btn-primary mt-5 btn-lg" onclick="location.href='parcelTracking.php'"><a class="serviceslink" langtrad="VPACKAGE">SUIVRE MON COLIS</a></button>
               </div>
             </div>
           </div>

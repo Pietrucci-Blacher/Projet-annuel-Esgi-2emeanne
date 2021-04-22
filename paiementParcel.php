@@ -13,6 +13,8 @@ if(empty($_SESSION['siret'])){
     <?php require_once('include/script.php'); ?>
     <link rel="stylesheet" href="css/index.css" type="text/css">
     <script src="https://js.stripe.com/v3/"></script>
+      <script src="js/translate.js"></script>
+
   </head>
   <?php require_once('include/header.php'); ?>
   <body>
@@ -56,30 +58,30 @@ if(empty($_SESSION['siret'])){
                </div>
                <div id="card-errors"  class="text-center mt-3 error"></div>
              </div>
-             <p class="mt-3 mb-1 me-2 fw-bold float-end">🔒 Paiement sécurisé par STRIPE</p>
+             <p class="mt-3 mb-1 me-2 fw-bold float-end" langtrad="PAISTR">🔒 Paiement sécurisé par STRIPE</p>
            </div>
          </div>
        </div>
      </div>
 
     <div class="container mt-5">
-      <h1 class="banner-item text-center">Paiement de vos colis</h1>
+      <h1 class="banner-item text-center" langtrad="PAIC">Paiement de vos colis</h1>
       <div class="d-flex justify-content-center mt-5">
-        <h2 class="banner-item w-50 text-center">Total à payer : <?php echo $totalPrice ?> €</h2>
-        <h2 class="banner-item w-50 text-center">Nombre de colis en attente : <?php echo $totalParcel ?> </h2>
+        <h2 class="banner-item w-50 text-center" langtrad="TOTPA">Total à payer : <?php echo $totalPrice ?> €</h2>
+        <h2 class="banner-item w-50 text-center" langtrad="NBCO">Nombre de colis en attente : <?php echo $totalParcel ?> </h2>
       </div>
       <?php if($totalParcel != 0){ ?>
       <div class="d-grid gap-2 mx-auto">
-        <button type="button" class="btn btn-primary mt-5 btn-lg" onclick="displayModal(<?php echo $totalParcel ?>,<?php echo $totalPrice ?>)"><a class="serviceslink h4">Payer les colis</a></button>
+        <button type="button" class="btn btn-primary mt-5 btn-lg" onclick="displayModal(<?php echo $totalParcel ?>,<?php echo $totalPrice ?>)"><a class="serviceslink h4" langtrad="PAC">Payer les colis</a></button>
       </div>
-      <h1 class="banner-item text-center mt-5">Détails du paiement</h1>
+      <h1 class="banner-item text-center mt-5" langtrad="DETPA">Détails du paiement</h1>
       <table class=" mt-5 table banner table-bordered text-center banner-item fs-4">
         <thead>
           <tr>
-            <th scope="col">Référence</th>
-            <th scope="col">Mode de livraison</th>
-            <th scope="col">Poids</th>
-            <th scope="col">Prix</th>
+            <th scope="col" langtrad="1">Référence</th>
+            <th scope="col" langtrad="2">Mode de livraison</th>
+            <th scope="col" langtrad="3">Poids</th>
+            <th scope="col" langtrad="4">Prix</th>
           </tr>
         </thead>
         <tbody>
@@ -100,7 +102,7 @@ if(empty($_SESSION['siret'])){
 
             echo '<tr>
                 <td colspan="2"></td>
-                <th scope="col">Total à payer</th>
+                <th scope="col" langtrad="TOTPA">Total à payer</th>
                 <td class="fw-bold">'.$totalPrice.' €</td>
                 </tr>';
              ?>

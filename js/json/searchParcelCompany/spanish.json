@@ -1,0 +1,17 @@
+{
+  "DETCO": "Detalles del paquete",
+  "NOCO": "No hay paquetes que coincidan con los parámetros de búsqueda",
+  "INFOCO": "Por favor ingrese la información del paquete",
+  "SEAR": "Búsqueda por:",
+  "1": "cualquier cosa",
+  "2": "Nombre",
+  "3": "Código Postal",
+  "4": "Referencia",
+  "MODLI": "Método de entrega :",
+  "ST": "Estándar",
+  "EX": "Expreso",
+  "PAIER": "Pagado",
+  "PAIE": "Pago pendiente",
+  "OK": "Validar",
+  "DEST": "Beneficiario"
+}

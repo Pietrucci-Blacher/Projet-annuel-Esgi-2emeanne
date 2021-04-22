@@ -2,12 +2,12 @@
   "HOME": "Inicio",
   "FPACKAGE": "Seguir mi paquete",
   "PRICE": "Tarifs",
+  "DELI": "¿ Es usted una empresa de reparto independiente ?",
   "DELIVERY": "Repartidores",
   "COMPANY": "Compañía",
   "LOGIN": "Acceso",
   "REGISTER": "Inscripción",
   "VPACKAGE": "Vea aquí el progreso de la entrega de su paquete",
   "APACKAGE": "¿Está esperando un paquete  ?",
-  "COMPANYQ": "¿ Es usted una empresa ?",
-  "DElIVERI": "¿ Es usted una empresa de reparto independiente ?"
+  "COMPANYQ": "¿ Es usted una empresa ?"
 }

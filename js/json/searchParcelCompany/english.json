@@ -1,0 +1,17 @@
+{
+  "DETCO": "Package details",
+  "INFOCO": "Please enter the package information",
+  "NOCO": "No packages matching the search parameters",
+  "SEAR": "Search by:",
+  "1": "Anything",
+  "2": "Name",
+  "3": "Postal code",
+  "4": "Reference",
+  "MODLI": "Delivery method :",
+  "ST": "Standard",
+  "EX": "Express",
+  "PAIER": "Paid",
+  "PAIE": "Payment pending",
+  "OK": "Validate",
+  "DEST": "Recipient"
+}

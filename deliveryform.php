@@ -20,6 +20,7 @@ if(empty($_SESSION) || !$_SESSION['rank'] == "livreur" || checkfirstconnect() ==
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
     <script src="js/formdelivery.js"></script>
+    <script src="js/translate.js"></script>
     <title>Ultimate Parcel - Enregistrement des livreurs</title>
 </head>
 <body  onCopy="return false" onPaste="return false" onCut="return false">
@@ -27,20 +28,20 @@ if(empty($_SESSION) || !$_SESSION['rank'] == "livreur" || checkfirstconnect() ==
 <br><br>
 <div class="container-fluid">
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <h3 class="text-center fw-bold mb-3">Enregistrement livreurs</h3>
+        <h3 class="text-center fw-bold mb-3" langtrad="ENR">Enregistrement livreurs</h3>
         <form class="border bg-light border-dark rounded text-align" action="include/deliverycheck.php" id="deliveryformcheck" method="post" enctype="multipart/form-data">
             <br>
             <div class="form-group flex-fill mx-3 mb-2" id="driveuploadzone">
-                <label for="driveupload" class="fw-bold mb-2">Veuillez upload votre permis de conduire</label>
+                <label for="driveupload" class="fw-bold mb-2" langtrad="UPLO">Veuillez upload votre permis de conduire</label>
                 <input class="form-control mb-2" type="file" name="driveupload" id="driveupload">
                 <blockquote class="blockquote">
-                    <h5>Extension acceptée : <strong>PDF</strong></h5>
+                    <h5 langtrad="EXTA">Extension acceptée : <strong>PDF</strong></h5>
                 </blockquote>
             </div>
             <hr class="mx-4">
             <div class="form-group flex-fill mx-4  mb-2">
                 <select class="form-select" id="geozone" name="geozone">
-                    <option value="">Veuillez sélectionner votre département</option>
+                    <option value="" langtrad="DEP">Veuillez sélectionner votre département</option>
                     <option value="01">&#40;01&#41; Ain </option>
                     <option value="02">&#40;02&#41; Aisne </option>
                     <option value="03">&#40;03&#41; Allier </option>
@@ -147,12 +148,12 @@ if(empty($_SESSION) || !$_SESSION['rank'] == "livreur" || checkfirstconnect() ==
             </div>
             <hr class="mx-4">
             <div class="form-group flex-fill mx-3 mb-2">
-                <label for="driveuploadpoints" class="fw-bold mb-2 ">Veuillez upload un justificat montrant votre nombre de points sur le permis</label>
+                <label for="driveuploadpoints" class="fw-bold mb-2 " langtrad="ULPO2">Veuillez upload un justificat montrant votre nombre de points sur le permis</label>
                 <input class="form-control" type="file" name="driveuploadpoints" id="driveuploadpoints">
                 <br>
                 <blockquote>
                     <dl>
-                        <dt> <h5>Extensions acceptées : </h5></dt>
+                        <dt> <h5 langtrad="EXTA">Extensions acceptées : </h5></dt>
                         <dd> <h6>- <strong>PDF</strong> </h6></dd>
                         <dd> <h6>- <strong>BMP</strong> </h6></dd>
                         <dd> <h6>- <strong>JPG</strong> </h6></dd>

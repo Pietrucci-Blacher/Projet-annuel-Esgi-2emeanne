@@ -11,6 +11,7 @@
     <?php require_once('include/head.php'); ?>
     <?php require_once('include/script.php'); ?>
     <link rel="stylesheet" href="css/index.css" type="text/css">
+      <script src="js/translate.js"></script>
   </head>
   <?php require_once('include/header.php'); ?>
   <body>
@@ -18,7 +19,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Détails du colis</h5>
+            <h5 class="modal-title" id="exampleModalLabel" langtrad="DETCO">Détails du colis</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" id="moreInfo">
@@ -28,44 +29,44 @@
     </div>
 
     <div class="container mt-5">
-      <h1 class="banner-item text-center mb-3">Veuillez entrer les informations relatives au colis</h1>
+      <h1 class="banner-item text-center mb-3" langtrad="INFOCO">Veuillez entrer les informations relatives au colis</h1>
       <div class="input-group input-group-lg">
         <input id="search" type="text" class="form-control text-center mt-5" placeholder="Recherche">
       </div>
 
       <div class="d-flex mt-4">
         <div class="flex-fill mx-2">
-          <p class="h5 text-center mb-4 banner-item">Rechercher par :</p>
+          <p class="h5 text-center mb-4 banner-item" langtrad="SEAR">Rechercher par :</p>
           <select id="searchBy" class="form-select" aria-label="Default select example">
-            <option selected value="0">N'importe</option>
-            <option value="1">Nom</option>
-            <option value="2">CodePostal</option>
-            <option value="3">Référence</option>
+            <option selected value="0" langtrad="1">N'importe</option>
+            <option value="1" langtrad="2">Nom</option>
+            <option value="2" langtrad="3">CodePostal</option>
+            <option value="3" langtrad="4">Référence</option>
           </select>
         </div>
 
         <div class="flex-fill mx-2">
-          <p class="h5 text-center mb-4 banner-item">Mode de livraison :</p>
+          <p class="h5 text-center mb-4 banner-item" langtrad="MODLI">Mode de livraison :</p>
           <select id="speedMode" class="form-select" aria-label="Default select example">
-            <option selected value="0">N'importe</option>
-            <option value="1">Standard</option>
-            <option value="2">Express</option>
+            <option selected value="0" langtrad="1">N'importe</option>
+            <option value="1" langtrad="ST">Standard</option>
+            <option value="2" langtrad="EX">Express</option>
           </select>
         </div>
 
         <div class="flex-fill mx-2">
           <p class="h5 text-center mb-4 banner-item">Status du paiement :</p>
           <select id="paiementStatus" class="form-select" aria-label="Default select example">
-            <option selected value="0">N'importe</option>
-            <option value="1">Payé</option>
-            <option value="2">Paiement en attente</option>
+            <option selected value="0" langtrad="1">N'importe</option>
+            <option value="1" langtrad="PAIER">Payé</option>
+            <option value="2" langtrad="PAIE">Paiement en attente</option>
           </select>
         </div>
 
       </div>
 
       <div class="d-grid gap-2 mx-auto">
-        <button id="submit" type="button" class="btn btn-primary mt-5 btn-lg" onclick="search()"><a class="serviceslink">VALIDER</a></button>
+        <button id="submit" type="button" class="btn btn-primary mt-5 btn-lg" onclick="search()"><a class="serviceslink" langtrad="OK">VALIDER</a></button>
       </div>
 
       <div id="error"></div>
@@ -91,10 +92,10 @@
              if(result != ''){
                document.getElementById('error').innerHTML = '';
                document.getElementById('searchResult').innerHTML =
-               '<thead><tr><th scope="col">Mode de livraison</th> <th scope="col">Destinataire</th><th scope="col">Code Postal</th><th scope="col">Référence</th><th scope="col"></th></tr></thead>' + result;
+               '<thead><tr><th scope="col" langtrad="MODLI">Mode de livraison</th> <th scope="col" langtrad="DEST">Destinataire</th><th scope="col" langtrad="3">Code Postal</th><th scope="col" langtrad="4">Référence</th><th scope="col"></th></tr></thead>' + result;
              }else{
                document.getElementById('searchResult').innerHTML = '';
-               document.getElementById('error').innerHTML = '<h1 class="mt-5 error text-center">Aucun colis correspondant aux paramètres de recherche</h1>';
+               document.getElementById('error').innerHTML = '<h1 class="mt-5 error text-center" langtrad="NOCO">Aucun colis correspondant aux paramètres de recherche</h1>';
              }
            }
         });

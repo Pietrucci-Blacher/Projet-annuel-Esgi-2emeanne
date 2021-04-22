@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
     <script src="js/formconnect.js"></script>
+    <script src="js/translate.js"></script>
     <title>Ultimate Parcel - Connexion</title>
 </head>
 <body>
@@ -19,7 +20,7 @@
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-signin my-5">
           <div class="card-body bg-light">
-            <h5 class="card-title text-center mb-3">Se connecter</h5>
+            <h5 class="card-title text-center mb-3" langtrad="CONN">Se connecter</h5>
             <form class="col-md-12" id="formconnectcheck" action="include/signincheck.php" method="POST" enctype="multipart/form-data">
             <div class="form-group mb-2">
                 <input name="email" class="form-control" type="email" placeholder="E-Mail" autocomplete="email" autofocus><br>
@@ -29,16 +30,16 @@
             </div>
             <div class="custom-control custom-checkbox mb-4">
                 <input type="checkbox" class="custom-control-input" id="showpassword">
-                <label class="custom-control-label" for="showpassword">Afficher le mot de passe</label>
+                <label class="custom-control-label" for="showpassword" langtrad="MDP">Afficher le mot de passe</label>
             </div>
             <hr>
             <div class="custom-control custom-checkbox mb-4">
               <input name="remember" type="checkbox" class="custom-control-input" id="customCheck1">
-              <label class="custom-control-label" for="customCheck1">Se souvenir de moi</label>
+              <label class="custom-control-label" for="customCheck1" langtrad="OLVI">Se souvenir de moi</label>
             </div>
             <hr>
             <div class="form-group text-center">
-              <button type="submit" class="btn btn-primary">Envoyer les données</button>
+              <button type="submit" class="btn btn-primary" langtrad="ENV">Envoyer les données</button>
             </div>
             </form>
           </div>

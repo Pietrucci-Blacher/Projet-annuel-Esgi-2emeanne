@@ -1,6 +1,7 @@
 {
   "HOME": "Home",
   "FPACKAGE": "Follow my package",
+  "DELI": "Are you an independent delivery company?",
   "PRICE": "Prices",
   "DELIVERY": "Delivers",
   "COMPANY": "Companies",
@@ -8,7 +9,7 @@
   "REGISTER": "Register",
   "VPACKAGE": "View the progress of your parcel delivery here",
   "APACKAGE": "Are you expecting a parcel ?",
-  "COMPANYQ": "Are you a company ?",
-  "DElIVERI": "Are you an independent delivery company?"
+  "COMPANYQ": "Are you a company ?"
+
 
 }
