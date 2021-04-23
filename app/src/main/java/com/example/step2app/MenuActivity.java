@@ -29,6 +29,9 @@ public class MenuActivity extends AppCompatActivity {
 
         String firstname = getIntent().getStringExtra("prenom");
         String lastname = getIntent().getStringExtra("nom");
+        Integer zoneGeo = getIntent().getIntExtra("zoneGeo",0);
+        Integer ptac = getIntent().getIntExtra("poidsVehicule",0);
+        Integer idDeposit = getIntent().getIntExtra("idDepot",0);
 
         this.welcomeTxt =findViewById(R.id.welcomeTxt);
         welcomeTxt.setText("Bienvenue "+firstname+" "+lastname);

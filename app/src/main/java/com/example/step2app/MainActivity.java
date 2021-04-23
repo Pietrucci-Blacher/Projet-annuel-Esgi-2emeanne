@@ -85,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
                                                     Intent myIntent = new Intent(MainActivity.this, MenuActivity.class);
                                                     myIntent.putExtra("prenom", finalJsonObj.getString("prenom"));
                                                     myIntent.putExtra("nom", finalJsonObj.getString("nom"));
+                                                    myIntent.putExtra("zoneGeo", finalJsonObj.getInt("zoneGeo"));
+                                                    myIntent.putExtra("poidsVehicule", finalJsonObj.getInt("poidsVehicule"));
+                                                    myIntent.putExtra("idDepot", finalJsonObj.getInt("idDepot"));
                                                     startActivity(myIntent);
                                                 }
                                             }
