@@ -54,14 +54,15 @@
     return array_values($tmpParcel);
   }
 
-  //$idDeposit = $_POST['deposit'];
-  //$delivererZone = $_POST['zone'];
-  //$time = $_POST['time'];
+  $idDeposit = $_POST['deposit'];
+  $delivererZone = $_POST['zone'];
+  $time = $_POST['time'];
+  $maxWeight=  $_POST['poids'];
 
-  $idDeposit = 71;
-  $delivererZone = 500;
-  $time = 3;
-  $poids = 100;
+  // $idDeposit = 71;
+  // $delivererZone = 500;
+  // $time = 3;
+  // $maxWeight = 100;
 
   $queryDeposit = $bdd->prepare("SELECT adresse,ville,codePostal FROM DEPOT WHERE id = ?");
   $queryDeposit->execute([$idDeposit]);
@@ -90,7 +91,7 @@
   $wpOrder = array();
 
   while($parcel = $query->fetch()){
-    if(($parcel['poids'] + $weight) <= $poids){
+    if(($parcel['poids'] + $weight) <= $maxWeight){
       $parcelAdresse=$parcel['adresse']." ".$parcel['ville']." ".$parcel['codePostal'];
       $urlTmp = $urlWP."&wp.".$count."=".urlencode($parcelAdresse);
 
