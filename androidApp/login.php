@@ -1,4 +1,4 @@
-Livreur<?php
+<?php
 require_once('../include/connexionbdd.php');
 
   $bdd = connexionBDD();
