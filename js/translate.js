@@ -45,7 +45,18 @@ $(document).ready(function(){
     let path = window.location.pathname;
     let filename = checkExtension(path.split("/").pop());
     if(getCookie("language") !== null){
-        //$("."+getCookie("language")).replaceWith($(""))
+        let selectornav = $('#navbarDropdownlang');
+        let firstlanguage = $("#navbarDropdownlang").attr("class");
+        let ffirstlanguage = firstlanguage.replace("nav-link dropdown-toggle", " ").trim();
+        $("#navbarDropdownlang > i").replaceClass($(this).attr('class'),languages[getCookie("language")]['flag']);
+        $("."+getCookie("language") + "> i").replaceClass(languages[getCookie("language")]['flag'],languages[ffirstlanguage]['flag']);
+        $("#navbarDropdownlang > span").text(languages[getCookie("language")]['text']);
+        $("."+getCookie("language") + "> span").text(languages[ffirstlanguage]['text']);
+        $(selectornav).attr("value",languages[getCookie("language")]['value']);
+        $("."+getCookie("language")).attr("value", languages[ffirstlanguage]['value']);
+        $(selectornav).replaceClass(ffirstlanguage,languages[getCookie("language")]['class']);
+        $("."+getCookie("language")).replaceClass(getCookie("language"),languages[ffirstlanguage]['class']);
+
         if(getCookie("language") !== "french") {
             if (filename === "" || filename === "index") {
                 $.getJSON("js/json/index/" + getCookie("language") + ".json", function (data) {
