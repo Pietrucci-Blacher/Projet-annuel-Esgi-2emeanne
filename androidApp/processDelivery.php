@@ -80,6 +80,7 @@
   $jsonReturn = array();
 
   $count=1;
+  $countParcel = 0;
   $weight =0;
 
   $jsonReturn['start'][0]['idDepot'] = $idDeposit;
@@ -107,6 +108,7 @@
           $jsonReturn['end'][0]['adresse'] = $parcel['adresse'];
           $jsonReturn['end'][0]['ville'] = $parcel['ville'];
           $jsonReturn['end'][0]['codePostal'] = $parcel['codePostal'];
+          $countParcel+=1;
         }else{
           $urlWP.="&wp.".$count."=".urlencode($parcelAdresse);
           $jsonReturn['colis'][$count-1]['id'] = $parcel['id'];
@@ -115,6 +117,7 @@
           $jsonReturn['colis'][$count-1]['ville'] = $parcel['ville'];
           $jsonReturn['colis'][$count-1]['codePostal'] = $parcel['codePostal'];
           $count+=1;
+          $countParcel+=1;
         }
         $weight += $parcel['poids'];
       }
@@ -128,7 +131,7 @@
   }
 
   $jsonReturn['poids'] = $weight;
-  $jsonReturn['nbColis'] = $count;
+  $jsonReturn['nbColis'] = $countParcel;
 
   print_r(json_encode($jsonReturn));
 
