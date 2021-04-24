@@ -71,7 +71,7 @@
   $query = $bdd->prepare("SELECT colis.id,client.adresse,client.ville,client.codePostal,colis.refQrcode,colis.poids FROM COLIS INNER JOIN CLIENT ON colis.client = client.id
                           WHERE colis.distanceDepot <= ? AND colis.depot = ? AND colis.date = DATE(NOW()) AND colis.status = 'En attente de récupération par le livreur' AND colis.poids <= ? ORDER BY colis.distanceDepot DESC");
 
-  $query->execute([$delivererZone,$idDeposit,$poids]);
+  $query->execute([$delivererZone,$idDeposit,$maxWeight]);
 
   $startAdresse= $depositData['adresse']." ".$depositData['ville']." ".$depositData['codePostal'];
 
