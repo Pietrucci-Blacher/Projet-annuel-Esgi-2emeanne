@@ -43,6 +43,26 @@ $(document).ready(function(){
         }
     });
     let path = window.location.pathname;
+    let languages = {
+        "french": {
+            "flag":"flag flag-fr",
+            "value":"french",
+            "class":"french",
+            "text":"Français"
+        },
+        "english":{
+            "flag":"flag flag-gb",
+            "value":"english",
+            "class":"english",
+            "text":"English"
+        },
+        "spanish":{
+            "flag":"flag flag-es",
+            "value":"spanish",
+            "class":"spanish",
+            "text":"Español"
+        }
+    }
     let filename = checkExtension(path.split("/").pop());
     if(getCookie("language") !== null){
         let selectornav = $('#navbarDropdownlang');
