@@ -7,7 +7,7 @@ require_once('../include/connexionbdd.php');
 
   $mdp = isset($_POST['mdp']) ? sha1(htmlspecialchars($_POST['mdp'])) : '';
 
-  $query = "SELECT client.nom,client.prenom,client.status,livreur.zoneGeo,livreur.ptacvehicule,livreur.depot FROM CLIENT INNER JOIN LIVREUR ON client.id = livreur.client WHERE client.email = ? AND client.mdp = ?";
+  $query = "SELECT client.nom,client.prenom,client.status,livreur.zoneGeo,livreur.ptacvehicule,livreur.depot,livreur.id FROM CLIENT INNER JOIN LIVREUR ON client.id = livreur.client WHERE client.email = ? AND client.mdp = ?";
 
   $connect=$bdd->prepare($query);
 
@@ -29,6 +29,7 @@ require_once('../include/connexionbdd.php');
       $obj['zoneGeo']= $success['zoneGeo'];
       $obj['poidsVehicule']= $success['ptacvehicule'];
       $obj['idDepot']= $success['depot'];
+      $obj['idLivreur']= $success['id'];
     }
   }
 
