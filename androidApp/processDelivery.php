@@ -34,6 +34,15 @@
     }
   }
 
+  function getTimeDist($url){
+    $data = curlRequest($url);
+
+    global $jsonReturn;
+
+    $jsonReturn['temps'] = $data->resourceSets[0]->resources[0]->travelDurationTraffic;
+    $jsonReturn['distance'] =round($data->resourceSets[0]->resources[0]->travelDistance);
+  }
+
   function sortWP($url){
     //echo "URL : ".$url."<br>";
     $data = curlRequest($url);
@@ -126,8 +135,10 @@
 
   $urlWP.="&wp.".$count."=".urlencode($endAdresse);
 
-  if($count > 2 ){
+  if($countParcel > 2 ){
     $jsonReturn['colis']=sortWP($urlWP);
+  }elseif($countParcel >0){
+    getTimeDist($urlWP);
   }
 
   $jsonReturn['poids'] = $weight;
