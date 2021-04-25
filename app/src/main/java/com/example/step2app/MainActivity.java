@@ -82,13 +82,14 @@ public class MainActivity extends AppCompatActivity {
                                                 if(finalJsonObj.getString("status").equals("failed")){
                                                     Toast.makeText(MainActivity.this,"Merci de vérifier votre email/mot de passe",Toast.LENGTH_SHORT).show();
                                                 }else{
-                                                    Intent myIntent = new Intent(MainActivity.this, MenuActivity.class);
-                                                    myIntent.putExtra("prenom", finalJsonObj.getString("prenom"));
-                                                    myIntent.putExtra("nom", finalJsonObj.getString("nom"));
-                                                    myIntent.putExtra("zoneGeo", finalJsonObj.getInt("zoneGeo"));
-                                                    myIntent.putExtra("poidsVehicule", finalJsonObj.getInt("poidsVehicule"));
-                                                    myIntent.putExtra("idDepot", finalJsonObj.getInt("idDepot"));
-                                                    startActivity(myIntent);
+                                                    Intent menuInt = new Intent(MainActivity.this, MenuActivity.class);
+                                                    menuInt.putExtra("prenom", finalJsonObj.getString("prenom"));
+                                                    menuInt.putExtra("nom", finalJsonObj.getString("nom"));
+                                                    menuInt.putExtra("zoneGeo", finalJsonObj.getString("zoneGeo"));
+                                                    menuInt.putExtra("poidsVehicule", finalJsonObj.getString("poidsVehicule"));
+                                                    menuInt.putExtra("idDepot", finalJsonObj.getString("idDepot"));
+                                                    menuInt.putExtra("idLivreur", finalJsonObj.getString("idLivreur"));
+                                                    startActivity(menuInt);
                                                 }
                                             }
                                         } catch (JSONException e) {

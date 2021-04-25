@@ -12,10 +12,22 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -29,9 +41,10 @@ public class MenuActivity extends AppCompatActivity {
 
         String firstname = getIntent().getStringExtra("prenom");
         String lastname = getIntent().getStringExtra("nom");
-        Integer zoneGeo = getIntent().getIntExtra("zoneGeo",0);
-        Integer ptac = getIntent().getIntExtra("poidsVehicule",0);
-        Integer idDeposit = getIntent().getIntExtra("idDepot",0);
+        String zoneGeo = getIntent().getStringExtra("zoneGeo");
+        String ptac = getIntent().getStringExtra("poidsVehicule");
+        String idDeposit = getIntent().getStringExtra("idDepot");
+        String idDeliver = getIntent().getStringExtra("idLivreur");
 
         this.welcomeTxt =findViewById(R.id.welcomeTxt);
         welcomeTxt.setText("Bienvenue "+firstname+" "+lastname);
@@ -44,10 +57,12 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Calendar rightNow = Calendar.getInstance();
                 int hour = rightNow.get(Calendar.HOUR_OF_DAY);
-                if(hour < 9 || hour > 19){
+                int minHour = 9;
+                int maxHour = 19;
+                if( hour< minHour || hour > maxHour){
                     Toast.makeText(MenuActivity.this, "Les dépots ouvrent à 9 heures et ferment à 19 heures", Toast.LENGTH_LONG).show();
                 }else{
-                    int end = 19-hour;
+                    int end = maxHour-hour;
                     String[] listHour = new String[end];
                     Arrays.fill(listHour, "");
 
@@ -56,12 +71,53 @@ public class MenuActivity extends AppCompatActivity {
                     }
 
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(MenuActivity.this);
-                    alertDialog.setTitle("Durée de votre livraison");
+                    alertDialog.setTitle("Durée maximum de la livraison");
                     alertDialog.setItems(listHour, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             int hours = which+1;
-                            Toast.makeText(MenuActivity.this, String.valueOf(hours), Toast.LENGTH_SHORT).show();
+                            OkHttpClient client = new OkHttpClient();
+                            String url = "https://pa2021-esgi.herokuapp.com/androidApp/processDelivery.php";
+                            RequestBody formBody =
+                                    new FormBody.Builder().add("deposit", idDeposit).add("zone", zoneGeo).add("time", String.valueOf(hours)).add("poids", ptac).build();
+                            Request request = new Request.Builder().url(url).post(formBody).build();
+
+                            client.newCall(request).enqueue(new Callback() {
+                                @Override
+                                public void onFailure(Call call, IOException e) {
+                                    e.printStackTrace();
+                                }
+                                @Override
+                                public void onResponse(Call call, Response response) throws IOException {
+                                    if (response.isSuccessful()) {
+                                        final String myResponse = response.body().string();
+                                        JSONObject jsonObj = null;
+                                        try {
+                                            jsonObj = new JSONObject(myResponse);
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                        JSONObject finalJsonObj = jsonObj;
+                                        MenuActivity.this.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                try {
+                                                    if(finalJsonObj.getInt("nbColis") > 0){
+                                                        Intent qrCodeInt = new Intent(MenuActivity.this, QRcodeMenu.class);
+                                                        qrCodeInt.putExtra("delivery",finalJsonObj.toString());
+                                                        qrCodeInt.putExtra("idDeliver",idDeliver);
+                                                        startActivity(qrCodeInt);
+                                                    }else{
+                                                        Toast.makeText(MenuActivity.this,"Aucun colis ne corresponds aux critères",Toast.LENGTH_SHORT).show();
+                                                    }
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            });
                         }
                     });
 
@@ -75,7 +131,6 @@ public class MenuActivity extends AppCompatActivity {
                     AlertDialog customAlertDialog = alertDialog.create();
                     customAlertDialog.show();
                 }
-
 
             }
         });
