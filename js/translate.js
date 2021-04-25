@@ -93,7 +93,11 @@ $(document).ready(function(){
             } else {
                 $.getJSON("js/json/" + filename + "/" + getCookie("language") + ".json", function (data) {
                     for (let key in data) {
-                        $("[langtrad|=" + key + "]").text(data[key]);
+                        if($("[langtrad|=" + key + "]").is("input")) {
+                            $("[langtrad|=" + key + "]").attr("placeholder",data[key]);
+                        }else{
+                            $("[langtrad|=" + key + "]").text(data[key]);
+                        }
                     }
                 });
             }
