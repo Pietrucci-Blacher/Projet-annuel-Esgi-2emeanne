@@ -1,6 +1,7 @@
 {
   "CONN": "Conectarse",
   "MDP": "Ver contraseña",
+  "PASS": "Contraseña",
   "OLVI": "Se acuerda de mi",
   "ENV": "Enviar datos"
 }
