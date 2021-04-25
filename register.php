@@ -107,15 +107,15 @@ if($resultcheck == 0){
                 <div class="form-group flex-fill mx-2">
                     <select class="form-select" id="gender" name="gender">
                         <option selected langtrad="2">Sexe</option>
-                        <option value="Monsieur">Monsieur</option>
-                        <option value="Madame">Madame</option>
+                        <option langtrad="3" value="Monsieur">Monsieur</option>
+                        <option langtrad="4" value="Madame">Madame</option>
                     </select>
                 </div>
                 <div class="form-group flex-fill mx-3 px-5">
-                    <input type="text" id="lastname" class="form-control" name="lastname" placeholder="Nom" autocomplete="family-name" autofocus>
+                    <input type="text" id="lastname" class="form-control" name="lastname" placeholder="Nom" autocomplete="family-name" langtrad="5" autofocus>
                 </div>
                 <div class="form-group flex-fill mx-4">
-                    <input type="text" id="firstname"  class="form-control" name="firstname" placeholder="Prénom" autocomplete="given-name"><br>
+                    <input type="text" id="firstname"  class="form-control" name="firstname" placeholder="Prénom" autocomplete="given-name" langtrad="6"><br>
                 </div>
             </div>
             <hr class="mx-4">
@@ -123,52 +123,52 @@ if($resultcheck == 0){
                 <div class="form-group ">
                     <input class="form-control" id="email" type="email" name="email" placeholder="Email" aria-describedby="emailHelp" autocomplete="email"><br>
                     <dl>
-                        <dt langtrad="3">Le mail doit etre du type : test.test@gmail.com</dt>
+                        <dt langtrad="7">Le mail doit etre du type : test.test@gmail.com</dt>
                     </dl>
                 </div>
                 <div class="form-group">
-                    <input class="form-control" id="emailcheck" type="email"  name="emailcheck" placeholder="Vérification de l'email saisi" autocomplete="email">
+                    <input class="form-control" id="emailcheck" type="email"  name="emailcheck" placeholder="Vérification de l'email saisi" autocomplete="email" langtrad="8">
                 </div>
             </div>
             <hr class="mx-4">
             <div class="mx-3">
                 <div class="form-group">
-                    <input class="form-control" id="password" type="password"  name="password" placeholder="Mot de Passe" aria-describedby="password" autocomplete="new-password"><br>
+                    <input class="form-control" id="password" type="password"  name="password" placeholder="Mot de Passe" aria-describedby="password" autocomplete="new-password" langtrad="9"><br>
                     <dl>
-                        <dt langtrad="4">Le mot de passe doit contenir : </dt>
-                        <dd langtrad="5">- Au moins 8 caractères</dd>
-                        <dd langtrad="6">- Au moins une lettre miniscule</dd>
-                        <dd langtrad="7">- Au moins une lettre majuscule</dd>
-                        <dd langtrad="8">- Au moins un chiffre</dd>
-                        <dd langtrad="9">- Au moins un caractère</dd>
+                        <dt langtrad="10">Le mot de passe doit contenir : </dt>
+                        <dd langtrad="11">- Au moins 8 caractères</dd>
+                        <dd langtrad="12">- Au moins une lettre miniscule</dd>
+                        <dd langtrad="13">- Au moins une lettre majuscule</dd>
+                        <dd langtrad="14">- Au moins un chiffre</dd>
+                        <dd langtrad="15">- Au moins un caractère</dd>
                     </dl>
                 </div>
                 <div class="form-group">
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input"  id="showPassword">
-                        <label class="form-check-label" for="showPassword" langtrad="10">Montrer le mot de passe : </label>
+                        <label class="form-check-label" for="showPassword" langtrad="16">Montrer le mot de passe : </label>
                     </div>
                 </div>
                 <br>
                 <div class="form-group">
-                    <input class="form-control" id ="passwordcheck" type="password"  name="passwordcheck" placeholder="Vérification du Mot de Passe">
+                    <input class="form-control" id ="passwordcheck" type="password"  name="passwordcheck" placeholder="Vérification du Mot de Passe" langtrad="17">
                 </div>
             </div>
             <hr class="mx-4">
             <div class="mx-3">
                 <div class="form-group">
-                    <input class="form-control" id ="address" type="text"  name="address" placeholder="Adresse" autocomplete="street-address"><br>
+                    <input class="form-control" id ="address" type="text"  name="address" placeholder="Adresse" autocomplete="street-address" langtrad="18"><br>
                 </div>
                 <div class="d-flex mt-3 justify-content-around">
                     <div class="form-group flex-fill mx-3">
-                        <input class="form-control" id ="city" type="text"  name="city" placeholder="Ville"><br>
+                        <input class="form-control" id ="city" type="text"  name="city" placeholder="Ville" langtrad="19"><br>
                     </div>
                     <div class="form-group flex-fill mx-3">
-                        <input class="form-control" id ="zipcode" type="number"  name="zipcode" placeholder="Code Postal" autocomplete="postal-code" min="0"><br>
+                        <input class="form-control" id ="zipcode" type="number"  name="zipcode" placeholder="Code Postal" autocomplete="postal-code" min="0" langtrad="20"><br>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input class="form-control" id ="phonenum" type="tel"  name="phonenum" placeholder="Numéro de Téléphone"><br>
+                    <input class="form-control" id ="phonenum" type="tel"  name="phonenum" placeholder="Numéro de Téléphone" langtrad="21"><br>
                 </div>
             </div>
             <br>
@@ -178,19 +178,19 @@ if($resultcheck == 0){
             <hr class="mx-4">
             <div class="form-check mx-3">
                 <input class="custom-control-input" type="radio" name="status" id="delivery" value="livreur">
-                <label class="form-check-label" for="delivery" langtrad="11">
+                <label class="form-check-label" for="delivery" langtrad="22">
                     Livreur
                 </label>
             </div>
             <div class="form-check mx-3">
                 <input class="custom-control-input" type="radio" name="status" id="company" value="entreprise">
-                <label class="form-check-label" for="company" langtrad="12">
+                <label class="form-check-label" for="company" langtrad="23">
                     Entreprise
                 </label>
             </div>
             <br>
             <div class="form-group mx-5 mb-5">
-                <input class="form-control" type="submit" value="Envoyer">
+                <input class="form-control" type="submit" value="Envoyer" langtrad="24">
             </div>
         </form>
     </div>
