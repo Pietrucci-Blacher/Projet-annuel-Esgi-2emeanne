@@ -26,7 +26,7 @@
                 <input name="email" class="form-control" type="email" placeholder="E-Mail" autocomplete="email" autofocus><br>
             </div>
             <div class="form-group mb-2">
-                <input id="password" name="password" class="form-control" type="password" placeholder="Mot de passe" autocomplete="current-password"><br>
+                <input id="password" name="password" class="form-control" type="password" placeholder="Mot de passe" autocomplete="current-password" langtrad="PASS"><br>
             </div>
             <div class="custom-control custom-checkbox mb-4">
                 <input type="checkbox" class="custom-control-input" id="showpassword">
