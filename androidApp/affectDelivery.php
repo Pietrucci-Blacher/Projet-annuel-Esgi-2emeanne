@@ -26,4 +26,6 @@ for ($i=0; $i < count($parcels) ; $i++) {
   $query= $bdd->prepare("UPDATE colis SET status = 'En cours de livraison' WHERE id = ?");
   $query->execute([$parcels[$i]]);
 }
+
+echo "success";
  ?>
