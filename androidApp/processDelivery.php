@@ -77,7 +77,7 @@
   $queryDeposit->execute([$idDeposit]);
   $depositData = $queryDeposit->fetch();
 
-  $query = $bdd->prepare("SELECT colis.id,client.adresse,client.ville,client.codePostal,colis.refQrcode,colis.poids FROM COLIS INNER JOIN CLIENT ON colis.client = client.id
+  $query = $bdd->prepare("SELECT colis.id,client.adresse,client.ville,client.codePostal,colis.refQrcode,colis.poids,client.nom,client.prenom,client.numPhone,client.info FROM COLIS INNER JOIN CLIENT ON colis.client = client.id
                           WHERE colis.distanceDepot <= ? AND colis.depot = ? AND colis.date = DATE(NOW()) AND colis.status = 'En attente de récupération par le livreur' AND colis.poids <= ? ORDER BY colis.distanceDepot DESC");
 
   $query->execute([$delivererZone,$idDeposit,$maxWeight]);
@@ -117,6 +117,10 @@
           $jsonReturn['end'][0]['adresse'] = $parcel['adresse'];
           $jsonReturn['end'][0]['ville'] = $parcel['ville'];
           $jsonReturn['end'][0]['codePostal'] = $parcel['codePostal'];
+          $jsonReturn['end'][0]['nom'] = $parcel['nom'];
+          $jsonReturn['end'][0]['prenom'] = $parcel['prenom'];
+          $jsonReturn['end'][0]['numPhone'] = $parcel['numPhone'];
+          $jsonReturn['end'][0]['info'] = $parcel['info'];
           $countParcel+=1;
         }else{
           $urlWP.="&wp.".$count."=".urlencode($parcelAdresse);
@@ -125,6 +129,10 @@
           $jsonReturn['colis'][$count-1]['adresse'] = $parcel['adresse'];
           $jsonReturn['colis'][$count-1]['ville'] = $parcel['ville'];
           $jsonReturn['colis'][$count-1]['codePostal'] = $parcel['codePostal'];
+          $jsonReturn['colis'][$count-1]['nom'] = $parcel['nom'];
+          $jsonReturn['colis'][$count-1]['prenom'] = $parcel['prenom'];
+          $jsonReturn['colis'][$count-1]['numPhone'] = $parcel['numPhone'];
+          $jsonReturn['colis'][$count-1]['info'] = $parcel['info'];
           $count+=1;
           $countParcel+=1;
         }
