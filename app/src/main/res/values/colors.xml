@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="upDark">#37323E</color>
     <color name="upGold">#DEB841</color>
+    <color name="upRed">#FF0000</color>
+    <color name="upGreen">#00FF00</color>
+    <color name="upGrey">#BFBDC1</color>
 </resources>

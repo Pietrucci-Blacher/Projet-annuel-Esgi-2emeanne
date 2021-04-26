@@ -105,7 +105,12 @@ public class MenuActivity extends AppCompatActivity {
                                                     if(finalJsonObj.getInt("nbColis") > 0){
                                                         Intent qrCodeInt = new Intent(MenuActivity.this, QRcodeMenu.class);
                                                         qrCodeInt.putExtra("delivery",finalJsonObj.toString());
-                                                        qrCodeInt.putExtra("idDeliver",idDeliver);
+                                                        qrCodeInt.putExtra("idLivreur",idDeliver);
+                                                        qrCodeInt.putExtra("idDepot",idDeposit);
+                                                        qrCodeInt.putExtra("prenom",firstname);
+                                                        qrCodeInt.putExtra("nom",lastname);
+                                                        qrCodeInt.putExtra("poidsVehicule",ptac);
+                                                        qrCodeInt.putExtra("zoneGeo",zoneGeo);
                                                         startActivity(qrCodeInt);
                                                     }else{
                                                         Toast.makeText(MenuActivity.this,"Aucun colis ne corresponds aux critères",Toast.LENGTH_SHORT).show();

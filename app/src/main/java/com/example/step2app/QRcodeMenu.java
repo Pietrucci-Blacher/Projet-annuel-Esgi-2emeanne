@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -23,23 +24,40 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.Arrays;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class QRcodeMenu extends AppCompatActivity {
 
     private TableLayout parcelsContainer;
     private LinearLayout parcelContainer;
+    private Button btnVal,btnDel;
     private Button [] buttonScan = new Button[25];
     private TextView [] refTxt = new TextView[25];
     private TextView timeTxt,distTxt;
     String[] listParcel = new String[25];
-    int nbColis;
+    int nbColis,nbColisScan;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_q_rcode_menu);
+
+        String firstname = getIntent().getStringExtra("prenom");
+        String lastname = getIntent().getStringExtra("nom");
+        String zoneGeo = getIntent().getStringExtra("zoneGeo");
+        String ptac = getIntent().getStringExtra("poidsVehicule");
+        String idDeposit = getIntent().getStringExtra("idDepot");
+        String idDeliver = getIntent().getStringExtra("idLivreur");
 
         JSONObject jsonObj = null;
         String distance = null;
@@ -52,10 +70,12 @@ public class QRcodeMenu extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        String idDeliver = getIntent().getStringExtra("idDeliver");
         this.parcelsContainer = findViewById(R.id.parcelContainer);
         this.distTxt = findViewById(R.id.distDelivery);
         this.timeTxt = findViewById(R.id.timeDelivery);
+        this.btnVal = findViewById(R.id.btnVal);
+        this.btnDel = findViewById(R.id.btnDel);
+        nbColisScan = 0;
 
         distTxt.setText("Distance : " + distance + " km");
         int hours = time / 3600;
@@ -68,12 +88,13 @@ public class QRcodeMenu extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
         String endRef = null;
+        String parcelsId= "";
         try {
             JSONArray end = jsonObj.getJSONArray("end");
             JSONObject endParcel = end.getJSONObject(0);
             endRef = endParcel.getString("refQrcode");
+            parcelsId = endParcel.getString("idColis");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -87,6 +108,7 @@ public class QRcodeMenu extends AppCompatActivity {
                 JSONArray parcelArray = jsonObj.getJSONArray("colis");
                 JSONObject parcel = parcelArray.getJSONObject(i);
                 parcelRef = parcel.getString("refQrcode");
+                parcelsId += "."+parcel.getString("id");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -94,6 +116,60 @@ public class QRcodeMenu extends AppCompatActivity {
 
         }
 
+        btnDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent menuInt = new Intent(QRcodeMenu.this, MenuActivity.class);
+                menuInt.putExtra("idLivreur",idDeliver);
+                menuInt.putExtra("idDepot",idDeposit);
+                menuInt.putExtra("prenom",firstname);
+                menuInt.putExtra("nom",lastname);
+                menuInt.putExtra("poidsVehicule",ptac);
+                menuInt.putExtra("zoneGeo",zoneGeo);
+                startActivity(menuInt);
+            }
+        });
+
+        String finalParcelsId = parcelsId;
+        btnVal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (nbColis == nbColisScan){
+                    Toast.makeText(QRcodeMenu.this, finalParcelsId, Toast.LENGTH_SHORT).show();
+
+                    OkHttpClient client = new OkHttpClient();
+                    String url = "https://pa2021-esgi.herokuapp.com/androidApp/affectDelivery.php";
+                    RequestBody formBody = new FormBody.Builder().add("idDeliver", idDeliver).add("parcelsId", finalParcelsId).build();
+                    Request request = new Request.Builder().url(url).post(formBody).build();
+
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            e.printStackTrace();
+                        }
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            if (response.isSuccessful()) {
+                                final String myResponse = response.body().string();
+
+                                QRcodeMenu.this.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if(myResponse.equals("success")){
+                                            Toast.makeText(QRcodeMenu.this,"OK",Toast.LENGTH_SHORT).show();
+                                        }else{
+                                            Toast.makeText(QRcodeMenu.this,"Une erreur est survenue",Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }else{
+                    Toast.makeText(QRcodeMenu.this, "Il vous manque des colis à scanner", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -150,7 +226,7 @@ public class QRcodeMenu extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     String contents = data.getStringExtra("SCAN_RESULT");
                     if (contents.equals(listParcel[requestCode])){
-                        Toast.makeText(QRcodeMenu.this, "ok", Toast.LENGTH_SHORT).show();
+                        nbColisScan+=1;
                         buttonScan[i].setVisibility(View.GONE);
                         refTxt[i].setTextColor(Color.GREEN);
                         refTxt[i].setPadding(0,18,0,18);
