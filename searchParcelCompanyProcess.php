@@ -43,17 +43,6 @@ $data = $bdd->prepare($query);
 $data->execute($params);
 
 while($parcel = $data->fetch()){
-  if($parcel['statusPaiement'] == 'non'){
-    echo
-    '<tbody><tr id="'.$parcel['id'].'">
-      <td>'.$parcel['modeLivraison'].'</td>
-      <td>'.$parcel['nom'].' '.$parcel['prenom'].'</td>
-      <td>'.$parcel['codePostal'].'</td>
-      <td>'.$parcel['refQrcode'].'</td>
-      <td><button type="button" name="button" class="btn btnTable" onclick="showMore(\''.$parcel['id'].'\')">Détails</button>
-      <button type="button" name="button" class="btn btnTable ms-5" onclick="delParcel(\''.$parcel['id'].'\',\''.$parcel['client'].'\')">Supprimer</button></td>
-    </tr></tbody>';
-  }elseif($parcel['statusPaiement'] == 'oui' && $parcel['status'] != 'Délivré'){
     echo '
     <tbody><tr>
       <td>'.$parcel['modeLivraison'].'</td>
@@ -62,7 +51,6 @@ while($parcel = $data->fetch()){
       <td>'.$parcel['refQrcode'].'</td>
       <td><button type="button" name="button" class="btn btnTable" onclick="showMore(\''.$parcel['id'].'\')">Détails</button></td>
     </tr></tbody>';
-  }
 }
 
 

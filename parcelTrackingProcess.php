@@ -25,7 +25,7 @@ if(empty($parcel)){
     if(strcasecmp($client['nom'], $name) == 0){
 
       echo '
-        <div class="result mt-5 col-7 mx-auto d-flex p-3">
+        <div class="result mt-5 col-8 mx-auto d-flex p-3">
           <img src="asset/package.png" class="packageimg p-4">
           <div class="my-auto ps-5 textParcel">
             <h5 class="p-1">Nom du destinataire : '.$client['nom'].'</h5>
