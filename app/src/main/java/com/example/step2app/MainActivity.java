@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences prefs = getSharedPreferences("valeurs",MODE_PRIVATE);
 
         this.loginBtn = findViewById(R.id.loginBtn);
         this.email = findViewById(R.id.emailInput);
@@ -80,12 +83,15 @@ public class MainActivity extends AppCompatActivity {
                                                 Toast.makeText(MainActivity.this,"Merci de vérifier votre email/mot de passe",Toast.LENGTH_SHORT).show();
                                             }else{
                                                 Intent menuInt = new Intent(MainActivity.this, MenuActivity.class);
-                                                menuInt.putExtra("prenom", finalJsonObj.getString("prenom"));
-                                                menuInt.putExtra("nom", finalJsonObj.getString("nom"));
-                                                menuInt.putExtra("zoneGeo", finalJsonObj.getString("zoneGeo"));
-                                                menuInt.putExtra("poidsVehicule", finalJsonObj.getString("poidsVehicule"));
-                                                menuInt.putExtra("idDepot", finalJsonObj.getString("idDepot"));
-                                                menuInt.putExtra("idLivreur", finalJsonObj.getString("idLivreur"));
+                                                SharedPreferences.Editor edit = prefs.edit();
+                                                edit.clear();
+                                                edit.putString("prenom",finalJsonObj.getString("prenom"));
+                                                edit.putString("nom",finalJsonObj.getString("nom"));
+                                                edit.putString("zoneGeo",finalJsonObj.getString("zoneGeo"));
+                                                edit.putString("poidsVehicule",finalJsonObj.getString("poidsVehicule"));
+                                                edit.putString("idDepot",finalJsonObj.getString("idDepot"));
+                                                edit.putString("idLivreur",finalJsonObj.getString("idLivreur"));
+                                                edit.apply();
                                                 startActivity(menuInt);
                                             }
                                         } catch (JSONException e) {

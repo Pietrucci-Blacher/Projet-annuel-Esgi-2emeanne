@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -39,15 +40,17 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        String firstname = getIntent().getStringExtra("prenom");
-        String lastname = getIntent().getStringExtra("nom");
-        String zoneGeo = getIntent().getStringExtra("zoneGeo");
-        String ptac = getIntent().getStringExtra("poidsVehicule");
-        String idDeposit = getIntent().getStringExtra("idDepot");
-        String idDeliver = getIntent().getStringExtra("idLivreur");
+        SharedPreferences prefs = getSharedPreferences("valeurs",MODE_PRIVATE);
+
+        String firstname = prefs.getString("prenom",null);
+        String lastname = prefs.getString("nom",null);
+        String zoneGeo = prefs.getString("zoneGeo",null);
+        String ptac = prefs.getString("poidsVehicule",null);
+        String idDeposit = prefs.getString("idDepot",null);
+        String idDeliver = prefs.getString("idLivreur",null);
 
         this.welcomeTxt =findViewById(R.id.welcomeTxt);
-        welcomeTxt.setText("Bienvenue "+firstname+" "+lastname);
+        welcomeTxt.setText("Bienvenue "+firstname+" "+lastname+idDeliver);
 
         this.disconnectBtn = findViewById(R.id.disconnectBtn);
         this.deliveryBtn = findViewById(R.id.deliveryBtn);
@@ -58,7 +61,7 @@ public class MenuActivity extends AppCompatActivity {
                 Calendar rightNow = Calendar.getInstance();
                 int hour = rightNow.get(Calendar.HOUR_OF_DAY);
                 int minHour = 9;
-                int maxHour = 19;
+                int maxHour = 30;
                 if( hour< minHour || hour > maxHour){
                     Toast.makeText(MenuActivity.this, "Les dépots ouvrent à 9 heures et ferment à 19 heures", Toast.LENGTH_LONG).show();
                 }else{
@@ -106,11 +109,6 @@ public class MenuActivity extends AppCompatActivity {
                                                         Intent qrCodeInt = new Intent(MenuActivity.this, QRcodeMenu.class);
                                                         qrCodeInt.putExtra("delivery",finalJsonObj.toString());
                                                         qrCodeInt.putExtra("idLivreur",idDeliver);
-                                                        qrCodeInt.putExtra("idDepot",idDeposit);
-                                                        qrCodeInt.putExtra("prenom",firstname);
-                                                        qrCodeInt.putExtra("nom",lastname);
-                                                        qrCodeInt.putExtra("poidsVehicule",ptac);
-                                                        qrCodeInt.putExtra("zoneGeo",zoneGeo);
                                                         startActivity(qrCodeInt);
                                                     }else{
                                                         Toast.makeText(MenuActivity.this,"Aucun colis ne corresponds aux critères",Toast.LENGTH_SHORT).show();

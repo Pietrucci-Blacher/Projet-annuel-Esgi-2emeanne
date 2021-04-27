@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/upDark"
+    tools:context=".DeliveryFlow">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:weightSum="10">
+
+        <ImageView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:paddingVertical="80dp"
+            android:layout_weight="8"
+            android:src="@drawable/logo" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/parcelCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/upGold"
+        android:paddingBottom="50dp"
+        android:textSize="25dp"
+        android:text="COLIS 1/5"/>
+
+    <TextView
+        android:id="@+id/parcelRef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:textSize="18dp"
+        android:text="Référence"/>
+
+    <TextView
+        android:id="@+id/parcelName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:textSize="18dp"
+        android:text="Nom Prenom"/>
+
+    <TextView
+        android:id="@+id/parcelAddr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:textSize="18dp"
+        android:text="Adresse"/>
+
+    <TextView
+        android:id="@+id/parcelCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:textSize="18dp"
+        android:text="Ville CodePostal"/>
+
+    <TextView
+        android:id="@+id/parcelPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:textSize="18dp"
+        android:text="Numéro téléphone"/>
+
+    <TextView
+        android:id="@+id/parcelInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:textSize="18dp"
+        android:text="Informations Supplémentaires"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:gravity="bottom"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btnTravel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/upGold"
+            android:layout_marginHorizontal="20dp"
+            android:text="Générer un itinéraire"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:paddingTop="10dp"
+            android:gravity="center"
+            android:paddingHorizontal="20dp">
+
+            <Button
+                android:id="@+id/btnAbsent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:layout_marginRight="10dp"
+                android:backgroundTint="@color/upGrey"
+                android:text="Client Absent" />
+
+            <Button
+                android:id="@+id/btnSign"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="@color/upGold"
+                android:text="Signer"/>
+
+        </LinearLayout>
+
+    </TableLayout>
+</LinearLayout>
