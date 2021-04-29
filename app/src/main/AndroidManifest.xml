@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Step2App">
-        <activity android:name=".DeliveryFlow"></activity>
+        <activity android:name=".Sign"></activity>
+        <activity android:name=".DeliveryFlow" />
         <activity android:name=".QRcodeMenu" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".MainActivity">

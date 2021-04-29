@@ -32,7 +32,7 @@
         android:textColor="@color/upGold"
         android:paddingBottom="50dp"
         android:textSize="25dp"
-        android:text="COLIS 1/5"/>
+        android:text="COLIS 1/?"/>
 
     <TextView
         android:id="@+id/parcelRef"
@@ -105,7 +105,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/upGold"
             android:layout_marginHorizontal="20dp"
-            android:text="Générer un itinéraire"/>
+            android:text="Générer l'itinéraire"/>
 
         <LinearLayout
             android:layout_width="match_parent"
