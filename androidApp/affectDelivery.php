@@ -27,5 +27,5 @@ for ($i=0; $i < count($parcels) ; $i++) {
   $query->execute([$parcels[$i]]);
 }
 
-echo "success";
+echo $idDelivery ;
  ?>
