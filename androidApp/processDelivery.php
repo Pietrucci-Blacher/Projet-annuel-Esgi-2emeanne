@@ -34,6 +34,20 @@
     }
   }
 
+  function distanceBetweenWp($url,$count){
+    $data = curlRequest($url);
+
+    global $jsonReturn;
+
+    for ($i=0; $i < $count; $i++) {
+      if($i == $count-1){
+        $jsonReturn['end'][0]['distance'] =  round($data->resourceSets[0]->resources[0]->routeLegs[$i]->travelDistance);
+      }else{
+        $jsonReturn['colis'][$i]['distance'] =round($data->resourceSets[0]->resources[0]->routeLegs[$i]->travelDistance);
+      }
+    }
+  }
+
   function getTimeDist($url){
     $data = curlRequest($url);
 
@@ -151,6 +165,8 @@
 
   $jsonReturn['poids'] = $weight;
   $jsonReturn['nbColis'] = $countParcel;
+
+  distanceBetweenWp($urlWP,$countParcel);
 
   print_r(json_encode($jsonReturn));
 
