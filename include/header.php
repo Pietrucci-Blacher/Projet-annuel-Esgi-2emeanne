@@ -20,12 +20,12 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] != "entreprise"){ ?>
-            <li><a class="dropdown-item" href="priceListDeliverer.php">Livreurs</a></li>
+            <li><a langtrad="DELIVERY" class="dropdown-item" href="priceListDeliverer.php">Livreurs</a></li>
           <?php } elseif(isset($_SESSION['rank']) && $_SESSION['rank'] != "livreur"){ ?>
-            <li><a class="dropdown-item" href="priceListParcel.php">Entreprises</a></li>
+            <li><a langtrad="COMPANY" class="dropdown-item" href="priceListParcel.php">Entreprises</a></li>
           <?php }else{ ?>
-              <li><a class="dropdown-item" href="priceListDeliverer.php">Livreurs</a></li>
-              <li><a class="dropdown-item" href="priceListParcel.php">Entreprises</a></li>
+              <li><a langtrad="DELIVERY" class="dropdown-item" href="priceListDeliverer.php">Livreurs</a></li>
+              <li><a langtrad="COMPANY" class="dropdown-item" href="priceListParcel.php">Entreprises</a></li>
             <?php } ?>
           </ul>
         </li>
