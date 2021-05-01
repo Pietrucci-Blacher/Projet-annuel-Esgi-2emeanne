@@ -10,5 +10,15 @@ error_reporting(E_ALL);
 
 $deliveryId = $_POST['deliveryId'];
 
+$query = $bdd->prepare("SELECT colis FROM CONTIENT WHERE livraison = ? AND status = 'Récupéré'");
+$query->execute([$deliveryId]);
+
+while($delivery=$query->fetch()){
+  $contain = $bdd->prepare("UPDATE CONTIENT SET status = 'Annulé' WHERE colis = ? AND livraison = ?");
+  $contain->execute([$delivery['colis'],$deliveryId]);
+
+  $parcel = $bdd->prepare("UPDATE colis SET status = 'Retour au dépot' WHERE id = ?");
+  $parcel->execute([$delivery['colis']]);
+}
 
  ?>
