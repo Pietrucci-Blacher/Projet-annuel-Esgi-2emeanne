@@ -7,25 +7,25 @@
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
       <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
         <li class="nav-item">
-          <a class="nav-link" aria-current="true" href="index.php">Accueil</a>
+          <a langtrad="HOME" class="nav-link" aria-current="true" href="index.php">Accueil</a>
         </li>
         <?php if(!isset($_SESSION['name'])){ ?>
         <li class="nav-item">
-          <a class="nav-link" href="parcelTracking.php">Suivre mon colis</a>
+          <a langtrad="FPACKAGE" class="nav-link" href="parcelTracking.php">Suivre mon colis</a>
         </li>
         <?php }  ?>
           <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a langtrad="PRICE" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Tarifs
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] != "entreprise"){ ?>
-            <li><a class="dropdown-item" href="priceListDeliverer.php">Livreurs</a></li>
+            <li><a langtrad="DELIVERY" class="dropdown-item" href="priceListDeliverer.php">Livreurs</a></li>
           <?php } elseif(isset($_SESSION['rank']) && $_SESSION['rank'] != "livreur"){ ?>
-            <li><a class="dropdown-item" href="priceListParcel.php">Entreprises</a></li>
+            <li><a langtrad="COMPANY" class="dropdown-item" href="priceListParcel.php">Entreprises</a></li>
           <?php }else{ ?>
-              <li><a class="dropdown-item" href="priceListDeliverer.php">Livreurs</a></li>
-              <li><a class="dropdown-item" href="priceListParcel.php">Entreprises</a></li>
+              <li><a langtrad="DELIVERY" class="dropdown-item" href="priceListDeliverer.php">Livreurs</a></li>
+              <li><a langtrad="COMPANY" class="dropdown-item" href="priceListParcel.php">Entreprises</a></li>
             <?php } ?>
           </ul>
         </li>
@@ -52,8 +52,8 @@
         <?php } ?>
           </li>
         <?php if(!isset($_SESSION['name'])){ ?>
-            <li class="nav-item"><a class="nav-link" href="connect.php">Connexion</a></li>
-            <li class="nav-item"><a class="nav-link" href="register.php">Inscription</a></li>
+            <li class="nav-item"><a langtrad="LOGIN" class="nav-link" href="connect.php">Connexion</a></li>
+            <li class="nav-item"><a langtrad="REGISTER" class="nav-link" href="register.php">Inscription</a></li>
         <?php } ?>
          <li class="nav-item dropdown" id="translate">
          <a class="nav-link dropdown-toggle french" id="navbarDropdownlang" role="button" data-bs-toggle="dropdown" aria-expanded="false" value="french"><i class="flag flag-fr"></i> <span>Français</span></a>
