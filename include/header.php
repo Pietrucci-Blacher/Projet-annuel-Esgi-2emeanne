@@ -52,8 +52,8 @@
         <?php } ?>
           </li>
         <?php if(!isset($_SESSION['name'])){ ?>
-            <li class="nav-item"><a class="nav-link" href="connect.php">Connexion</a></li>
-            <li class="nav-item"><a class="nav-link" href="register.php">Inscription</a></li>
+            <li class="nav-item"><a langtrad="LOGIN" class="nav-link" href="connect.php">Connexion</a></li>
+            <li class="nav-item"><a langtrad="REGISTER" class="nav-link" href="register.php">Inscription</a></li>
         <?php } ?>
          <li class="nav-item dropdown" id="translate">
          <a class="nav-link dropdown-toggle french" id="navbarDropdownlang" role="button" data-bs-toggle="dropdown" aria-expanded="false" value="french"><i class="flag flag-fr"></i> <span>Français</span></a>
