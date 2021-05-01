@@ -168,3 +168,11 @@ function checkvalitedperm(){
         echo "<script>alert('Votre permis n\'a pas été encore validé')</script>";
     }
 }
+
+function getdepots(){
+    $bdd = connexionBDD();
+    $req = $bdd->prepare("SELECT id, adresse, ville FROM depot");
+    $req->execute();
+    $res = $req->fetchAll(PDO::FETCH_ASSOC);
+    return $res;
+}
