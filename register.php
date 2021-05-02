@@ -22,6 +22,14 @@ $resultcheck = $req->fetch();
 $secretKey = '0x2c2a7110F346623cbe0b87cDDeee1d29a33bA23f';
 
 print_r($_COOKIE); 
+$hl = ""; 
+if($_COOKIE['language'] == "english"){
+    $hl = "en"; 
+}else if($_COOKIE['language'] == "spanish"){
+    $hl = "es"; 
+}else{
+    $hl = "fr"; 
+}
 
 if($resultcheck == 0){
     if(isset($_POST['gender'])){
@@ -92,7 +100,7 @@ if($resultcheck == 0){
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
-    <script src="https://hcaptcha.com/1/api.js" async defer></script>
+    <script src="https://hcaptcha.com/1/api.js?hl=<?php echo $hl ?>" async defer></script>
     <script src="js/form.js"></script>
     <script src="js/translate.js"></script>
     <title>Ultimate Parcel - Enregistrement</title>
