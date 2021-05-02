@@ -17,6 +17,6 @@
   "TYPE": "Type of vehicule", 
   "BRAND": "Brand of vehicle",
   "GVWR":  "GVWR (Gross Vehicle Weight Rating) of the vehicle",
-  "HELP": "In case of errors, please contact our administrators via the following mailbox",
+  "HELP": "In case of errors, please contact our administrators via the following mailbox :",
   "SEND": "Send"
 }
