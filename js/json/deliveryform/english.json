@@ -1,6 +1,17 @@
 {
+  "HOME": "Home",
+  "FPACKAGE": "Follow my package",
+  "DELI": "Are you an independent delivery company?",
+  "PRICE": "Prices",
+  "DELIVERY": "Delivers",
+  "COMPANY": "Companies",
+  "LOGIN": "Login",
+  "REGISTER": "Register",
   "ENR": "Delivery man registration",
   "UPLO": "Please upload your driver's license",
+  "PDF": "PDF",
+  "DEPOSIT": "Please choose your deposit",
+  "RADDEP" : "Please select the maximum delivery distance around your depot",
   "DEP": "Please select your department",
   "UPLO2": "Please upload proof showing your number of points on the license",
   "EXTA": "Accepted extensions: "
