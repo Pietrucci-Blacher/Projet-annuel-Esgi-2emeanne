@@ -38,7 +38,10 @@ if(empty($_SESSION) || !$_SESSION['rank'] == "livreur" || checkfirstconnect() ==
                </div>   
                 <input class="form-control mb-2" type="file" name="driveupload" id="driveupload">
                 <blockquote class="blockquote">
-                    <h5 langtrad="EXTA">Extension acceptée : PDF</h5>
+                   <dl>
+                      <dt><h5 langtrad="EXTA">Extension acceptée : </h5></dt>
+                      <dd>- <strong>PDF</strong></dd>
+                   </dl>   
                 </blockquote>
             </div>
             <hr class="mx-4">
