@@ -35,12 +35,12 @@ if(empty($_SESSION) || !$_SESSION['rank'] == "livreur" || checkfirstconnect() ==
                 <label for="driveupload" class="fw-bold mb-2" langtrad="UPLO">Veuillez upload votre permis de conduire</label>
                 <input class="form-control mb-2" type="file" name="driveupload" id="driveupload">
                 <blockquote class="blockquote">
-                    <h5 langtrad="EXTA">Extension acceptée : <strong>PDF</strong></h5>
+                    <h5 langtrad="EXTA">Extension acceptée : <strong langtrad="PDF">PDF</strong></h5>
                 </blockquote>
             </div>
             <hr class="mx-4">
             <div class="form-group flex-fill mx-4  mb-2">
-                <label for="depot" class="fw-bold mb-2">Veuillez choisir votre dépôt</label>
+                <label langtrad="DEPOSIT" for="depot" class="fw-bold mb-2">Veuillez choisir votre dépôt</label>
                 <select class="form-select" id="depot" name="depot">
                     <?php
                     $depots = getdepots();
@@ -51,7 +51,7 @@ if(empty($_SESSION) || !$_SESSION['rank'] == "livreur" || checkfirstconnect() ==
             </div>
             <br>
             <div class="form-group flex-fill mx-4 mb-2">
-                <label for="radiusdepot" class="fw-bold mb-2">Veuillez sélectionner la distance maximale de livraison autour de votre dépôt</label>
+                <label langtrad="RADDEP" for="radiusdepot" class="fw-bold mb-2">Veuillez sélectionner la distance maximale de livraison autour de votre dépôt</label>
                 <select class="form-select" id="radiusdepot" name="radiusdepot">
                     <?php
                     for($i = 30; $i <=300; $i += 10){
