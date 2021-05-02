@@ -138,7 +138,7 @@
           $countParcel+=1;
         }else{
           $urlWP.="&wp.".$count."=".urlencode($parcelAdresse);
-          $jsonReturn['colis'][$count-1]['id'] = $parcel['id'];
+          $jsonReturn['colis'][$count-1]['idColis'] = $parcel['id'];
           $jsonReturn['colis'][$count-1]['refQrcode'] = $parcel['refQrcode'];
           $jsonReturn['colis'][$count-1]['adresse'] = $parcel['adresse'];
           $jsonReturn['colis'][$count-1]['ville'] = $parcel['ville'];
