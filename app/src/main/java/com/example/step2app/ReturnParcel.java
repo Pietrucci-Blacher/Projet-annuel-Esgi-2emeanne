@@ -41,6 +41,8 @@ public class ReturnParcel extends AppCompatActivity {
         String idDelivery = getIntent().getStringExtra("idDelivery");
         String nbKm = getIntent().getStringExtra("nbKm");
 
+        Toast.makeText(this, "nb : "+nbKm+"id : "+idDelivery, Toast.LENGTH_SHORT).show();
+
         for(int i = 0; i<returnParcel.size();i++){
             parcel = new TextView(this);
             parcel.setText(returnParcel.get(i));
@@ -56,7 +58,7 @@ public class ReturnParcel extends AppCompatActivity {
             public void onClick(View v) {
                 OkHttpClient client = new OkHttpClient();
                 RequestBody formBody = new FormBody.Builder().add("deliveryId", idDelivery).add("nbKm", nbKm).build();
-                Request request = new Request.Builder().url("url").post(formBody).build();
+                Request request = new Request.Builder().url("https://pa2021-esgi.herokuapp.com/androidApp/finishReturnDelivery.php").post(formBody).build();
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {

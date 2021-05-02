@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -79,7 +80,11 @@ public class MenuActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             int hours = which+1;
-                            OkHttpClient client = new OkHttpClient();
+                            OkHttpClient client = new OkHttpClient.Builder()
+                                    .connectTimeout(3, TimeUnit.MINUTES)
+                                    .writeTimeout(3, TimeUnit.MINUTES)
+                                    .readTimeout(3, TimeUnit.MINUTES)
+                                    .build();
                             String url = "https://pa2021-esgi.herokuapp.com/androidApp/processDelivery.php";
                             RequestBody formBody =
                                     new FormBody.Builder().add("deposit", idDeposit).add("zone", zoneGeo).add("time", String.valueOf(hours)).add("poids", ptac).build();

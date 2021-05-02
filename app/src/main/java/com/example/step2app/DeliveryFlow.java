@@ -65,8 +65,7 @@ public class DeliveryFlow extends AppCompatActivity {
         this.travel = findViewById(R.id.btnTravel);
         this.cancel = findViewById(R.id.btnCancel);
 
-        String idDeliver = getIntent().getStringExtra("idLivreur");
-        String idDelivery = getIntent().getStringExtra("idLivraison");
+        idDelivery = getIntent().getStringExtra("idLivraison");
 
         JSONObject jsonObj = null;
         try {
@@ -98,7 +97,7 @@ public class DeliveryFlow extends AppCompatActivity {
                     MediaManager.init(DeliveryFlow.this, config);
                     initialized = true;
                 }
-                String fileName = (String) ref.getTag();
+                String fileName = (String) ref.getText();
                 Intent signIntent = new Intent(DeliveryFlow.this,Sign.class);
                 signIntent.putExtra("refQrcode",fileName);
                 signIntent.putExtra("delivery",getIntent().getStringExtra("delivery"));
@@ -127,7 +126,7 @@ public class DeliveryFlow extends AppCompatActivity {
         absent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                returnParcel.add(ref.getTag().toString());
+                returnParcel.add(ref.getText().toString());
                 handleParcel("https://pa2021-esgi.herokuapp.com/androidApp/absentParcel.php", finalJsonObj1);
             }
         });
@@ -158,38 +157,42 @@ public class DeliveryFlow extends AppCompatActivity {
                                         @Override
                                         public void run() {
                                             Integer nbParcel = 0;
+                                            Integer kmSkip = 0;
                                             try {
                                                 nbParcel = Integer.parseInt(finalJsonObj2.getString("nbColis"));
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
                                             }
-                                            for (int i = countParcel-1; i < nbParcel; i++) {
-                                                if(i==nbParcel-1){
+                                            for (int i = countParcel - 1; i < nbParcel; i++) {
+                                                if (i == nbParcel - 1) {
                                                     try {
                                                         returnParcel.add(finalJsonObj2.getJSONArray("end").getJSONObject(0).getString("refQrcode"));
-                                                        nbKmSkip += Integer.parseInt(finalJsonObj2.getJSONArray("end").getJSONObject(0).getString("distance"));
+                                                        kmSkip += Integer.parseInt(finalJsonObj2.getJSONArray("end").getJSONObject(0).getString("distance"));
                                                     } catch (JSONException e) {
                                                         e.printStackTrace();
                                                     }
-                                                }else{
+                                                } else {
                                                     try {
                                                         returnParcel.add(finalJsonObj2.getJSONArray("colis").getJSONObject(i).getString("refQrcode"));
-                                                        nbKmSkip += Integer.parseInt(finalJsonObj2.getJSONArray("colis").getJSONObject(i).getString("distance"));
+                                                        kmSkip += Integer.parseInt(finalJsonObj2.getJSONArray("colis").getJSONObject(i).getString("distance"));
                                                     } catch (JSONException e) {
                                                         e.printStackTrace();
                                                     }
                                                 }
                                             }
 
+                                            Integer distance = null;
                                             try {
-                                                nbKm = Integer.parseInt(finalJsonObj2.getString("distance")) - nbKmSkip;
+                                                distance = Integer.parseInt(finalJsonObj2.getString("distance")) - kmSkip;
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
                                             }
-                                            Intent returnInt = new Intent(DeliveryFlow.this,ReturnParcel.class);
+
+                                            Toast.makeText(DeliveryFlow.this, distance.toString(), Toast.LENGTH_SHORT).show();
+                                            Intent returnInt = new Intent(DeliveryFlow.this, ReturnParcel.class);
                                             returnInt.putStringArrayListExtra("returnParcel", (ArrayList<String>) returnParcel);
-                                            returnInt.putExtra("idDelivery",idDelivery);
-                                            returnInt.putExtra("nbKm",nbKm);
+                                            returnInt.putExtra("idDelivery", idDelivery);
+                                            returnInt.putExtra("nbKm", distance.toString());
                                             startActivity(returnInt);
                                         }
                                     });
@@ -211,7 +214,7 @@ public class DeliveryFlow extends AppCompatActivity {
     private void updateView(JSONObject jsonObj,TextView ref,TextView name,TextView adresse,TextView city,TextView phone,TextView info,TextView counter,String element,int count) throws JSONException {
         JSONObject parcel = jsonObj.getJSONArray(element).getJSONObject(count);
         ref.setText("Référence : "+parcel.getString("refQrcode"));
-        ref.setTag(parcel.getString("refQrcode"));
+        ref.setTag(parcel.getString("idColis"));
         name.setText("Destinataire : "+parcel.getString("nom")+" "+parcel.getString("prenom"));
         adresse.setText("Adresse : "+parcel.getString("adresse"));
         city.setText("Ville : "+parcel.getString("ville")+" "+parcel.getString("codePostal"));
