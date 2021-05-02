@@ -21,7 +21,7 @@ $req->execute();
 $resultcheck = $req->fetch();
 $secretKey = '0x2c2a7110F346623cbe0b87cDDeee1d29a33bA23f';
 
-print_r($_COOKIE); 
+
 $hl = ""; 
 if($_COOKIE['language'] == "english"){
     $hl = "en"; 
