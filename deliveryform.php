@@ -40,7 +40,7 @@ if(empty($_SESSION) || !$_SESSION['rank'] == "livreur" || checkfirstconnect() ==
                 <blockquote class="blockquote">
                    <dl>
                       <dt><h5 langtrad="EXTA">Extension acceptée : </h5></dt>
-                      <dd>- <strong>PDF</strong></dd>
+                      <dd><h6>- <strong>PDF</strong></h6></dd>
                    </dl>   
                 </blockquote>
             </div>
