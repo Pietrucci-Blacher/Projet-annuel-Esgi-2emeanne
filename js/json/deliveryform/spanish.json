@@ -13,7 +13,7 @@
   "RADDEP" : "Por favor, seleccione la distancia máxima de entrega alrededor de su depósito",
   "DEP": "Por favor seleccione su departamento",
   "UPLO2": "Cargue una prueba que muestre su número de puntos en la licencia",
-  "EXTA": "Extensiones aceptadas: PDF",
+  "EXTA": "Extensiones aceptadas: ",
   "TYPE": "Tipo de vehículo", 
   "BRAND": "Marca del vehículo",
   "GVWR": "PBDV (Peso bruto del vehículo) del vehículo",
