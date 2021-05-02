@@ -17,6 +17,6 @@
   "TYPE": "Type of vehicule", 
   "BRAND": "Brand of vehicle",
   "GVWR":  "GVWR (Gross Vehicle Weight Rating) of the vehicle",
-  "HELP": "In case of errors, please contact our administrators via the following mailbox : <a href="mailto:ultimate.parcelad@gmail.com">ultimate.parcelad@gmail.com</a>",
+  "HELP": "In case of errors, please contact our administrators via the following mailbox : <a href='mailto:ultimate.parcelad@gmail.com'>ultimate.parcelad@gmail.com</a>",
   "SEND": "Send"
 }
