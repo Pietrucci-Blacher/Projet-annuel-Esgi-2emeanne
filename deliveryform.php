@@ -35,7 +35,7 @@ if(empty($_SESSION) || !$_SESSION['rank'] == "livreur" || checkfirstconnect() ==
                 <label for="driveupload" class="fw-bold mb-2" langtrad="UPLO">Veuillez upload votre permis de conduire</label>
                 <input class="form-control mb-2" type="file" name="driveupload" id="driveupload">
                 <blockquote class="blockquote">
-                    <h5 langtrad="EXTA">Extension acceptée : <strong langtrad="PDF">PDF</strong></h5>
+                    <h5 langtrad="EXTA">Extension acceptée : PDF</h5>
                 </blockquote>
             </div>
             <hr class="mx-4">
