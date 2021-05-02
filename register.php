@@ -21,6 +21,8 @@ $req->execute();
 $resultcheck = $req->fetch();
 $secretKey = '0x2c2a7110F346623cbe0b87cDDeee1d29a33bA23f';
 
+print_r($_COOKIE); 
+
 if($resultcheck == 0){
     if(isset($_POST['gender'])){
         if(isset($_POST['lastname']) && strlen($_POST['lastname']) >= 1 && strlen($_POST['lastname']) <= 70 && is_string($_POST['lastname'])){
