@@ -13,5 +13,10 @@
   "RADDEP" : "Please select the maximum delivery distance around your depot",
   "DEP": "Please select your department",
   "UPLO2": "Please upload proof showing your number of points on the license",
-  "EXTA": "Accepted extensions: "
+  "EXTA": "Accepted extensions: ",
+  "TYPE": "Type of vehicule", 
+  "BRAND": "Brand of vehicle",
+  "GVWR":  "GVWR (Gross Vehicle Weight Rating) of the vehicle",
+  "HELP": "In case of errors, please contact our administrators via the following mailbox",
+  "SEND": "Send"
 }
