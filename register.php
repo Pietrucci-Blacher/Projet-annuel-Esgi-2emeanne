@@ -12,6 +12,7 @@ $city = htmlspecialchars(trim($_POST['city']));
 $phonenum = htmlspecialchars(trim($_POST['phonenum']));
 $gender = $_POST['gender'];
 $status = $_POST['status'];
+$hl = ""; 
 
 
 $q = "SELECT id FROM client WHERE email = :val1";
@@ -21,14 +22,15 @@ $req->execute();
 $resultcheck = $req->fetch();
 $secretKey = '0x2c2a7110F346623cbe0b87cDDeee1d29a33bA23f';
 
-
-$hl = ""; 
-if($_COOKIE['language'] == "english"){
-    $hl = "en"; 
-}else if($_COOKIE['language'] == "spanish"){
-    $hl = "es"; 
-}else{
-    $hl = "fr"; 
+switch($_COOKIE['language']){
+    case "english": 
+        $hl = "en"; 
+        break;
+    case "spanish":
+        $hl = "es";
+        break; 
+    default: 
+        $hl = "fr"; 
 }
 
 if($resultcheck == 0){
