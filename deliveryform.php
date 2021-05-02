@@ -85,6 +85,8 @@ if(empty($_SESSION) || !$_SESSION['rank'] == "livreur" || checkfirstconnect() ==
                 <input class="form-control" type="number" name="ptacvehicule" id="ptacvehicule" placeholder="PTAC (Poids total autorisé en charge) du véhicule " min="0">
             </div>
             <br>
+            <h6 class="text-center fw-bold">En cas d'erreurs, veuillez contacter nos administrateurs via la boite mail suivante: <a href="mailto:ultimate.parcelad@gmail.com">ultimate.parcelad@gmail.com</a> </h6>
+            <br>
             <div class="form-group mx-5 mb-5">
                 <input class="form-control" type="submit" name="submit" value="Envoyer">
             </div>
