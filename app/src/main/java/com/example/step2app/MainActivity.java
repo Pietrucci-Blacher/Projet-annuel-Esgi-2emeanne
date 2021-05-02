@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SharedPreferences prefs = getSharedPreferences("valeurs",MODE_PRIVATE);
+        SharedPreferences onlyonce = getSharedPreferences("onlyOnce",MODE_PRIVATE);
+        onlyonce.edit().putBoolean("initialized",false).apply();
 
         this.loginBtn = findViewById(R.id.loginBtn);
         this.email = findViewById(R.id.emailInput);

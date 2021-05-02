@@ -104,7 +104,7 @@ public class QRcodeMenu extends AppCompatActivity {
                 JSONArray parcelArray = jsonObj.getJSONArray("colis");
                 JSONObject parcel = parcelArray.getJSONObject(i);
                 parcelRef = parcel.getString("refQrcode");
-                parcelsId += "."+parcel.getString("id");
+                parcelsId += "."+parcel.getString("idColis");
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -41,8 +41,6 @@ public class ReturnParcel extends AppCompatActivity {
         String idDelivery = getIntent().getStringExtra("idDelivery");
         String nbKm = getIntent().getStringExtra("nbKm");
 
-        Toast.makeText(this, "nb : "+nbKm+"id : "+idDelivery, Toast.LENGTH_SHORT).show();
-
         for(int i = 0; i<returnParcel.size();i++){
             parcel = new TextView(this);
             parcel.setText(returnParcel.get(i));

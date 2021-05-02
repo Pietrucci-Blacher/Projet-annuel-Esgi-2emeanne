@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -40,7 +41,6 @@ public class DeliveryFlow extends AppCompatActivity {
     private TextView ref,name,adresse,city,phone,info,counter;
     private Button sign,absent,travel,cancel;
     private Integer countParcel = 0;
-    Boolean initialized = false;
     String parcelsId;
     String idDelivery;
     Integer nbKm;
@@ -89,13 +89,14 @@ public class DeliveryFlow extends AppCompatActivity {
         sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(initialized==false){
+                SharedPreferences onlyonce = getSharedPreferences("onlyOnce",MODE_PRIVATE);
+                if (onlyonce.getBoolean("initialized",false) == false) {
                     Map config = new HashMap();
                     config.put("cloud_name", "hvrzhzxky");
                     config.put("api_key", "812238978328538");
                     config.put("api_secret", "_TOLF-WD9wC2a1kBHDDDGGTAHAg");
                     MediaManager.init(DeliveryFlow.this, config);
-                    initialized = true;
+                    onlyonce.edit().putBoolean("initialized",true).apply();
                 }
                 String fileName = (String) ref.getText();
                 Intent signIntent = new Intent(DeliveryFlow.this,Sign.class);
@@ -166,14 +167,14 @@ public class DeliveryFlow extends AppCompatActivity {
                                             for (int i = countParcel - 1; i < nbParcel; i++) {
                                                 if (i == nbParcel - 1) {
                                                     try {
-                                                        returnParcel.add(finalJsonObj2.getJSONArray("end").getJSONObject(0).getString("refQrcode"));
+                                                        returnParcel.add("Référence : "+finalJsonObj2.getJSONArray("end").getJSONObject(0).getString("refQrcode"));
                                                         kmSkip += Integer.parseInt(finalJsonObj2.getJSONArray("end").getJSONObject(0).getString("distance"));
                                                     } catch (JSONException e) {
                                                         e.printStackTrace();
                                                     }
                                                 } else {
                                                     try {
-                                                        returnParcel.add(finalJsonObj2.getJSONArray("colis").getJSONObject(i).getString("refQrcode"));
+                                                        returnParcel.add("Référence : "+finalJsonObj2.getJSONArray("colis").getJSONObject(i).getString("refQrcode"));
                                                         kmSkip += Integer.parseInt(finalJsonObj2.getJSONArray("colis").getJSONObject(i).getString("distance"));
                                                     } catch (JSONException e) {
                                                         e.printStackTrace();
@@ -188,7 +189,6 @@ public class DeliveryFlow extends AppCompatActivity {
                                                 e.printStackTrace();
                                             }
 
-                                            Toast.makeText(DeliveryFlow.this, distance.toString(), Toast.LENGTH_SHORT).show();
                                             Intent returnInt = new Intent(DeliveryFlow.this, ReturnParcel.class);
                                             returnInt.putStringArrayListExtra("returnParcel", (ArrayList<String>) returnParcel);
                                             returnInt.putExtra("idDelivery", idDelivery);
