@@ -8,5 +8,7 @@
   "LOGIN": "Acceso",
   "REGISTER": "Inscripción",
   "INFOCOL": "Ingrese las informaciónes de su paquete",
+  "DEST": "Nombre del destinatario",
+  "PACK": "Referencia del paquete", 
   "VAL": "VALIDAR"
 }
