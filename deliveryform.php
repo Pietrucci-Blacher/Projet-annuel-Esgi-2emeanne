@@ -76,19 +76,19 @@ if(empty($_SESSION) || !$_SESSION['rank'] == "livreur" || checkfirstconnect() ==
             </div>
             <hr class="mx-4">
             <div class="form-group flex-fill mx-4 mb-2">
-                <input class="form-control" type="text" name="vehiculetype" id="vehiculetype" placeholder="Type de véhicule"><br>
+                <input langtrad="TYPE" class="form-control" type="text" name="vehiculetype" id="vehiculetype" placeholder="Type de véhicule"><br>
             </div>
             <div class="form-group flex-fill mx-4 mb-2">
-                <input class="form-control" type="text" name="brandvehicule" id="brandvehicule" placeholder="Marque de la voiture"><br>
+                <input langtrad="BRAND" class="form-control" type="text" name="brandvehicule" id="brandvehicule" placeholder="Marque de la voiture"><br>
             </div>
             <div class="form-group flex-fill mx-4 mb-2">
-                <input class="form-control" type="number" name="ptacvehicule" id="ptacvehicule" placeholder="PTAC (Poids total autorisé en charge) du véhicule " min="0">
+                <input langtrad="GVWR" class="form-control" type="number" name="ptacvehicule" id="ptacvehicule" placeholder="PTAC (Poids total autorisé en charge) du véhicule " min="0">
             </div>
             <br>
-            <h6 class="text-center fw-bold">En cas d'erreurs, veuillez contacter nos administrateurs via la boite mail suivante : <a href="mailto:ultimate.parcelad@gmail.com">ultimate.parcelad@gmail.com</a> </h6>
+            <h6 langtrad="HELP" class="text-center fw-bold">En cas d'erreurs, veuillez contacter nos administrateurs via la boite mail suivante : <a href="mailto:ultimate.parcelad@gmail.com">ultimate.parcelad@gmail.com</a> </h6>
             <br>
             <div class="form-group mx-5 mb-5">
-                <input class="form-control" type="submit" name="submit" value="Envoyer">
+                <input langtrad="SEND" class="form-control" type="submit" name="submit" value="Envoyer">
             </div>
         </form>
     </div>
