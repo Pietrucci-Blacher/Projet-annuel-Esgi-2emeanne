@@ -99,19 +99,39 @@
         android:gravity="bottom"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btnTravel"
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/upGold"
-            android:layout_marginHorizontal="20dp"
-            android:text="Générer l'itinéraire"/>
+            android:paddingTop="10dp"
+            android:gravity="center"
+            android:paddingHorizontal="20dp">
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:layout_marginRight="10dp"
+                android:backgroundTint="@color/upGrey"
+                android:text="Annuler la livraison" />
+
+            <Button
+                android:id="@+id/btnTravel"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="@color/upGold"
+                android:text="Générer l'itinéraire"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="20dp"
-            android:paddingTop="10dp"
+            android:paddingTop="5dp"
             android:gravity="center"
             android:paddingHorizontal="20dp">
 
@@ -131,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:backgroundTint="@color/upGold"
-                android:text="Signer"/>
+                android:text="Signature du destinataire"/>
 
         </LinearLayout>
 

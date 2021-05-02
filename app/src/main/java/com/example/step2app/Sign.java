@@ -61,6 +61,7 @@ public class Sign extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setResult(RESULT_CANCELED);
                 finish();
             }
         });
@@ -103,6 +104,7 @@ public class Sign extends AppCompatActivity {
                             public void onSuccess(String requestId, Map resultData) {
                                 filePath.delete();
                                 toast.cancel();
+                                setResult(RESULT_OK);
                                 finish();
                             }
 

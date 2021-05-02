@@ -1,8 +1,12 @@
 package com.example.step2app;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -15,17 +19,33 @@ import com.cloudinary.android.MediaManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class DeliveryFlow extends AppCompatActivity {
 
     private TextView ref,name,adresse,city,phone,info,counter;
-    private Button sign,absent,travel;
-    private int countParcel = 0;
+    private Button sign,absent,travel,cancel;
+    private Integer countParcel = 0;
     Boolean initialized = false;
+    String parcelsId;
+    String idDelivery;
+    Integer nbKm;
+    Integer nbKmSkip = 0;
+    List<String> returnParcel = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +63,10 @@ public class DeliveryFlow extends AppCompatActivity {
         this.sign = findViewById(R.id.btnSign);
         this.absent = findViewById(R.id.btnAbsent);
         this.travel = findViewById(R.id.btnTravel);
+        this.cancel = findViewById(R.id.btnCancel);
 
         String idDeliver = getIntent().getStringExtra("idLivreur");
+        String idDelivery = getIntent().getStringExtra("idLivraison");
 
         JSONObject jsonObj = null;
         try {
@@ -56,8 +78,10 @@ public class DeliveryFlow extends AppCompatActivity {
         try {
             if(Integer.parseInt(jsonObj.getString("nbColis"))==1){
                 updateView(jsonObj,this.ref,this.name,this.adresse,this.city,this.phone,this.info,this.counter,"end",countParcel);
+                countParcel+=1;
             }else{
                 updateView(jsonObj,this.ref,this.name,this.adresse,this.city,this.phone,this.info,this.counter,"colis",countParcel);
+                countParcel+=1;
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -77,6 +101,7 @@ public class DeliveryFlow extends AppCompatActivity {
                 String fileName = (String) ref.getTag();
                 Intent signIntent = new Intent(DeliveryFlow.this,Sign.class);
                 signIntent.putExtra("refQrcode",fileName);
+                signIntent.putExtra("delivery",getIntent().getStringExtra("delivery"));
                 startActivityForResult(signIntent,0);
             }
         });
@@ -87,7 +112,7 @@ public class DeliveryFlow extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     String url = "https://www.google.com/maps/dir/?api=1&destination=Madrid,Spain&waypoints=Zaragoza|Huesca&travelmode=driving&dir_action=navigate";
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(constructUrl(finalJsonObj,countParcel)));
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(constructUrl(finalJsonObj,countParcel-1)));
                     startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -95,6 +120,90 @@ public class DeliveryFlow extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+            }
+        });
+
+        JSONObject finalJsonObj1 = jsonObj;
+        absent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                returnParcel.add(ref.getTag().toString());
+                handleParcel("https://pa2021-esgi.herokuapp.com/androidApp/absentParcel.php", finalJsonObj1);
+            }
+        });
+
+        JSONObject finalJsonObj2 = jsonObj;
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DeliveryFlow.this);
+                alertDialogBuilder.setTitle("Annuler la livraison");
+                alertDialogBuilder.setMessage("Êtes-vous sure de vouloir annuler cette livraison ?");
+                alertDialogBuilder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //Toast.makeText(DeliveryFlow.this, returnParcel.toString(), Toast.LENGTH_SHORT).show();
+                        OkHttpClient client = new OkHttpClient();
+                        RequestBody formBody = new FormBody.Builder().add("deliveryId", idDelivery).build();
+                        Request request = new Request.Builder().url("https://pa2021-esgi.herokuapp.com/androidApp/cancelDelivery.php").post(formBody).build();
+                        client.newCall(request).enqueue(new Callback() {
+                            @Override
+                            public void onFailure(Call call, IOException e) {
+                                e.printStackTrace();
+                            }
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+                                if (response.isSuccessful()) {
+                                    final String myResponse = response.body().string();
+                                    DeliveryFlow.this.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Integer nbParcel = 0;
+                                            try {
+                                                nbParcel = Integer.parseInt(finalJsonObj2.getString("nbColis"));
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                            for (int i = countParcel-1; i < nbParcel; i++) {
+                                                if(i==nbParcel-1){
+                                                    try {
+                                                        returnParcel.add(finalJsonObj2.getJSONArray("end").getJSONObject(0).getString("refQrcode"));
+                                                        nbKmSkip += Integer.parseInt(finalJsonObj2.getJSONArray("end").getJSONObject(0).getString("distance"));
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                }else{
+                                                    try {
+                                                        returnParcel.add(finalJsonObj2.getJSONArray("colis").getJSONObject(i).getString("refQrcode"));
+                                                        nbKmSkip += Integer.parseInt(finalJsonObj2.getJSONArray("colis").getJSONObject(i).getString("distance"));
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                }
+                                            }
+
+                                            try {
+                                                nbKm = Integer.parseInt(finalJsonObj2.getString("distance")) - nbKmSkip;
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                            Intent returnInt = new Intent(DeliveryFlow.this,ReturnParcel.class);
+                                            returnInt.putStringArrayListExtra("returnParcel", (ArrayList<String>) returnParcel);
+                                            returnInt.putExtra("idDelivery",idDelivery);
+                                            returnInt.putExtra("nbKm",nbKm);
+                                            startActivity(returnInt);
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
+                alertDialogBuilder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+                alertDialogBuilder.create().show();
             }
         });
     }
@@ -148,4 +257,85 @@ public class DeliveryFlow extends AppCompatActivity {
         return url;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0) {
+            if(resultCode == RESULT_OK){
+                try {
+                    handleParcel("https://pa2021-esgi.herokuapp.com/androidApp/deliverParcel.php", new JSONObject(getIntent().getStringExtra("delivery")));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void handleParcel(String url, JSONObject json){
+
+        OkHttpClient client = new OkHttpClient();
+        RequestBody formBody = new FormBody.Builder().add("parcelId", ref.getTag().toString()).add("deliveryId", idDelivery).build();
+        Request request = new Request.Builder().url(url).post(formBody).build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    final String myResponse = response.body().string();
+                    DeliveryFlow.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                if(countParcel == Integer.parseInt(json.getString("nbColis"))){
+                                    if (returnParcel.size() == 0){
+                                        OkHttpClient client = new OkHttpClient();
+                                        RequestBody formBody = new FormBody.Builder().add("nbKm",json.getString("distance")).add("deliveryId", idDelivery).build();
+                                        Request request = new Request.Builder().url("https://pa2021-esgi.herokuapp.com/androidApp/finishDelivery.php").post(formBody).build();
+                                        client.newCall(request).enqueue(new Callback() {
+                                            @Override
+                                            public void onFailure(Call call, IOException e) {
+                                                e.printStackTrace();
+                                            }
+                                            @Override
+                                            public void onResponse(Call call, Response response) throws IOException {
+                                                if (response.isSuccessful()) {
+                                                    final String myResponse = response.body().string();
+                                                    DeliveryFlow.this.runOnUiThread(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            Intent menuInt = new Intent(DeliveryFlow.this, MenuActivity.class);
+                                                            Toast.makeText(DeliveryFlow.this, "Livraison terminée", Toast.LENGTH_SHORT).show();
+                                                            startActivity(menuInt);
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        });
+                                    }else{
+                                        Intent returnInt = new Intent(DeliveryFlow.this,ReturnParcel.class);
+                                        returnInt.putStringArrayListExtra("returnParcel", (ArrayList<String>) returnParcel);
+                                        returnInt.putExtra("nbKm",json.getString("distance"));
+                                        returnInt.putExtra("idDelivery",idDelivery);
+                                        startActivity(returnInt);
+                                    }
+                                }else{
+                                    if(countParcel == Integer.parseInt(json.getString("nbColis"))-1){
+                                        updateView(json,ref,name,adresse,city,phone,info,counter,"end",0);
+                                    }else{
+                                        updateView(json,ref,name,adresse,city,phone,info,counter,"colis",countParcel);
+                                    }
+                                    countParcel+=1;
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
 }
