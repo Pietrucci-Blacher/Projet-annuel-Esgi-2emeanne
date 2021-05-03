@@ -1,4 +1,14 @@
 {
- "INFOCOL": "Please enter your package information",
- "VAL": "VALIDATE"
+  "HOME": "Home",
+  "FPACKAGE": "Follow my package",
+  "DELI": "Are you an independent delivery company?",
+  "PRICE": "Prices",
+  "DELIVERY": "Delivers",
+  "COMPANY": "Companies",
+  "LOGIN": "Login",
+  "REGISTER": "Register",
+  "INFOCOL": "Please enter your package information",
+  "DEST": "Recipient's name",
+  "PACK": "Package reference", 
+  "VAL": "VALIDATE"
 }

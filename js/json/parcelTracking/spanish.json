@@ -1,4 +1,14 @@
 {
+  "HOME": "Inicio",
+  "FPACKAGE": "Seguir mi paquete",
+  "PRICE": "Tarifas",
+  "DELI": "¿ Es usted una empresa de reparto independiente ?",
+  "DELIVERY": "Repartidores",
+  "COMPANY": "Compañía",
+  "LOGIN": "Acceso",
+  "REGISTER": "Inscripción",
   "INFOCOL": "Ingrese las informaciónes de su paquete",
+  "DEST": "Nombre del destinatario",
+  "PACK": "Referencia del paquete", 
   "VAL": "VALIDAR"
 }

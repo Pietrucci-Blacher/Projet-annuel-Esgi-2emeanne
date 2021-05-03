@@ -1,7 +1,22 @@
 {
+  "HOME": "Inicio",
+  "FPACKAGE": "Seguir mi paquete",
+  "PRICE": "Tarifas",
+  "DELI": "¿ Es usted una empresa de reparto independiente ?",
+  "DELIVERY": "Repartidores",
+  "COMPANY": "Compañía",
+  "LOGIN": "Acceso",
+  "REGISTER": "Inscripción",
   "ENR": "Registro de repartidor",
   "UPLO": "Cargue su licencia de conducir",
+  "DEPOSIT": "Por favor, elija su depósito",
+  "RADDEP" : "Por favor, seleccione la distancia máxima de entrega alrededor de su depósito",
   "DEP": "Por favor seleccione su departamento",
   "UPLO2": "Cargue una prueba que muestre su número de puntos en la licencia",
-  "EXTA": "Extensiones aceptadas: "
+  "EXTA": "Extensiones aceptadas: ",
+  "TYPE": "Tipo de vehículo", 
+  "BRAND": "Marca del vehículo",
+  "GVWR": "PBDV (Peso bruto del vehículo) del vehículo",
+  "HELP": "En caso de errores, póngase en contacto con nuestros administradores a través del siguiente buzón :",
+  "SEND": "Enviar"
 }
