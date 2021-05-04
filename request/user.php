@@ -56,7 +56,7 @@ function deleteuserbyID($id){
 
 function getDeliveryData($id){
     $bdd = connexionBDD();
-    $res = $bdd->prepare("SELECT zoneGeo,volVehicule,nbKm,etatPermis,lienPermis,brandvehicule,ptacvehicule,vehiculetype FROM livreur WHERE client = :id_user");
+    $res = $bdd->prepare("SELECT zoneGeo,nbKm,etatPermis,lienPermis,brandvehicule,ptacvehicule,vehiculetype, depot FROM livreur WHERE client = :id_user");
     $res->bindValue(":id_user",$id,PDO::PARAM_INT);
     $res->execute();
     return $res->fetch(PDO::FETCH_ASSOC);
