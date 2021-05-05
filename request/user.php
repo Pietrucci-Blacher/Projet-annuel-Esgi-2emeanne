@@ -160,12 +160,13 @@ function updateBaninfo(){
 
 function checkvalitedperm(){
     $bdd = connexionBDD();
-    $req = $bdd->prepare("SELECT validatedperm FROM livreur WHERE id = :id");
+    $req = $bdd->prepare("SELECT validatedperm FROM livreur WHERE client = :id");
     $req->bindValue(":id",$_SESSION['id'],PDO::PARAM_INT);
     $req->execute();
     $res = $req->fetch(PDO::FETCH_ASSOC);
-    if($res == true){
-        echo "<script>alert('Votre permis n\'a pas été encore validé')</script>";
+    if($res['validatedperm'] == false){
+        echo "<script>alert('Permis non validé');</script>";
+        echo "<script>window.location.href = '/';</script>";
     }
 }
 
