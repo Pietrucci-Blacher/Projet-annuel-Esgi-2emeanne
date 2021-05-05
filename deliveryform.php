@@ -40,7 +40,9 @@ if(empty($_SESSION) || !$_SESSION['rank'] == "livreur" || checkfirstconnect() ==
                 <blockquote class="blockquote">
                    <dl>
                       <dt><h5 langtrad="EXTA">Extension acceptée : </h5></dt>
-                      <dd><h6>- <strong>PDF</strong></h6></dd>
+                      <dd><h6>- <strong>PNG</strong></h6></dd>
+                      <dd><h6>- <strong>JPG</strong></h6></dd>
+                      <dd><h6>- <strong>JPEG</strong></h6></dd>
                    </dl>   
                 </blockquote>
             </div>
@@ -79,10 +81,9 @@ if(empty($_SESSION) || !$_SESSION['rank'] == "livreur" || checkfirstconnect() ==
                 <blockquote>
                     <dl>
                         <dt> <h5 langtrad="EXTA">Extensions acceptées : </h5></dt>
-                        <dd> <h6>- <strong>PDF</strong> </h6></dd>
-                        <dd> <h6>- <strong>BMP</strong> </h6></dd>
-                        <dd> <h6>- <strong>JPG</strong> </h6></dd>
                         <dd> <h6>- <strong>PNG</strong> </h6></dd>
+                        <dd> <h6>- <strong>JPG</strong> </h6></dd>
+                        <dd> <h6>- <strong>JPEG</strong> </h6></dd>
                     </dl>
                 </blockquote>
             </div>

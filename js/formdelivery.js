@@ -8,14 +8,14 @@ $(document).ready(function(){
         rules:{
             driveupload:{
                 required:true,
-                accept: "application/pdf"
+                accept: "image/png, image/jpeg"
             },
             geozone:{
                 required: true
             },
             driveuploadpoints:{
                 required: true,
-                accept: "application/pdf, image/png, image/jpeg, image/bmp"
+                accept: "image/png, image/jpeg"
             },
             vehiculetype:{
                 required: true,

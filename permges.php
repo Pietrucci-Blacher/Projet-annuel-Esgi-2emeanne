@@ -69,7 +69,7 @@
                     <div class='col'>
                         <h4 class='text-center'>Lien vers le permis</h4>
                         <div class="text-center">
-                            <a id='drivinglicence' target='_blank'>Visualiser le nombre de points sur le permis</a>
+                            <a id='drivinglicence' target='_blank'>Visualiser le permis</a>
                         </div>
                         <hr>
                         <h4 class='text-center'>Lien vers le nombre de points</h4>
