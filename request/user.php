@@ -158,18 +158,6 @@ function updateBaninfo(){
 }
 
 
-function checkvalitedperm(){
-    $bdd = connexionBDD();
-    $req = $bdd->prepare("SELECT validatedperm FROM livreur WHERE client = :id");
-    $req->bindValue(":id",$_SESSION['id'],PDO::PARAM_INT);
-    $req->execute();
-    $res = $req->fetch(PDO::FETCH_ASSOC);
-    if($res['validatedperm'] == false){
-        echo "<script>alert('Permis non validé');</script>";
-        echo "<script>window.location.href = '/';</script>";
-    }
-}
-
 function getdepots(){
     $bdd = connexionBDD();
     $req = $bdd->prepare("SELECT id, adresse, ville FROM depot");
