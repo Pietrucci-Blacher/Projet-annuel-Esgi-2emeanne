@@ -79,6 +79,8 @@ public class MenuActivity extends AppCompatActivity {
                     alertDialog.setItems(listHour, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            Toast toast =Toast.makeText(MenuActivity.this, "Merci de patienter...", Toast.LENGTH_LONG);
+                            toast.show();
                             int hours = which+1;
                             OkHttpClient client = new OkHttpClient.Builder()
                                     .connectTimeout(3, TimeUnit.MINUTES)
@@ -111,6 +113,7 @@ public class MenuActivity extends AppCompatActivity {
                                             public void run() {
                                                 try {
                                                     if(finalJsonObj.getInt("nbColis") > 0){
+                                                        toast.cancel();
                                                         Intent qrCodeInt = new Intent(MenuActivity.this, QRcodeMenu.class);
                                                         qrCodeInt.putExtra("delivery",finalJsonObj.toString());
                                                         qrCodeInt.putExtra("idLivreur",idDeliver);

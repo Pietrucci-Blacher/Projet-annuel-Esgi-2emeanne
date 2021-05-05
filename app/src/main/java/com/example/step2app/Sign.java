@@ -49,7 +49,6 @@ public class Sign extends AppCompatActivity {
         drawing.setDrawingCacheEnabled(true);
         drawLayout.addView(drawing);
 
-
         erase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
