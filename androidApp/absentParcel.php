@@ -17,6 +17,6 @@ $query = $bdd->prepare("UPDATE contient SET status = 'Absent' WHERE colis = ? AN
 $query->execute([$parcelId,$deliveryId]);
 
 $query = $bdd->prepare("UPDATE colis SET status = 'Retour au dépot',date = ? WHERE id = ?");
-$query->execute([$parcelId,$date]);
+$query->execute([$date,$parcelId]);
 
  ?>
