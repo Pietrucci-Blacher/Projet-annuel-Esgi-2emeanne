@@ -82,11 +82,6 @@
   $time = $_POST['time'];
   $maxWeight=  $_POST['poids'];
 
-  // $idDeposit = 71;
-  // $delivererZone = 500;
-  // $time = 3;
-  // $maxWeight = 100;
-
   $queryDeposit = $bdd->prepare("SELECT adresse,ville,codePostal FROM DEPOT WHERE id = ?");
   $queryDeposit->execute([$idDeposit]);
   $depositData = $queryDeposit->fetch();
