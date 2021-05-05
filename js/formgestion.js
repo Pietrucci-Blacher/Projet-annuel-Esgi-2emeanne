@@ -69,25 +69,8 @@ $(document).ready(function (){
                     $('#brandvehicule').val(resultdelivery['brandvehicule']);
                     $('#ptacvehicule').val(resultdelivery['ptacvehicule']);
                     $('#vehiculetype').val(resultdelivery['vehiculetype']);
-                    $('#geozone').val(resultdelivery['zoneGeo']);
-                    $("#volvehicule").addClass("border rounded border-3");
-                    if(resultdelivery['volVehicule'] == true) {
-                        $('#volvehicule').val("Oui");
-                        if($("#volvehicule").hasClass("border-success")) {
-                            $("#volvehicule").removeClass("border-success");
-                            $("#volvehicule").addClass("border-danger");
-                        }else{
-                            $("#volvehicule").addClass("border-danger");
-                        }
-                    }else{
-                        $("#volvehicule").val("Non");
-                        if($("#volvehicule").hasClass("border-danger")) {
-                            $("#volvehicule").removeClass("border-danger");
-                            $("#volvehicule").addClass("border-success");
-                        }else {
-                            $("#volvehicule").addClass("border-success");
-                        }
-                    }
+                    $('#depot').val(resultdelivery['depot']);
+                    $('#radiusdepot').val(resultdelivery['zoneGeo']);
                });
            }else{
                $("#deliveryzone").hide();
