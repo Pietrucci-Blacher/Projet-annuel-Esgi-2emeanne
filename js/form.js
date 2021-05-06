@@ -124,7 +124,7 @@ $(document).ready(function () {
             },
             birthdate:{
                 required: 'Veuillez insérer votre date de naissance'
-            },
+            }
         }
     });
 });
