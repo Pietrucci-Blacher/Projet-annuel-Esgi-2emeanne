@@ -8,8 +8,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-//$idDeliver= $_POST['$idDeliver'];
-$idDeliver=1;
+$idDeliver= $_POST['idDeliver'];
 
 $query=$bdd->prepare("SELECT COUNT(id) as nbSalary,date FROM SALAIRE WHERE livreur = ? ORDER BY date DESC");
 $query->execute([$idDeliver]);
@@ -39,7 +38,7 @@ while($deliveryInfo=$delivery->fetch()){
     if($parcelInfo['status']!='Annulé'){
       $deliveredParcel+=1;
       if($parcelInfo['poids']>30){
-        $json['sup30'][$count]=$parcelInfo['poids'];
+        $json['sup30'][$count]['weight']=$parcelInfo['poids'];
         $count+=1;
       }
     }
