@@ -54,6 +54,7 @@ public class MenuActivity extends AppCompatActivity {
         welcomeTxt.setText("Bienvenue "+firstname+" "+lastname+idDeliver);
 
         this.disconnectBtn = findViewById(R.id.disconnectBtn);
+        this.paiementBtn=findViewById(R.id.paiementBtn);
         this.deliveryBtn = findViewById(R.id.deliveryBtn);
 
         this.deliveryBtn.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +63,7 @@ public class MenuActivity extends AppCompatActivity {
                 Calendar rightNow = Calendar.getInstance();
                 int hour = rightNow.get(Calendar.HOUR_OF_DAY);
                 int minHour = 9;
-                int maxHour = 30;
+                int maxHour = 19;
                 if( hour< minHour || hour > maxHour){
                     Toast.makeText(MenuActivity.this, "Les dépots ouvrent à 9 heures et ferment à 19 heures", Toast.LENGTH_LONG).show();
                 }else{
@@ -151,6 +152,52 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent loginScreen = new Intent(MenuActivity.this, MainActivity.class);
                 startActivity(loginScreen);
+            }
+        });
+
+        this.paiementBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OkHttpClient client = new OkHttpClient();
+                String url = "https://pa2021-esgi.herokuapp.com/androidApp/deliverPayInfo.php";
+                RequestBody formBody = new FormBody.Builder().add("idDeliver", idDeliver).build();
+                Request request = new Request.Builder().url(url).post(formBody).build();
+
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                    }
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        if (response.isSuccessful()) {
+                            final String myResponse = response.body().string();
+                            JSONObject jsonObj = null;
+                            try {
+                                jsonObj = new JSONObject(myResponse);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            JSONObject finalJsonObj = jsonObj;
+                            MenuActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        if(Integer.parseInt(finalJsonObj.getString("delivered"))==0){
+                                            Toast.makeText(MenuActivity.this, "Aucune rémunération en attente de récupération", Toast.LENGTH_SHORT).show();
+                                        }else{
+                                            Intent payInt = new Intent(MenuActivity.this, calculatePay.class);
+                                            payInt.putExtra("payInfo",finalJsonObj.toString());
+                                            startActivity(payInt);
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
             }
         });
     }

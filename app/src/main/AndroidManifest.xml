@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Step2App">
-        <activity android:name=".ReturnParcel"></activity>
+        <activity android:name=".calculatePay"></activity>
+        <activity android:name=".ReturnParcel" />
         <activity android:name=".Sign" />
         <activity android:name=".DeliveryFlow" />
         <activity android:name=".QRcodeMenu" />
