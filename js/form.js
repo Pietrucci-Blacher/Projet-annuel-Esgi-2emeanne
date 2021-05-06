@@ -67,6 +67,9 @@ $(document).ready(function () {
             },
             status:{
                 required:true,
+            },
+            birthdate:{
+                required:true
             }
         },
         messages:{
@@ -118,7 +121,10 @@ $(document).ready(function () {
             },
             status: {
                 required: 'Veuillez sélectionner votre statut juridique'
-            }
+            },
+            birthdate:{
+                required: 'Veuillez insérer votre date de naissance'
+            },
         }
     });
 });
