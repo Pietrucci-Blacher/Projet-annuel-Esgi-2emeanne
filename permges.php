@@ -35,7 +35,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Nom</th>
                             <th scope="col">Prénom</th>
-                            <th scope="col">Zone Géographique</th>
+                            <th scope="col">Distance de livraison autour du depot</th>
                             <th scope="col">Nombre de kilomètres</th>
                             <th scope="col">Permis Validé</th>
                             <th scope="col">Actions</th>

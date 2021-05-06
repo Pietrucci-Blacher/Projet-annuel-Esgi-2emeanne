@@ -34,8 +34,6 @@
             <li class="nav-item"><a class="nav-link" href="gestion.php">Gestion du site</a></li>
             <li class="nav-item"><a class="nav-link" href="permges.php">Gestion des permis</a></li>
             <li class="nav-item"><a class="nav-link" href="priceParcelAdmin.php">Gérer les tarifs des colis</a></li>
-        <?php } if(isset($_SESSION['name']) && $_SESSION['rank'] == "livreur"){ ?>
-            <li class="nav-item"><a class="nav-link" href="#">Mes livraisons</a></li>
         <?php } if(isset($_SESSION['name']) && $_SESSION['rank'] == "entreprise"){ ?>
               <li class="nav-item"><a class="nav-link" href="searchParcelCompany.php">Gérer les colis</a></li>
               <li class="nav-item"><a class="nav-link" href="paiementParcel.php">Payer les colis</a></li>
