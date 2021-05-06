@@ -17,6 +17,7 @@ $city = htmlspecialchars(trim($_POST['city']));
 $phonenum = htmlspecialchars(trim($_POST['phonenum']));
 $status = $_POST['status'];
 $zonegeo = $_POST['radiusdepot'];
+$depot = $_POST['depot'];
 $brandvehicule = $_POST['brandvehicule'];
 $vehiculetype = $_POST['vehiculetype'];
 $ptac = $_POST['ptacvehicule'];
