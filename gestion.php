@@ -11,6 +11,7 @@ $lastname = htmlspecialchars(trim($_POST['lastname']));
 $firstname = htmlspecialchars(trim($_POST['firstname']));
 $email = htmlspecialchars(trim($_POST['email']));
 $address = htmlspecialchars(trim($_POST['address']));
+$birthdate = $_POST['birthdate'];
 $zipcode = htmlspecialchars(trim($_POST['zipcode']));
 $city = htmlspecialchars(trim($_POST['city']));
 $phonenum = htmlspecialchars(trim($_POST['phonenum']));
