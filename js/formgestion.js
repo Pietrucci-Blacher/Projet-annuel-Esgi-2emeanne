@@ -35,6 +35,7 @@ $(document).ready(function (){
            $("#phonenum").val(result['numphone']);
            $("#address").val(result['adresse']);
            $("#email").val(result['email']);
+           $("#birthdate").val(result['birthdate']);
            $("#banacount").addClass("border rounded border-3");
            if(result['bannedAcount'] == true){
                $("#banacount").val("Oui");
