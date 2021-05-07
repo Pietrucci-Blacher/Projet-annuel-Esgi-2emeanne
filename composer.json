@@ -1,5 +1,7 @@
 {
     "name": "ultimateparcel/pa2021",
     "description": "ESGI PA",
-    "require": {}
+    "require": {
+		"ext-mbstring": "*"
+	}
 }
