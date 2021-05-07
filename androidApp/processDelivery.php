@@ -77,6 +77,20 @@
     return array_values($tmpParcel);
   }
 
+  function filljson($category,$count,$id,$ref,$addr,$city,$zip,$lname,$fname,$phone,$info){
+    global $jsonReturn;
+
+    $jsonReturn[$category][$count]['idColis'] = $id;
+    $jsonReturn[$category][$count]['refQrcode'] = $ref;
+    $jsonReturn[$category][$count]['adresse'] = $addr;
+    $jsonReturn[$category][$count]['ville'] = $city;
+    $jsonReturn[$category][$count]['codePostal'] = $zip;
+    $jsonReturn[$category][$count]['nom'] = $lname;
+    $jsonReturn[$category][$count]['prenom'] = $fname;
+    $jsonReturn[$category][$count]['numPhone'] = $phone;
+    $jsonReturn[$category][$count]['info'] = $info;
+  }
+
   $idDeposit = $_POST['deposit'];
   $delivererZone = $_POST['zone'];
   $time = $_POST['time'];
@@ -87,7 +101,7 @@
   $depositData = $queryDeposit->fetch();
 
   $query = $bdd->prepare("SELECT colis.id,client.adresse,client.ville,client.codePostal,colis.refQrcode,colis.poids,client.nom,client.prenom,client.numPhone,client.info FROM COLIS INNER JOIN CLIENT ON colis.client = client.id
-                          WHERE colis.distanceDepot <= ? AND colis.depot = ? AND colis.status = 'En attente de récupération par le livreur' AND colis.poids <= ? ORDER BY colis.date ASC,poids DESC");
+                          WHERE colis.distanceDepot <= ? AND colis.depot = ? AND colis.date=DATE(NOW()) AND colis.status = 'En attente de récupération par le livreur' AND colis.poids <= ? ORDER BY colis.distanceDepot DESC");
 
   $query->execute([$delivererZone,$idDeposit,$maxWeight]);
 
@@ -110,6 +124,7 @@
   $wpOrder = array();
 
   while($parcel = $query->fetch()){
+    echo $parcel['id'];
     if(($parcel['poids'] + $weight) <= $maxWeight){
       $parcelAdresse=$parcel['adresse']." ".$parcel['ville']." ".$parcel['codePostal'];
       $urlTmp = $urlWP."&wp.".$count."=".urlencode($parcelAdresse);
@@ -121,27 +136,11 @@
       if(wpTime($urlTmp) <= $time*3600){
         if($endAdresse == ''){
           $endAdresse = $parcelAdresse;
-          $jsonReturn['end'][0]['idColis'] = $parcel['id'];
-          $jsonReturn['end'][0]['refQrcode'] = $parcel['refQrcode'];
-          $jsonReturn['end'][0]['adresse'] = $parcel['adresse'];
-          $jsonReturn['end'][0]['ville'] = $parcel['ville'];
-          $jsonReturn['end'][0]['codePostal'] = $parcel['codePostal'];
-          $jsonReturn['end'][0]['nom'] = $parcel['nom'];
-          $jsonReturn['end'][0]['prenom'] = $parcel['prenom'];
-          $jsonReturn['end'][0]['numPhone'] = $parcel['numPhone'];
-          $jsonReturn['end'][0]['info'] = $parcel['info'];
+          filljson('end',0,$parcel['id'],$parcel['refQrcode'],$parcel['adresse'],$parcel['ville'],$parcel['codePostal'],$parcel['nom'],$parcel['prenom'],$parcel['numPhone'],$parcel['info']);
           $countParcel+=1;
         }else{
           $urlWP.="&wp.".$count."=".urlencode($parcelAdresse);
-          $jsonReturn['colis'][$count-1]['idColis'] = $parcel['id'];
-          $jsonReturn['colis'][$count-1]['refQrcode'] = $parcel['refQrcode'];
-          $jsonReturn['colis'][$count-1]['adresse'] = $parcel['adresse'];
-          $jsonReturn['colis'][$count-1]['ville'] = $parcel['ville'];
-          $jsonReturn['colis'][$count-1]['codePostal'] = $parcel['codePostal'];
-          $jsonReturn['colis'][$count-1]['nom'] = $parcel['nom'];
-          $jsonReturn['colis'][$count-1]['prenom'] = $parcel['prenom'];
-          $jsonReturn['colis'][$count-1]['numPhone'] = $parcel['numPhone'];
-          $jsonReturn['colis'][$count-1]['info'] = $parcel['info'];
+          filljson('colis',$count-1,$parcel['id'],$parcel['refQrcode'],$parcel['adresse'],$parcel['ville'],$parcel['codePostal'],$parcel['nom'],$parcel['prenom'],$parcel['numPhone'],$parcel['info']);
           $count+=1;
           $countParcel+=1;
         }
