@@ -16,7 +16,6 @@ $stripe = new \Stripe\StripeClient(
 $idDeliver=$_POST['idDeliver'];
 $amount=$_POST['amount'];
 $bankAccount=$_POST['bankAccount'];
-$action=$_POST['action'];
 $primeObjectif=$_POST['primeObjectif'];
 $nbParcel=$_POST['nbParcel'];
 $weightPrime=$_POST['primeWeight'];
@@ -31,7 +30,7 @@ $result = $query->fetch();
 if($result['stripeId']!=""){
   updateStripeAccount($stripe,$result['stripeId'],$bankAccount);
   $accountId=$result['stripeId'];
-  $upDel=$bdd->prepare("UPDATE livreur SET rib=AES_ENCRYPT(?,"pa2021esgi")  WHERE id = ?");
+  $upDel=$bdd->prepare("UPDATE livreur SET rib=AES_ENCRYPT(?,'pa2021esgi') WHERE id = ?");
   $upDel->execute([$bankAccount,$idDeliver]);
 }else{
   $deliver=$bdd->prepare("SELECT * FROM client WHERE id = ?");
@@ -39,7 +38,7 @@ if($result['stripeId']!=""){
   $deliverInfo=$deliver->fetch();
   $accountId=createStripeAccount($stripe,$deliverInfo['prenom'],$deliverInfo['nom'],$deliverInfo['numPhone'],$deliverInfo['email'],$deliverInfo['adresse'],$deliverInfo['codePostal'],$deliverInfo['ville'],$deliverInfo['birthdate'],$bankAccount);
 
-  $upDel=$bdd->prepare("UPDATE livreur SET stripeId = ?,rib=AES_ENCRYPT(?,'pa2021esgi')  WHERE id = ?");
+  $upDel=$bdd->prepare("UPDATE livreur SET stripeId = ?,rib=AES_ENCRYPT(?,'pa2021esgi') WHERE id = ?");
   $upDel->execute([$accountId,$bankAccount,$idDeliver]);
 }
 
