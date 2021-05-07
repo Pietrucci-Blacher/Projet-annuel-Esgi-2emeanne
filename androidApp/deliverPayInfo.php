@@ -49,6 +49,16 @@ while($deliveryInfo=$delivery->fetch()){
   }
 }
 
+$deliver=$bdd->prepare("SELECT AES_DECRYPT(rib,"pa2021esgi") as rib FROM livreur WHERE id = ?");
+$deliver->execute([$idDeliver]);
+$deliverRib=$deliver->fetch();
+
+if($deliverRib['rib']!=""){
+  $json['bank']=$deliverRib['rib'];
+}else{
+  $json['bank']="none";
+}
+
 $json['parcelSup30']=$count;
 $json['nbKm']=$nbKM;
 $json['affected']=$affectedParcel;
