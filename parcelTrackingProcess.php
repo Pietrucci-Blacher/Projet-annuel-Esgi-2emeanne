@@ -35,7 +35,7 @@ if(empty($parcel)){
             <h5 class="p-1">Livraison prévue le : '.date('d/m/Y', strtotime($parcel['date'])).'</h5>
             <br>
             <div class="text-center">
-              <button type="button" class="btn btn-info">Activer les notifications</button>
+              <button type="button" id="notif" class="btn btn-info">Activer les notifications</button>
             </div>
           </div>
         </div>
