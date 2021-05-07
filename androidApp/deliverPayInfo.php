@@ -10,7 +10,7 @@ error_reporting(E_ALL);
 
 $idDeliver= $_POST['idDeliver'];
 
-$query=$bdd->prepare("SELECT COUNT(id) as nbSalary,date FROM SALAIRE WHERE livreur = ? ORDER BY date DESC");
+$query=$bdd->prepare("SELECT COUNT(id) as nbSalary FROM SALAIRE WHERE livreur = ?");
 $query->execute([$idDeliver]);
 $salary=$query->fetch();
 
@@ -18,6 +18,10 @@ if($salary['nbSalary']==0){
   $delivery=$bdd->prepare("SELECT * FROM livraison WHERE date < NOW() AND livreur = ? AND status = 'Terminée'");
   $delivery->execute([$idDeliver]);
 }else{
+  $query=$bdd->prepare("SELECT date FROM SALAIRE WHERE livreur = ? ORDER BY date DESC");
+  $query->execute([$idDeliver]);
+  $salary=$query->fetch();
+
   $delivery=$bdd->prepare("SELECT * FROM livraison WHERE date > ? AND livreur = ? AND status = 'Terminée'");
   $delivery->execute([$salary['date'],$idDeliver]);
 }
