@@ -2,7 +2,7 @@
 require_once('include/utilities/banuser.php');
 require_once('include/utilities/notifcolis.php'); 
 checkbanuser();
-checkPackage(123456789123451618741096); 
+SendMessage(1234);  
 ?>
 
 <!DOCTYPE html>
