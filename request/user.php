@@ -56,7 +56,7 @@ function deleteuserbyID($id){
 
 function getDeliveryData($id){
     $bdd = connexionBDD();
-    $res = $bdd->prepare("SELECT zoneGeo,nbKm,etatPermis,lienPermis,brandvehicule,ptacvehicule,vehiculetype, depot FROM livreur WHERE client = :id_user");
+    $res = $bdd->prepare("SELECT zoneGeo,etatPermis,lienPermis,brandvehicule,ptacvehicule,vehiculetype,depot FROM livreur WHERE client = :id_user");
     $res->bindValue(":id_user",$id,PDO::PARAM_INT);
     $res->execute();
     return $res->fetch(PDO::FETCH_ASSOC);
@@ -136,7 +136,7 @@ function Updatedeliverinfo($email, $geozone,$brand,$vehiculetype,$ptac, $depot){
 
 function getalldeliverydata(){
     $bdd = connexionBDD();
-    $res = $bdd->prepare("SELECT zoneGeo,nbKm,etatPermis,lienPermis,client,validatedperm,client.prenom, client.nom FROM livreur INNER JOIN client ON livreur.client = client.id");
+    $res = $bdd->prepare("SELECT zoneGeo,etatPermis,lienPermis,client,validatedperm,client.prenom, client.nom FROM livreur INNER JOIN client ON livreur.client = client.id");
     $res->execute();
     return $res->fetchAll(PDO::FETCH_ASSOC);
 }
