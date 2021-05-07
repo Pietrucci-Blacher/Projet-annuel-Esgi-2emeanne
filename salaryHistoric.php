@@ -1,9 +1,6 @@
 <?php
 require_once('include/utilities/banuser.php');
 checkbanuser();
-if(empty($_SESSION['siret'])){
-    header('Location: enterpriseform.php');
-}
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -20,8 +17,8 @@ if(empty($_SESSION['siret'])){
 
     $bdd = connexionBDD();
 
-    $query = $bdd->prepare("SELECT * FROM facture WHERE entreprise = ?");
-    $query->execute([$_SESSION['siret']]);
+    $query = $bdd->prepare("SELECT * FROM salaire WHERE livreur = ?");
+    $query->execute([$_SESSION['idDeliver']]);
 
     $totalPrice = 0;
     $totalParcel = 0;
@@ -33,18 +30,17 @@ if(empty($_SESSION['siret'])){
 
      ?>
     <div class="container mt-5">
-      <h1 class="banner-item text-center" langtrad="FACT">Vos factures</h1>
+      <h1 class="banner-item text-center" langtrad="FACT">Vos salaires</h1>
       <div class="d-flex justify-content-center mt-5">
-        <h2 class="banner-item w-50 text-center" langtrad="MONTFACT">Montant total des factures payées : <?php echo $totalPrice; ?> €</h2>
-        <h2 class="banner-item w-50 text-center" langtrad="NUMCOL">Nombre total de colis traités : <?php echo $totalParcel; ?> </h2>
+        <h2 class="banner-item w-50 text-center" langtrad="MONTFACT">Montant total : <?php echo $totalPrice; ?> €</h2>
+        <h2 class="banner-item w-50 text-center" langtrad="NUMCOL">Nombre de colis livrés : <?php echo $totalParcel; ?> </h2>
       </div>
       <?php if($totalParcel != 0){ ?>
-      <h1 class="banner-item text-center mt-5" langtrad="HISTOFACT">Historique des factures</h1>
+      <h1 class="banner-item text-center mt-5" langtrad="HISTOFACT">Historique des salaires</h1>
       <table class=" mt-5 table banner table-bordered text-center banner-item fs-4">
         <thead>
           <tr>
             <th scope="col" langtrad="MONT">Montant</th>
-            <th scope="col" langtrad="NUM">Nombre de colis</th>
             <th scope="col" langtrad="DA">Date</th>
             <th scope="col"></th>
           </tr>
@@ -52,16 +48,15 @@ if(empty($_SESSION['siret'])){
         <tbody>
           <?php
 
-          $query = $bdd->prepare("SELECT * FROM facture WHERE entreprise = ? ORDER BY date DESC");
-          $query->execute([$_SESSION['siret']]);
+          $query = $bdd->prepare("SELECT * FROM salaire WHERE livreur = ? ORDER BY date DESC");
+          $query->execute([$_SESSION['idDeliver']]);
 
-          while ($bill=$query->fetch()) {
+          while ($salary=$query->fetch()) {
             echo'
             <tr>
-              <td>'.$bill['montant'].' €</td>
-              <td>'.$bill['nbColis'].' colis</td>
-              <td>'.date('d/m/Y', strtotime($bill['date'])).'</td>
-              <td><button type="button" class="btn btn-primary" onclick="toPDF('.$bill['id'].')"><a class="serviceslink">Télécharger en pdf</a></button></td>
+              <td>'.$salary['montant'].' €</td>
+              <td>'.date('d/m/Y', strtotime($salary['date'])).'</td>
+              <td><button type="button" class="btn btn-primary col-8" onclick="toPDF('.$salary['id'].')"><a class="serviceslink">Télécharger en pdf</a></button></td>
             </tr>
             ';
           }
@@ -71,14 +66,14 @@ if(empty($_SESSION['siret'])){
     <?php } ?>
     </div>
     <script type="text/javascript">
-    function toPDF(idBill){
+    function toPDF(idSalary){
       $.ajax({
-         url : 'toPDF.php',
+         url : 'salaryToPdf.php',
          type : 'POST',
-         data : 'idBill='+idBill,
+         data : 'idSalary='+idSalary,
          dataType : 'html',
          success : function(result){
-           window.open('billPDF.php', '_blank');
+           window.open('salaryPdf.php', '_blank');
          }
       });
     }
