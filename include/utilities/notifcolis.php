@@ -1,5 +1,5 @@
 <?php
-require_once('../request/user.php');
+require_once('../../request/user.php');
 require_once('connexionbdd.php');
 
 function checkPackage($packageid){
