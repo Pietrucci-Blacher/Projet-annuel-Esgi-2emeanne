@@ -124,7 +124,6 @@
   $wpOrder = array();
 
   while($parcel = $query->fetch()){
-    echo $parcel['id'];
     if(($parcel['poids'] + $weight) <= $maxWeight){
       $parcelAdresse=$parcel['adresse']." ".$parcel['ville']." ".$parcel['codePostal'];
       $urlTmp = $urlWP."&wp.".$count."=".urlencode($parcelAdresse);
