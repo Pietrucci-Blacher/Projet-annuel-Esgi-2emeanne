@@ -30,7 +30,6 @@
           </ul>
         </li>
         <?php if(isset($_SESSION['name']) && $_SESSION['rank'] == "admin"){?>
-          <li class="nav-item"><a class="nav-link" href="parcelToDeposit.php">Attribution des colis</a></li>
             <li class="nav-item"><a class="nav-link" href="gestion.php">Gestion du site</a></li>
             <li class="nav-item"><a class="nav-link" href="permges.php">Gestion des permis</a></li>
             <li class="nav-item"><a class="nav-link" href="priceParcelAdmin.php">Gérer les tarifs des colis</a></li>

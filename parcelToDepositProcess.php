@@ -21,7 +21,6 @@ function getDistanceFromLatLonInKm($lon1,$lat1,$lon2,$lat2) {
     return $d;
   }
 
-
 $query = $bdd->prepare("SELECT id,adresse,codePostal FROM DEPOT");
 $query->execute();
 
