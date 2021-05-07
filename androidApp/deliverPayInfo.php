@@ -49,7 +49,7 @@ while($deliveryInfo=$delivery->fetch()){
   }
 }
 
-$deliver=$bdd->prepare("SELECT AES_DECRYPT(rib,"pa2021esgi") as rib FROM livreur WHERE id = ?");
+$deliver=$bdd->prepare("SELECT DECODE(rib,'pa2021esgi') as rib FROM livreur WHERE id = ?");
 $deliver->execute([$idDeliver]);
 $deliverRib=$deliver->fetch();
 
