@@ -20,23 +20,21 @@ $bankAccount=$_POST['bankAccount'];
 $primeObjectif=$_POST['primeObjectif'];
 $nbParcel=$_POST['nbParcel'];
 $weightPrime=$_POST['primeWeight'];
-$nbKm=$_POST['$nbKm'];
+$nbKm=$_POST['nbKm'];
 
 //FR89370400440532013000
 
-$query=$bdd->prepare("SELECT stripeId FROM livreur WHERE id = ?");
+$query=$bdd->prepare("SELECT stripeId,client FROM livreur WHERE id = ?");
 $query->execute([$idDeliver]);
 $result = $query->fetch();
 
 if($result['stripeId']!=""){
-  updateStripeAccount($stripe,$result['stripeId'],$accountId);
+  updateStripeAccount($stripe,$result['stripeId'],$bankAccount);
   $accountId=$result['stripeId'];
-
 }else{
   $deliver=$bdd->prepare("SELECT * FROM client WHERE id = ?");
-  $deliver->execute([$idDeliver]);
+  $deliver->execute([$deliverInfo['client']]);
   $deliverInfo=$deliver->fetch();
-
   $accountId=createStripeAccount($stripe,$deliverInfo['prenom'],$deliverInfo['nom'],$deliverInfo['numPhone'],$deliverInfo['email'],$deliverInfo['adresse'],$deliverInfo['codePostal'],$deliverInfo['ville'],$deliverInfo['birthdate'],$bankAccount);
 
   $upDel=$bdd->prepare("UPDATE livreur SET stripeId = ? WHERE id = ?");
@@ -49,7 +47,7 @@ $transfer = $stripe->transfers->create([
   'destination' => $accountId,
 ]);
 
-if($transfer != ""){
+if($transfer->id != ""){
   $salary=$bdd->prepare("INSERT INTO salaire(montant,date,nbKm,primeObjectif,primePoids,nbColis,livreur) VALUES (?,NOW(),?,?,?,?,?)");
   $salary->execute([$amount,$nbKm,$primeObjectif,$weightPrime,$nbParcel,$idDeliver]);
 }
@@ -59,5 +57,5 @@ if($transfer != ""){
 //   []
 // );
 
-// echo json_encode($account);
+echo "success";
  ?>

@@ -1,5 +1,5 @@
 <?php
-function createStripeAccount($firstName,$lastName,$phone,$email,$address,$zip,$city,$birthdate,$accountNb){
+function createStripeAccount($stripe,$firstName,$lastName,$phone,$email,$address,$zip,$city,$birthdate,$accountNb){
 
   $token = $stripe->tokens->create([
     'account' => [
