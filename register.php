@@ -12,6 +12,7 @@ $city = htmlspecialchars(trim($_POST['city']));
 $phonenum = htmlspecialchars(trim($_POST['phonenum']));
 $gender = $_POST['gender'];
 $status = $_POST['status'];
+$birth = $_POST['birthdate'];
 $hl = ""; 
 
 
@@ -41,7 +42,7 @@ if($resultcheck == 0){
                     if(isset($_POST['password']) && isset($_POST['passwordcheck']) && $_POST['password'] == $_POST['passwordcheck'] && preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/",$_POST['password'])){
                         if(isset($_POST['address']) && isset($_POST['city']) && strlen($_POST['address']) > 1 && strlen($_POST['city']) > 1 && is_string($_POST['address']) && is_string($_POST['city'])){
                             if(isset($_POST['zipcode']) && strlen($_POST['zipcode']) == 5 && is_numeric($_POST['zipcode'])){
-                                if(isset($_POST['phonenum']) && strlen($_POST['phonenum']) == 10 && is_string($_POST['phonenum'])) {
+                                if(isset($_POST['phonenum']) && strlen($_POST['phonenum']) == 10 && is_string($_POST['phonenum']) && isset($_POST['birthdate'])) {
                                     if(isset($_POST['status']) && isset($_POST['h-captcha-response']) && !empty($_POST['h-captcha-response'])){
                                         $verifyURL = 'https://hcaptcha.com/siteverify';
                                         $token = $_POST['h-captcha-response'];
@@ -62,7 +63,7 @@ if($resultcheck == 0){
                                         curl_close($ch);
                                         $responseData = json_decode($response);
                                         if($responseData->success){
-                                            $q = 'INSERT INTO client(genre,nom, prenom, email, mdp, status, adresse, ville, codePostal, numPhone) VALUES (:val1,:val2,:val3,:val4,:val5,:val6,:val7,:val8, :val9, :val10)';
+                                            $q = 'INSERT INTO client(genre,nom, prenom, email, mdp, status, adresse, ville, codePostal, numPhone, birthdate) VALUES (:val1,:val2,:val3,:val4,:val5,:val6,:val7,:val8, :val9, :val10, :val11)';
                                             $req = $bdd->prepare($q);
                                             $req->bindValue(":val1",$gender,PDO::PARAM_STR);
                                             $req->bindValue(":val2", $lastname, PDO::PARAM_STR);
@@ -74,6 +75,7 @@ if($resultcheck == 0){
                                             $req->bindValue(":val8", $city, PDO::PARAM_STR);
                                             $req->bindValue(":val9", $zipcode, PDO::PARAM_STR);
                                             $req->bindValue(":val10", $phonenum, PDO::PARAM_STR);
+                                            $req->bindValue(":val11",$birth, PDO::PARAM_STR);
                                             $req->execute();
                                             header('Location: index.php');
                                             exit();
@@ -178,10 +180,14 @@ if($resultcheck == 0){
                     <div class="form-group flex-fill mx-3">
                         <input class="form-control" id ="zipcode" type="number"  name="zipcode" placeholder="Code Postal" autocomplete="postal-code" min="0" langtrad="20"><br>
                     </div>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" id ="phonenum" type="tel"  name="phonenum" placeholder="Numéro de Téléphone" langtrad="21"><br>
-                </div>
+                    <div class="form-group flex-fill mx-3">
+                        <input class="form-control" id ="phonenum" type="tel"  name="phonenum" placeholder="Numéro de Téléphone" langtrad="21"><br>
+                    </div>
+               </div>
+               <div class="form-group">
+                    <label for="birthdate" langtrad="BIRTH">Date de Naissance : </label>
+                    <input class="form-control" id="birthdate" type="date" name="birthdate"><br>
+                </div>  
             </div>
             <br>
             <div class="h-captcha text-center" data-sitekey="caa7faa2-2f61-4f97-9a57-1285fdd1007a"></div>

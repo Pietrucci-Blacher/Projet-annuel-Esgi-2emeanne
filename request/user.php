@@ -32,7 +32,7 @@ function getAllData(){
 
 function getAdminDatabyid($id){
     $bdd = connexionBDD();
-    $res = $bdd -> prepare("SELECT id,nom,prenom,status,adresse,ville,codePostal,email,numphone,bannedAcount,bantime FROM client WHERE id = :id");
+    $res = $bdd -> prepare("SELECT id,nom,prenom,status,adresse,ville,codePostal,email,numphone,bannedAcount,bantime,birthdate FROM client WHERE id = :id");
     $res->bindValue(":id", $id, PDO::PARAM_INT);
     $res->execute();
     return $res->fetch(PDO::FETCH_ASSOC);
@@ -79,7 +79,7 @@ function getUserStatus($id){
     return $status['status'];
 }
 
-function UpdateUserinfo($lastname,$firstname,$email,$address,$zipcode,$city,$phonenum,$status){
+function UpdateUserinfo($lastname,$firstname,$email,$address,$zipcode,$city,$phonenum,$status, $birthdate){
     $bdd = connexionBDD();
     $res = $bdd->prepare("SELECT id FROM client WHERE email = :email");
     $res->bindValue(":email",$email,PDO::PARAM_STR);
@@ -87,7 +87,7 @@ function UpdateUserinfo($lastname,$firstname,$email,$address,$zipcode,$city,$pho
     $uid = $res->fetch(PDO::FETCH_ASSOC);
     $uidf = $uid['id'];
 
-    $req = $bdd->prepare("UPDATE client SET nom  = :nom, prenom = :prenom, email = :email, adresse = :addr, codePostal = :cp, ville = :city, numPhone = :num, status = :status WHERE id = :id");
+    $req = $bdd->prepare("UPDATE client SET nom  = :nom, prenom = :prenom, email = :email, adresse = :addr, codePostal = :cp, ville = :city, numPhone = :num, status = :status, birthdate = :birth WHERE id = :id");
     $req->bindValue(":nom",$lastname,PDO::PARAM_STR);
     $req->bindValue(":prenom",$firstname,PDO::PARAM_STR);
     $req->bindValue(":email",$email,PDO::PARAM_STR);
@@ -96,6 +96,7 @@ function UpdateUserinfo($lastname,$firstname,$email,$address,$zipcode,$city,$pho
     $req->bindValue(":city",$city,PDO::PARAM_STR);
     $req->bindValue(":num",$phonenum,PDO::PARAM_STR);
     $req->bindValue(":status",$status,PDO::PARAM_STR);
+    $req->bindValue(":birth",$birthdate,PDO::PARAM_STR);
     $req->bindValue(":id",$uidf,PDO::PARAM_STR);
     $req->execute();
 }
@@ -115,7 +116,7 @@ function permischeckuser($permis,$user){
     $req->execute();
 }
 
-function Updatedeliverinfo($email, $geozone,$brand,$vehiculetype,$ptac){
+function Updatedeliverinfo($email, $geozone,$brand,$vehiculetype,$ptac, $depot){
     $bdd = connexionBDD();
     $res = $bdd->prepare("SELECT id FROM client WHERE email = :email");
     $res->bindValue(":email",$email,PDO::PARAM_STR);
@@ -123,11 +124,12 @@ function Updatedeliverinfo($email, $geozone,$brand,$vehiculetype,$ptac){
     $uid = $res->fetch(PDO::FETCH_ASSOC);
     $uidf = $uid['id'];
 
-    $req = $bdd->prepare("UPDATE livreur SET zoneGeo = :geo, vehiculetype = :type, brandvehicule = :brand, ptacvehicule = :ptac WHERE client = :id");
+    $req = $bdd->prepare("UPDATE livreur SET zoneGeo = :geo, vehiculetype = :type, brandvehicule = :brand, ptacvehicule = :ptac, depot = :depot WHERE client = :id");
     $req->bindValue(":geo",$geozone,PDO::PARAM_STR);
     $req->bindValue(":type",$vehiculetype,PDO::PARAM_STR);
     $req->bindValue(":brand",$brand,PDO::PARAM_STR);
     $req->bindValue(":ptac",$ptac,PDO::PARAM_STR);
+    $req->bindValue(":depot", $depot, PDO::PARAM_STR);
     $req->bindValue(":id",$uidf,PDO::PARAM_STR);
     $req->execute();
 }

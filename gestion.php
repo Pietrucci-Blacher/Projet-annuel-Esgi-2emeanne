@@ -11,20 +11,22 @@ $lastname = htmlspecialchars(trim($_POST['lastname']));
 $firstname = htmlspecialchars(trim($_POST['firstname']));
 $email = htmlspecialchars(trim($_POST['email']));
 $address = htmlspecialchars(trim($_POST['address']));
+$birthdate = $_POST['birthdate'];
 $zipcode = htmlspecialchars(trim($_POST['zipcode']));
 $city = htmlspecialchars(trim($_POST['city']));
 $phonenum = htmlspecialchars(trim($_POST['phonenum']));
 $status = $_POST['status'];
-$zonegeo = $_POST['geozone'];
+$zonegeo = $_POST['radiusdepot'];
+$depot = $_POST['depot'];
 $brandvehicule = $_POST['brandvehicule'];
 $vehiculetype = $_POST['vehiculetype'];
 $ptac = $_POST['ptacvehicule'];
 
 if(isset($_POST) && !empty($_POST)){
     if($status == "livreur") {
-        Updatedeliverinfo($email, $zonegeo, $brandvehicule, $vehiculetype, $ptac);
+        Updatedeliverinfo($email, $zonegeo, $brandvehicule, $vehiculetype, $ptac, $depot);
     }
-    UpdateUserinfo($lastname,$firstname,$email,$address,$zipcode,$city,$phonenum,$status);
+    UpdateUserinfo($lastname,$firstname,$email,$address,$zipcode,$city,$phonenum,$status,$birthdate);
     header('Refresh:0');
     exit();
 }
@@ -109,6 +111,8 @@ if(isset($_POST) && !empty($_POST)){
                                 <div class="input-group">
                                     <label class="m-2" for="address">Adresse :</label>
                                     <input type="text" class="form-control mx-4" name="address" id="address" aria-describedby="address" placeholder="Adresse">
+                                    <label class="m-2" for="birthdate">Date de Naissance : </label>
+                                    <input class="form-control mx-4" type="date" name="birthdate" id="birthdate" aria-describedby="birthdate">
                                 </div>
                                 <br>
                                 <div class="input-group">
