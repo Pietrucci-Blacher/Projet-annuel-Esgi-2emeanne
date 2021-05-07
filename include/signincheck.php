@@ -34,10 +34,6 @@ if($data = $req->fetch()){
         header('location: ../index.php');
         exit();
     }else if($data['status'] == "livreur" && checkfirstconnect() == true){
-			$deliver=$bdd->prepare("SELECT id FROM livreur WHERE client = ?");
-			$deliver->execute([$data['id']]);
-			$idDeliver=$deliver->fetch();
-			$_SESSION['idDeliver'] = $idDeliver['id'];
 	    header('Location: ../deliveryform.php');
         exit();
     }else if($data['status'] == "entreprise" && checkfirstconnect() == true){

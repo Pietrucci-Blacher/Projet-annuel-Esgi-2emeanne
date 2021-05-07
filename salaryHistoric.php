@@ -17,6 +17,12 @@ checkbanuser();
 
     $bdd = connexionBDD();
 
+    $deliver=$bdd->prepare("SELECT id FROM livreur WHERE client = ?");
+    $deliver->execute([$_SESSION['id']]);
+    $idDeliver=$deliver->fetch();
+
+    $_SESSION['idDeliver'] = $idDeliver['id'];
+
     $query = $bdd->prepare("SELECT * FROM salaire WHERE livreur = ?");
     $query->execute([$_SESSION['idDeliver']]);
 
