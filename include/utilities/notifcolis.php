@@ -1,6 +1,6 @@
 <?php
-require_once('../../request/user.php');
-require_once('connexionbdd.php');
+require_once('request/user.php');
+require_once('include/connexionbdd.php');
 
 function checkPackage($packageid){
     $bdd = connexionBDD();
