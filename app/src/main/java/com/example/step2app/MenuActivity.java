@@ -51,7 +51,7 @@ public class MenuActivity extends AppCompatActivity {
         String idDeliver = prefs.getString("idLivreur",null);
 
         this.welcomeTxt =findViewById(R.id.welcomeTxt);
-        welcomeTxt.setText("Bienvenue "+firstname+" "+lastname+idDeliver);
+        welcomeTxt.setText("Bienvenue "+lastname+" "+firstname);
 
         this.disconnectBtn = findViewById(R.id.disconnectBtn);
         this.paiementBtn=findViewById(R.id.paiementBtn);
@@ -136,7 +136,7 @@ public class MenuActivity extends AppCompatActivity {
                     alertDialog.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
+                            dialog.cancel();
                         }
                     });
 
@@ -188,6 +188,7 @@ public class MenuActivity extends AppCompatActivity {
                                         }else{
                                             Intent payInt = new Intent(MenuActivity.this, calculatePay.class);
                                             payInt.putExtra("payInfo",finalJsonObj.toString());
+                                            payInt.putExtra("idLivreur",idDeliver);
                                             startActivity(payInt);
                                         }
                                     } catch (JSONException e) {

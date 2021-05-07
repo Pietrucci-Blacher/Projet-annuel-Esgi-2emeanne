@@ -136,7 +136,7 @@ public class DeliveryFlow extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DeliveryFlow.this);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DeliveryFlow.this, android.app.AlertDialog.THEME_DEVICE_DEFAULT_DARK);
                 alertDialogBuilder.setTitle("Annuler la livraison");
                 alertDialogBuilder.setMessage("Êtes-vous sure de vouloir annuler cette livraison ?");
                 alertDialogBuilder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
