@@ -10,9 +10,10 @@ error_reporting(E_ALL);
 
 $parcelId = $_POST['parcelId'];
 $deliveryId = $_POST['deliveryId'];
+$distance=$_POST['distance'];
 
-$query = $bdd->prepare("UPDATE contient SET status = 'Délivré' WHERE colis = ? AND livraison = ?");
-$query->execute([$parcelId,$deliveryId]);
+$query = $bdd->prepare("UPDATE contient SET status = 'Délivré',distance=? WHERE colis = ? AND livraison = ?");
+$query->execute([$distance,$parcelId,$deliveryId]);
 
 $query = $bdd->prepare("UPDATE colis SET status = 'Délivré au destinataire' WHERE id = ?");
 $query->execute([$parcelId]);
