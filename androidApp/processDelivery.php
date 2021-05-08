@@ -49,7 +49,7 @@
     global $jsonReturn;
 
     $jsonReturn['temps'] = $data->resourceSets[0]->resources[0]->travelDurationTraffic;
-    $jsonReturn['distance'] =round($data->resourceSets[0]->resources[0]->travelDistance);
+    $jsonReturn['distance'] +=round($data->resourceSets[0]->resources[0]->travelDistance);
   }
 
   function sortWP($url){
@@ -98,6 +98,8 @@
 
   $idDelivery = $_POST['idDelivery'];
 
+  $distanceToAdd=0;
+
   if($idDelivery=='none'){
     $query = $bdd->prepare("SELECT colis.id,client.adresse,client.ville,client.codePostal,colis.refQrcode,colis.poids,client.nom,client.prenom,client.numPhone,client.info FROM COLIS INNER JOIN CLIENT ON colis.client = client.id
                            WHERE colis.distanceDepot <= ? AND colis.depot = ? AND colis.date=DATE(NOW()) AND colis.status = 'En attente de récupération par le livreur' AND colis.poids <= ? ORDER BY colis.distanceDepot DESC");
@@ -118,6 +120,12 @@
       $countReturn+=1;
     }
     $jsonReturn['countReturn']=$countReturn;
+
+    $distanceQuery=$bdd->prepare("SELECT distance FROM CONTIENT WHERE livraison=? AND (status = 'Absent' OR status = 'Délivré')");
+    $distanceQuery->execute([$idDelivery]);
+    while($distanceRes=$distanceQuery->fetch()){
+      $distanceToAdd+= $distanceRes['distance'];
+    }
   }
 
   $startAdresse= $depositData['adresse']." ".$depositData['ville']." ".$depositData['codePostal'];
@@ -163,6 +171,8 @@
 
   $urlWP.="&wp.".$count."=".urlencode($endAdresse);
 
+  $jsonReturn['distance']=0;
+
   if($countParcel > 2 ){
     $jsonReturn['colis']=sortWP($urlWP);
   }elseif($countParcel >0){
@@ -173,6 +183,8 @@
   $jsonReturn['nbColis'] = $countParcel;
 
   distanceBetweenWp($urlWP,$countParcel);
+
+  $jsonReturn['distance']+=$distanceToAdd;
 
   print_r(json_encode($jsonReturn));
 
