@@ -55,6 +55,7 @@ public class QRcodeMenu extends AppCompatActivity {
 
         String idDeliver = getIntent().getStringExtra("idLivreur");
 
+
         JSONObject jsonObj = null;
         String distance = null;
         int time = 0;

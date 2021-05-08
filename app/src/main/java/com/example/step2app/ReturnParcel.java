@@ -3,6 +3,7 @@ package com.example.step2app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -37,6 +38,8 @@ public class ReturnParcel extends AppCompatActivity {
         this.returned=findViewById(R.id.btnReturned);
         this.returnParcelContainer=findViewById(R.id.returnParcelContainer);
 
+        SharedPreferences prefs = getSharedPreferences("valeurs",MODE_PRIVATE);
+
         ArrayList<String> returnParcel = getIntent().getStringArrayListExtra("returnParcel");
         String idDelivery = getIntent().getStringExtra("idDelivery");
         String nbKm = getIntent().getStringExtra("nbKm");
@@ -70,6 +73,9 @@ public class ReturnParcel extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Intent menuInt = new Intent(ReturnParcel.this, MenuActivity.class);
+                                    SharedPreferences.Editor edit = prefs.edit();
+                                    edit.putString("idLivraison","none");
+                                    edit.apply();
                                     Toast.makeText(ReturnParcel.this, "Livraison terminée", Toast.LENGTH_SHORT).show();
                                     startActivity(menuInt);
                                 }

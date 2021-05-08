@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +30,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class calculatePay extends AppCompatActivity {
+public class CalculatePay extends AppCompatActivity {
 
     private TextView parcelPrice,kmPrice,weightPrime,objectifPrime,objectifPrimeDetail;
     private Button btnPay;
@@ -126,10 +125,10 @@ public class calculatePay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(totalPay.compareTo(new BigDecimal("10")) == 1){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(calculatePay.this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CalculatePay.this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
                     builder.setTitle("Merci d'indiquer un compte bancaire");
 
-                    final EditText input = new EditText(calculatePay.this);
+                    final EditText input = new EditText(CalculatePay.this);
 
                     input.setTextColor(Color.WHITE);
                     input.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -143,7 +142,7 @@ public class calculatePay extends AppCompatActivity {
                     builder.setPositiveButton("Valider", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Toast toast =Toast.makeText(calculatePay.this, "Paiement en cours", Toast.LENGTH_LONG);
+                            Toast toast =Toast.makeText(CalculatePay.this, "Paiement en cours", Toast.LENGTH_LONG);
                             toast.show();
                             bankAccount = input.getText().toString();
                             OkHttpClient client = new OkHttpClient();
@@ -169,16 +168,16 @@ public class calculatePay extends AppCompatActivity {
                                     if (response.isSuccessful()) {
                                         final String myResponse = response.body().string();
 
-                                        calculatePay.this.runOnUiThread(new Runnable() {
+                                        CalculatePay.this.runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
                                                 if(myResponse.equals("success")){
                                                     toast.cancel();
-                                                    Toast.makeText(calculatePay.this, "Paiement effectué", Toast.LENGTH_SHORT).show();
-                                                    Intent menuInt = new Intent(calculatePay.this,MenuActivity.class);
+                                                    Toast.makeText(CalculatePay.this, "Paiement effectué", Toast.LENGTH_SHORT).show();
+                                                    Intent menuInt = new Intent(CalculatePay.this,MenuActivity.class);
                                                     startActivity(menuInt);
                                                 }else{
-                                                    Toast.makeText(calculatePay.this, "Erreur lors du paiement", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(CalculatePay.this, "Erreur lors du paiement", Toast.LENGTH_SHORT).show();
                                                 }
                                             }
                                         });
@@ -198,7 +197,7 @@ public class calculatePay extends AppCompatActivity {
                     builder.show();
 
                 }else{
-                    Toast.makeText(calculatePay.this, "Virement minimum de plus de 10 €", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CalculatePay.this, "Virement minimum de plus de 10 €", Toast.LENGTH_SHORT).show();
                 }
             }
         });

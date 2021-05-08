@@ -74,6 +74,20 @@ public class DeliveryFlow extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        Integer parcelToReturn = 0;
+        try {
+            parcelToReturn = Integer.parseInt(jsonObj.getString("countReturn"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        for (int i = 0; i < parcelToReturn; i++) {
+            try {
+                returnParcel.add("Référence : "+jsonObj.getJSONArray("returnParcel").getJSONObject(i).getString("refQrcode"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
         try {
             if(Integer.parseInt(jsonObj.getString("nbColis"))==1){
                 updateView(jsonObj,this.ref,this.name,this.adresse,this.city,this.phone,this.info,this.counter,"end",countParcel);
@@ -218,6 +232,7 @@ public class DeliveryFlow extends AppCompatActivity {
         ref.setTag(parcel.getString("idColis"));
         name.setText("Destinataire : "+parcel.getString("nom")+" "+parcel.getString("prenom"));
         adresse.setText("Adresse : "+parcel.getString("adresse"));
+        adresse.setTag(parcel.getString("distance"));
         city.setText("Ville : "+parcel.getString("ville")+" "+parcel.getString("codePostal"));
         if(parcel.getString("numPhone").equals("")){
             phone.setText("");
@@ -278,7 +293,7 @@ public class DeliveryFlow extends AppCompatActivity {
     private void handleParcel(String url, JSONObject json){
 
         OkHttpClient client = new OkHttpClient();
-        RequestBody formBody = new FormBody.Builder().add("parcelId", ref.getTag().toString()).add("deliveryId", idDelivery).build();
+        RequestBody formBody = new FormBody.Builder().add("parcelId", ref.getTag().toString()).add("distance", adresse.getTag().toString()).add("deliveryId", idDelivery).build();
         Request request = new Request.Builder().url(url).post(formBody).build();
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -312,6 +327,10 @@ public class DeliveryFlow extends AppCompatActivity {
                                                         public void run() {
                                                             Intent menuInt = new Intent(DeliveryFlow.this, MenuActivity.class);
                                                             Toast.makeText(DeliveryFlow.this, "Livraison terminée", Toast.LENGTH_SHORT).show();
+                                                            SharedPreferences prefs = getSharedPreferences("valeurs",MODE_PRIVATE);
+                                                            SharedPreferences.Editor edit = prefs.edit();
+                                                            edit.putString("idLivraison","none");
+                                                            edit.apply();
                                                             startActivity(menuInt);
                                                             finish();
                                                         }

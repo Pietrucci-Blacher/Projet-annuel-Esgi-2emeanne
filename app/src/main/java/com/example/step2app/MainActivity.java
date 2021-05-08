@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                                                 edit.putString("poidsVehicule",finalJsonObj.getString("poidsVehicule"));
                                                 edit.putString("idDepot",finalJsonObj.getString("idDepot"));
                                                 edit.putString("idLivreur",finalJsonObj.getString("idLivreur"));
+                                                edit.putString("idLivraison",finalJsonObj.getString("idLivraison"));
                                                 edit.apply();
                                                 startActivity(menuInt);
                                             }
