@@ -34,7 +34,7 @@ if($result['stripeId']!=""){
   $upDel->execute([$bankAccount,$idDeliver]);
 }else{
   $deliver=$bdd->prepare("SELECT * FROM client WHERE id = ?");
-  $deliver->execute([$deliverInfo['client']]);
+  $deliver->execute([$result['client']]);
   $deliverInfo=$deliver->fetch();
   $accountId=createStripeAccount($stripe,$deliverInfo['prenom'],$deliverInfo['nom'],$deliverInfo['numPhone'],$deliverInfo['email'],$deliverInfo['adresse'],$deliverInfo['codePostal'],$deliverInfo['ville'],$deliverInfo['birthdate'],$bankAccount);
 
