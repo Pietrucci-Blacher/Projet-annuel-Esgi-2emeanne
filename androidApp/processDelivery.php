@@ -99,6 +99,7 @@
   $idDelivery = $_POST['idDelivery'];
 
   $distanceToAdd=0;
+  $startAdresse="";
 
   if($idDelivery=='none'){
     $query = $bdd->prepare("SELECT colis.id,client.adresse,client.ville,client.codePostal,colis.refQrcode,colis.poids,client.nom,client.prenom,client.numPhone,client.info FROM COLIS INNER JOIN CLIENT ON colis.client = client.id
@@ -121,14 +122,19 @@
     }
     $jsonReturn['countReturn']=$countReturn;
 
-    $distanceQuery=$bdd->prepare("SELECT distance FROM CONTIENT WHERE livraison=? AND (status = 'Absent' OR status = 'Délivré')");
+    $distanceQuery=$bdd->prepare("SELECT contient.distance,client.adresse,client.ville,client.codePostal FROM COLIS INNER JOIN CLIENT ON colis.client=client.id
+      JOIN CONTIENT ON colis.id=contient.colis WHERE contient.livraison=? AND (contient.status = 'Absent' OR contient.status = 'Délivré') ORDER BY contient.modifStatus ASC");
+
     $distanceQuery->execute([$idDelivery]);
     while($distanceRes=$distanceQuery->fetch()){
+      $startAdresse=$distanceRes['adresse']." ".$distanceRes['ville']." ".$distanceRes['codePostal'];
       $distanceToAdd+= $distanceRes['distance'];
     }
   }
 
-  $startAdresse= $depositData['adresse']." ".$depositData['ville']." ".$depositData['codePostal'];
+  if($startAdresse==""){
+    $startAdresse= $depositData['adresse']." ".$depositData['ville']." ".$depositData['codePostal'];
+  }
 
   $urlWP="wp.0=".urlencode($startAdresse);
 
