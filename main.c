@@ -2,15 +2,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <winsock2.h>
 #include <winsock.h>
 #include <mysql.h>
 #include <math.h>
 #include <time.h>
+#include <curl/curl.h>
 
 MYSQL mysql;
 char infoParcel[11][255];
+char idList[255];
 
 void readExcel();
+
+void createList(int id){
+    char result[50];
+    if (strcmp(idList,"") == 0){
+        sprintf(result,"%d",id);
+        strcpy(idList,result);
+    }else{
+        strcat(idList,"_");
+        sprintf(result,"%d",id);
+        strcat(idList,result);
+    }
+}
+
 
 void mysql_connection(){
     mysql_init(&mysql);
@@ -22,6 +38,34 @@ void mysql_connection(){
         printf("MYSQL CONNECT SUCCESS");
         readExcel();
     }
+}
+
+void convertToISO(){
+    char postContent[255];
+    CURL *curl;
+    CURLcode res;
+    curl_global_init(CURL_GLOBAL_ALL);
+    curl = curl_easy_init();
+
+    if(curl) {
+        strcpy(postContent,"idList=");
+        strcat(postContent,curl_escape(idList,0));
+
+        curl_easy_setopt(curl, CURLOPT_URL, "https://pa2021-esgi.herokuapp.com/appliC/convertToISO.php");
+
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L); //skip verif SSL
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, postContent);
+        res = curl_easy_perform(curl);
+
+        if(res != CURLE_OK){
+          fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
+        }
+
+        curl_easy_cleanup(curl);
+    }
+    curl_global_cleanup();
 }
 
 void displayArray(){
@@ -185,7 +229,9 @@ void queryClient(){
     }else{
         printf("\nINSERT SUCCESS");
         userId = mysql_insert_id(&mysql);
+        createList(userId);
         queryParcel(userId);
+
     }
 }
 
@@ -231,6 +277,9 @@ void readExcel(){
                         }
                     }
                     fclose(file);
+                    emptyArray();
+                    convertToISO();
+                    memset(idList,0,strlen(idList));
                     rename(path,movePath);
                 }
             }
@@ -243,5 +292,7 @@ void readExcel(){
 int main(int argc,char **argv)
 {
     mysql_connection();
+    printf("\n");
+    system("pause");
     return 0;
 }

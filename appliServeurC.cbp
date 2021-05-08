@@ -14,10 +14,14 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="library/mysql/include" />
+					<Add directory="library/curl library/include" />
 				</Compiler>
 				<Linker>
 					<Add library="library/mysql/lib/libmysql.a" />
+					<Add library="library/curl library/lib/libcurl.a" />
+					<Add library="library/curl library/lib/libcurl.dll.a" />
 					<Add directory="library/mysql/lib" />
+					<Add directory="library/curl library/lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -28,11 +32,15 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add directory="library/mysql/include" />
+					<Add directory="library/curl library/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
 					<Add library="library/mysql/lib/libmysql.a" />
+					<Add library="library/curl library/lib/libcurl.a" />
+					<Add library="library/curl library/lib/libcurl.dll.a" />
 					<Add directory="library/mysql/lib" />
+					<Add directory="library/curl library/lib" />
 				</Linker>
 			</Target>
 		</Build>
@@ -41,6 +49,9 @@
 		</Compiler>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ressource.rc">
+			<Option compilerVar="WINDRES" />
 		</Unit>
 		<Extensions />
 	</Project>
