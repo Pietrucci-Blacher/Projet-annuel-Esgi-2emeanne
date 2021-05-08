@@ -1,7 +1,7 @@
 #include <common.h>
 
 void connexionScreen(){
-    addLabel("<span size=\"20000\">ID</span>");
+    addLabel("<span size=\"20000\">SIRET</span>");
 
     addEntry(0,"");
 

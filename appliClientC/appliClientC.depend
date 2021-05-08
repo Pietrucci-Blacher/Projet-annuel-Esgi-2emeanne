@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1616350037 source:c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\main.c
+1620496932 source:c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\main.c
 	<common.h>
 
 1366411412 c:\users\pierre\desktop\esgi\projet annuel\appliclientc\librarie\include\gtk-3.0\gtk\gtk.h
@@ -2490,7 +2490,7 @@
 1618678073 source:c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\curl.c
 	<common.h>
 
-1618520466 c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\common\common.h
+1618756772 c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\common\common.h
 	<gtk/gtk.h>
 	<stdio.h>
 	<stdlib.h>
@@ -2501,6 +2501,7 @@
 	<libbmp.h>
 	<sys/stat.h>
 	<fcntl.h>
+	<locale.h>
 
 1607415254 c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\libraries\curl library\include\curl\curl.h
 	"curlver.h"
@@ -2544,13 +2545,13 @@
 
 1607329454 c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\libraries\curl library\include\curl\typecheck-gcc.h
 
-1618669986 source:c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\excel.c
+1618757660 source:c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\excel.c
 	<common.h>
 
 1615409566 source:c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\gtk.c
 	<common.h>
 
-1617048112 source:c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\menu.c
+1620495997 source:c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\menu.c
 	<common.h>
 
 1616356823 source:c:\users\pierre\desktop\esgi\projet annuel\appliclientc\appliclientc\parcel.c
