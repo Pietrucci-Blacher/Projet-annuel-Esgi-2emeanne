@@ -35,10 +35,12 @@
             <li class="nav-item"><a class="nav-link" href="priceParcelAdmin.php">Gérer les tarifs des colis</a></li>
         <?php } if(isset($_SESSION['name']) && $_SESSION['rank'] == "entreprise"){ ?>
               <li class="nav-item"><a class="nav-link" href="searchParcelCompany.php">Gérer les colis</a></li>
+              <li class="nav-item"><a href="setup/ultimateparcel_setup.exe" class="nav-link" download>Télécharger l'application</a></li>
               <li class="nav-item"><a class="nav-link" href="paiementParcel.php">Payer les colis</a></li>
               <li class="nav-item"><a class="nav-link" href="billHistoric.php">Historique des factures</a></li>
         <?php } if(isset($_SESSION['name']) && $_SESSION['rank'] == "livreur"){ ?>
             <li class="nav-item"><a class="nav-link" href="salaryHistoric.php">Historique des salaires</a></li>
+            <li class="nav-item"><a href="setup/ultimateparcel.apk" class="nav-link" download>Télécharger l'application</a></li>
         <?php } if(isset($_SESSION['name']) &&  isset($_SESSION['id'])){ ?>
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
