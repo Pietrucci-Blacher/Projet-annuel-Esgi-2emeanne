@@ -32,7 +32,7 @@ function SendMessage($userid , $packageid){
 
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
-    curl_setopt($curl, array('Content-Type: application/json; charset=utf-8', 'Authorization: Basic YjA1MDRjMzAtYzFhNi00OTVhLWIxMTItMTA0ZDk5MjM0NDc2'));
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8', 'Authorization: Basic YjA1MDRjMzAtYzFhNi00OTVhLWIxMTItMTA0ZDk5MjM0NDc2'));
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
     curl_setopt($curl, CURLOPT_HEADER, FALSE);
     curl_setopt($curl, CURLOPT_POST, TRUE);
