@@ -24,8 +24,8 @@ $query = $bdd->prepare("UPDATE contient SET status = 'Absent',distance=?,modifSt
 $query->execute([$distance,$parcelId,$deliveryId]);
 
 if($updAbsent == 3){
-  $query = $bdd->prepare("UPDATE colis SET status = 'Retour à l''entreprise d''origine',date = ?,nbAbsence=? WHERE id = ?");
-  $query->execute([$date,$updAbsent,$parcelId]);
+  $query = $bdd->prepare("UPDATE colis SET status = ?,date = ?,nbAbsence=? WHERE id = ?");
+  $query->execute(["Retour à l'entrepise d'origine",$date,$updAbsent,$parcelId]);
 }else{
   $query = $bdd->prepare("UPDATE colis SET status = 'Retour au dépot',date = ?,nbAbsence=? WHERE id = ?");
   $query->execute([$date,$updAbsent,$parcelId]);
