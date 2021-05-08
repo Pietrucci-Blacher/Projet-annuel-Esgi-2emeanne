@@ -12,7 +12,7 @@ $parcelId = $_POST['parcelId'];
 $deliveryId = $_POST['deliveryId'];
 $distance=$_POST['distance'];
 
-$query = $bdd->prepare("UPDATE contient SET status = 'Délivré',distance=? WHERE colis = ? AND livraison = ?");
+$query = $bdd->prepare("UPDATE contient SET status = 'Délivré',distance=?,modifStatus=NOW()  WHERE colis = ? AND livraison = ?");
 $query->execute([$distance,$parcelId,$deliveryId]);
 
 $query = $bdd->prepare("UPDATE colis SET status = 'Délivré au destinataire' WHERE id = ?");
