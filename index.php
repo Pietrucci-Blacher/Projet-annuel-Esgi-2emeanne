@@ -1,6 +1,8 @@
 <?php
 require_once('include/utilities/banuser.php');
+require_once('include/utilities/notifcolis.php'); 
 checkbanuser();
+SendMessage(8,1234);  
 ?>
 
 <!DOCTYPE html>
