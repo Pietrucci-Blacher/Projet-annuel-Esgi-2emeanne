@@ -21,15 +21,10 @@
   }
 
   function wpTime($url){
-
-    //echo "URL : ".$url."<br>";
-
     $data = curlRequest($url);
-
     if($data->statusCode != 200){
       return 24*3600;
     }else{
-      //echo "Temps : ".($data->resourceSets[0]->resources[0]->travelDurationTraffic/3600)."<br>";
       return ($data->resourceSets[0]->resources[0]->travelDurationTraffic);
     }
   }
@@ -91,6 +86,7 @@
     $jsonReturn[$category][$count]['info'] = $info;
   }
 
+  $jsonReturn = array();
   $idDeposit = $_POST['deposit'];
   $delivererZone = $_POST['zone'];
   $time = $_POST['time'];
@@ -100,16 +96,33 @@
   $queryDeposit->execute([$idDeposit]);
   $depositData = $queryDeposit->fetch();
 
-  $query = $bdd->prepare("SELECT colis.id,client.adresse,client.ville,client.codePostal,colis.refQrcode,colis.poids,client.nom,client.prenom,client.numPhone,client.info FROM COLIS INNER JOIN CLIENT ON colis.client = client.id
-                          WHERE colis.distanceDepot <= ? AND colis.depot = ? AND colis.date=DATE(NOW()) AND colis.status = 'En attente de récupération par le livreur' AND colis.poids <= ? ORDER BY colis.distanceDepot DESC");
+  $idDelivery = $_POST['idDelivery'];
 
-  $query->execute([$delivererZone,$idDeposit,$maxWeight]);
+  if($idDelivery=='none'){
+    $query = $bdd->prepare("SELECT colis.id,client.adresse,client.ville,client.codePostal,colis.refQrcode,colis.poids,client.nom,client.prenom,client.numPhone,client.info FROM COLIS INNER JOIN CLIENT ON colis.client = client.id
+                           WHERE colis.distanceDepot <= ? AND colis.depot = ? AND colis.date=DATE(NOW()) AND colis.status = 'En attente de récupération par le livreur' AND colis.poids <= ? ORDER BY colis.distanceDepot DESC");
+    $query->execute([$delivererZone,$idDeposit,$maxWeight]);
+    $jsonReturn['countReturn']='none';
+  }else{
+    $query=$bdd->prepare("SELECT colis.id,client.adresse,client.ville,client.codePostal,colis.refQrcode,colis.poids,client.nom,client.prenom,client.numPhone,client.info FROM COLIS INNER JOIN CLIENT ON colis.client = client.id
+                          JOIN contient ON contient.colis = colis.id WHERE contient.livraison = ? AND contient.status='Récupéré' ORDER BY colis.distanceDepot DESC");
+    $query->execute([$idDelivery]);
+
+    $return=$bdd->prepare("SELECT colis.refQrcode FROM COLIS JOIN CONTIENT ON colis.id=contient.colis WHERE (contient.status = 'Absent' OR contient.status = 'Annulé') AND contient.livraison=?");
+    $return->execute([$idDelivery]);
+
+    $countReturn = 0;
+
+    while($returnParcel = $return->fetch()){
+      $jsonReturn['returnParcel'][$countReturn]['refQrcode']=$returnParcel['refQrcode'];
+      $countReturn+=1;
+    }
+    $jsonReturn['countReturn']=$countReturn;
+  }
 
   $startAdresse= $depositData['adresse']." ".$depositData['ville']." ".$depositData['codePostal'];
 
   $urlWP="wp.0=".urlencode($startAdresse);
-
-  $jsonReturn = array();
 
   $count=1;
   $countParcel = 0;

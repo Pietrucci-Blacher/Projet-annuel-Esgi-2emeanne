@@ -23,6 +23,16 @@ require_once('../include/connexionbdd.php');
     if($success['status'] != 'livreur'){
       $obj['status']= "failed";
     }else{
+      $queryDeliver=$bdd->prepare("SELECT id FROM livraison WHERE status = 'En cours' AND livreur=?");
+      $queryDeliver->execute([$success['id']]);
+      $deliver=$queryDeliver->fetch();
+
+      if($queryDeliver->rowCount()==0){
+        $obj['idLivraison']="none";
+      }else{
+        $obj['idLivraison']=$deliver['id'];
+      }
+
       $obj['status']= "success";
       $obj['prenom']= $success['prenom'];
       $obj['nom']= $success['nom'];
