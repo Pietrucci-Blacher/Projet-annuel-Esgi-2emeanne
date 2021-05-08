@@ -194,6 +194,7 @@ public class DeliveryFlow extends AppCompatActivity {
                                             returnInt.putExtra("idDelivery", idDelivery);
                                             returnInt.putExtra("nbKm", distance.toString());
                                             startActivity(returnInt);
+                                            finish();
                                         }
                                     });
                                 }
@@ -312,6 +313,7 @@ public class DeliveryFlow extends AppCompatActivity {
                                                             Intent menuInt = new Intent(DeliveryFlow.this, MenuActivity.class);
                                                             Toast.makeText(DeliveryFlow.this, "Livraison terminée", Toast.LENGTH_SHORT).show();
                                                             startActivity(menuInt);
+                                                            finish();
                                                         }
                                                     });
                                                 }
@@ -323,6 +325,7 @@ public class DeliveryFlow extends AppCompatActivity {
                                         returnInt.putExtra("nbKm",json.getString("distance"));
                                         returnInt.putExtra("idDelivery",idDelivery);
                                         startActivity(returnInt);
+                                        finish();
                                     }
                                 }else{
                                     if(countParcel == Integer.parseInt(json.getString("nbColis"))-1){

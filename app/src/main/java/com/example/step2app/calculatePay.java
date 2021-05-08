@@ -143,13 +143,14 @@ public class calculatePay extends AppCompatActivity {
                     builder.setPositiveButton("Valider", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            Toast toast =Toast.makeText(calculatePay.this, "Paiement en cours", Toast.LENGTH_LONG);
+                            toast.show();
                             bankAccount = input.getText().toString();
                             OkHttpClient client = new OkHttpClient();
                             String url = "https://pa2021-esgi.herokuapp.com/androidApp/payDeliver.php";
                             RequestBody formBody = new FormBody.Builder()
                                     .add("idDeliver", idDeliver)
                                     .add("amount", totalPay.toString())
-                                    .add("action", "update")
                                     .add("bankAccount", bankAccount)
                                     .add("primeObjectif", prime.toString())
                                     .add("nbParcel", finalDelivered.toString())
@@ -172,6 +173,7 @@ public class calculatePay extends AppCompatActivity {
                                             @Override
                                             public void run() {
                                                 if(myResponse.equals("success")){
+                                                    toast.cancel();
                                                     Toast.makeText(calculatePay.this, "Paiement effectué", Toast.LENGTH_SHORT).show();
                                                     Intent menuInt = new Intent(calculatePay.this,MenuActivity.class);
                                                     startActivity(menuInt);

@@ -148,6 +148,7 @@ public class QRcodeMenu extends AppCompatActivity {
                                         deliveryFlow.putExtra("idLivreur",idDeliver);
                                         deliveryFlow.putExtra("idLivraison", myResponse);
                                         startActivity(deliveryFlow);
+                                        finish();
                                     }
                                 });
                             }
