@@ -20,15 +20,15 @@ $result=$nbAbsence->fetch();
 
 $updAbsent=$result['nbAbsence']+1;
 
-$query = $bdd->prepare("UPDATE contient SET status = 'Absent',distance=?,modifStatus=NOW(),nbAbsence=? WHERE colis = ? AND livraison = ?");
-$query->execute([$distance,$updAbsent,$parcelId,$deliveryId]);
+$query = $bdd->prepare("UPDATE contient SET status = 'Absent',distance=?,modifStatus=NOW() WHERE colis = ? AND livraison = ?");
+$query->execute([$distance,$parcelId,$deliveryId]);
 
 if($updAbsent == 3){
-  $query = $bdd->prepare("UPDATE colis SET status = 'Retour à l''entreprise d''origine',date = ? WHERE id = ?");
-  $query->execute([$date,$parcelId]);
+  $query = $bdd->prepare("UPDATE colis SET status = 'Retour à l''entreprise d''origine',date = ?,nbAbsence=? WHERE id = ?");
+  $query->execute([$date,$updAbsent,$parcelId]);
 }else{
-  $query = $bdd->prepare("UPDATE colis SET status = 'Retour au dépot',date = ? WHERE id = ?");
-  $query->execute([$date,$parcelId]);
+  $query = $bdd->prepare("UPDATE colis SET status = 'Retour au dépot',date = ?,nbAbsence=? WHERE id = ?");
+  $query->execute([$date,$updAbsent,$parcelId]);
 }
 
 
