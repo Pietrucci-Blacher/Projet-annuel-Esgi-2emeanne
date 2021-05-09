@@ -44,9 +44,6 @@ public class MainActivity extends AppCompatActivity {
         this.email = findViewById(R.id.emailInput);
         this.mdp = findViewById(R.id.mdpInput);
 
-        this.email.setText("livreur@mail.com");
-        this.mdp.setText("Test1234!");
-
         this.loginBtn.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
