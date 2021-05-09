@@ -10,8 +10,8 @@ function createStripeAccount($stripe,$firstName,$lastName,$phone,$email,$address
         'phone' => '+33 '.$phone,
         'email' => $email,
         'dob' => [
-          'day' => '18',
-          'month' => '05',
+          'day' => '01',
+          'month' => '01',
           'year' => '2000',
         ],
         'address' => [
