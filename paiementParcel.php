@@ -156,9 +156,9 @@ if(empty($_SESSION['siret'])){
                  success : function(result){
                    if(result == "succeeded"){
                      $.ajax({
-                        url : 'billHistoric.php',
+                        url : 'generateBill.php',
                         success : function(result){
-                          window.location.href = 'priceHistory.php';
+                          window.location.href = 'billHistoric.php';
                         }
                      });
                    }else{
