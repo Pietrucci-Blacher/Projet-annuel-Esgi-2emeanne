@@ -1,8 +1,8 @@
 <?php
-define("host", "eu-cdbr-west-03.cleardb.net");
-define("dbname", "heroku_a4b01b2a0b88f60");
-define("user","bdd1b420797f42");
-define("pwd","190eb870");
+define("host", "eu-cdbr-west-01.cleardb.com");
+define("dbname", "heroku_2a7b6d6bca54d6d");
+define("user","b893405baafc59");
+define("pwd","7303e1e2");
 define("driver","mysql");
 
 define('SITE_ROOT', realpath(dirname(dirname(__FILE__))));
